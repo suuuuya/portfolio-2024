@@ -4,7 +4,7 @@
 > <br />
 이메일: <a href="mailTo:iamsuuya@gmail.com">iamsuuya@gmail.com</a>
 > <br />
-깃허브: <a href="https://github.com/iamsuuya">https://github.com/iamsuuya</a>
+깃허브: <a href="https://github.com/suuuuya" target="_blank">https://github.com/suuuuya</a>
 
 <br />
 
@@ -12,7 +12,7 @@
 
 > 안녕하세요! 웹퍼블리셔 이연수입니다.
 > <br />
-> 저에 대한 더 자세한 내용은 <a href="https://www.notion.so/iamsuuya/Web-Publisher-5f5ae2c8e94c4e57b3bc3e03a09eff19?pvs=4">PROFILE</a>을 통해 확인 하실 수 있습니다.
+> 저에 대한 더 자세한 내용은 <a href="https://www.notion.so/iamsuuya/Web-Publisher-5f5ae2c8e94c4e57b3bc3e03a09eff19?pvs=4" target="_blank">PROFILE</a>을 통해 확인 하실 수 있습니다.
 
 <br />
 
