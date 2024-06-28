@@ -6,7 +6,7 @@
     <title>Custom Shapes</title>
     <style>
         html,body{margin: 0;padding: 0;width: 100%;height: 100%;overflow: hidden;}
-        canvas{position: relative; display: block;width:100%;height: 100%; background:linear-gradient(347deg, #c1c1c1, #fff);/*background-image: url('img/bg.jpg');*/background-repeat: no-repeat;background-position: center;  background-size: cover !important;}
+        canvas{position: relative; display: block;/*width:100%;height: 100%;*/ background:linear-gradient(347deg, #c1c1c1, #fff);/*background-image: url('img/bg.jpg');*/background-repeat: no-repeat;background-position: center;  background-size: cover !important;}
         body::after{
             content: "";
             position: absolute;
@@ -50,121 +50,167 @@
 <script src="./js/lib/matter.min.js"></script>
 <script src="./js/lib/matter-wrap.min.js"></script>
 <script>
-var Example = Example || {};
-
-Example.mixed = function () {
-    var Engine = Matter.Engine,
-        Render = Matter.Render,
-        Runner = Matter.Runner,
-        Bodies = Matter.Bodies,
-        Composite = Matter.Composite,
-        Mouse = Matter.Mouse,
-        MouseConstraint = Matter.MouseConstraint,
-        Common = Matter.Common;
-
-    var engine = Engine.create(),
-        world = engine.world;
-
-    var render = Render.create({
-        element: document.getElementById('canvas-container'),
-        engine: engine,
-        options: {
-            width: window.innerWidth,
-            height: window.innerHeight,
-            wireframes: false,
-            background: false,
-        }
-    });
-
-    Render.run(render);
-
-    var runner = Runner.create();
-    Runner.run(runner, engine);
-
-    var shapes = []; // 도형 저장 배열
-
-    // 도형 추가 및 크기 조정 로직을 포함한 함수
-    var addShape = function (texture, options) {
-        var scale = Math.min(window.innerWidth, window.innerHeight) / 1000; // 기본 비율 계산
-        options = {...options, ...{
-            restitution: 0.7,
-            render: {
-                sprite: {
-                    texture: texture,
-                    xScale: scale * options.scale,
-                    yScale: scale * options.scale
+    var Example = Example || {};
+    
+    Example.mixed = function () {
+        var Engine = Matter.Engine,
+            Render = Matter.Render,
+            Runner = Matter.Runner,
+            Bodies = Matter.Bodies,
+            Composite = Matter.Composite,
+            Mouse = Matter.Mouse,
+            MouseConstraint = Matter.MouseConstraint,
+            Common = Matter.Common;
+    
+        var engine = Engine.create(),
+            world = engine.world;
+    
+        var render = Render.create({
+            element: document.getElementById('canvas-container'),
+            engine: engine,
+            options: {
+                width: window.innerWidth,
+                height: window.innerHeight,
+                wireframes: false,
+                background: false,
+            }
+        });
+    
+        Render.run(render);
+    
+        var runner = Runner.create();
+        Runner.run(runner, engine);
+    
+        // 도형 저장 배열
+        var shapes = [];
+    
+        // 도형 추가 및 크기 조정 로직을 포함한 함수
+        var addShape = function (texture, options) {
+            var scale = Math.min(window.innerHeight, window.innerWidth) / 1000; // 기본 비율 계산
+            options = {...options, ...{
+                restitution: 0.7,
+                render: {
+                    sprite: {
+                        texture: texture,
+                        xScale: scale * options.scale,
+                        yScale: scale * options.scale
+                    }
                 }
+            }};
+    
+            var body = options.shape === 'circle' ?
+                Bodies.circle(Math.random() * window.innerWidth, -100, options.radius * scale, options) :
+                Bodies.rectangle(Math.random() * window.innerWidth, -100, options.width * scale, options.height * scale, options);
+    
+            body.initialScale = scale; // 초기 스케일 저장
+            body.options = options; // 도형 옵션 저장
+            shapes.push(body);
+            Composite.add(world, body); // 도형을 world에 추가
+            return body;
+        };
+    
+        // 도형 초기 추가
+        addShape('./img/icon2.png', { shape: 'circle', radius: 146, scale: 1 });
+        addShape('./img/icon1.png', { shape: 'rectangle', width: 322, height: 249, scale: 1 });
+        addShape('./img/tag.png', { shape: 'rectangle', width: 375, height: 136, scale: 1 });
+    
+        // 일정 시간 간격으로 도형 복제
+        // 1초마다 도형 추가
+        setInterval(function() {
+            var textures = ['./img/icon2.png', './img/icon1.png', './img/tag.png'];
+            var options = [
+                { shape: 'circle', radius: 146, scale: 1 },
+                { shape: 'rectangle', width: 322, height: 249, scale: 1 },
+                { shape: 'rectangle', width: 375, height: 136, scale: 1 }
+            ];
+            var index = Math.floor(Math.random() * textures.length);
+            addShape(textures[index], options[index]);
+        }, 1000);
+        
+    
+        // 벽 추가
+        var walls = [];
+        var addWalls = function() {
+            var newWalls = [
+                Bodies.rectangle(window.innerWidth / 2, window.innerHeight + 30, window.innerWidth, 100, { isStatic: true, render: { fillStyle: 'rgba(255, 255, 255, 1)' } }),
+                Bodies.rectangle(-50, window.innerHeight / 2, 100, window.innerHeight, { isStatic: true, render: { fillStyle: 'rgba(255, 255, 255, 1)' } }),
+                Bodies.rectangle(window.innerWidth + 50, window.innerHeight / 2, 100, window.innerHeight, { isStatic: true, render: { fillStyle: 'rgba(255, 255, 255, 1)' } })
+                ];
+            Composite.add(world, newWalls);
+            walls = newWalls;
+        };
+    
+        addWalls();
+
+       // 벽 제거
+        setInterval(function() {
+            Composite.remove(world, walls);
+            // 2초 뒤에 벽을 재생성
+            setTimeout(function() {
+                addWalls();
+            }, 2000);
+        }, 20000);
+            
+        var mouse = Mouse.create(render.canvas),
+            mouseConstraint = MouseConstraint.create(engine, {
+                mouse: mouse,
+                constraint: {
+                    stiffness: 1,
+                    render: { visible: false }
+                }
+            });
+    
+        Composite.add(world, mouseConstraint);
+        render.mouse = mouse;
+    
+        // 리사이즈 이벤트 핸들러
+        window.addEventListener('resize', function() {
+            render.options.width = window.innerWidth;
+            render.options.height = window.innerHeight;
+            render.canvas.width = window.innerWidth;
+            render.canvas.height = window.innerHeight;
+    
+            // 새 스케일 계산
+            var newScale = Math.min(window.innerWidth, window.innerHeight) / 1000;
+    
+            // 도형 크기 및 위치 업데이트
+            /*shapes.forEach(function(body) {
+                var scaleRatio = newScale / body.initialScale;
+                Matter.Body.scale(body, scaleRatio, scaleRatio);
+                body.initialScale = newScale; // 새로운 초기 스케일 저장
+    
+                // 도형의 초기 옵션에 따라 크기 및 위치 조정
+                if (body.circleRadius) {
+                    body.circleRadius = body.options.radius * newScale;
+                } else {
+                    body.bounds.max.x = body.bounds.min.x + body.options.width * newScale;
+                    body.bounds.max.y = body.bounds.min.y + body.options.height * newScale;
+                }
+    
+                var centerX = (body.position.x / window.innerWidth) * window.innerWidth;
+                var centerY = (body.position.y / window.innerHeight) * window.innerHeight;
+                Matter.Body.setPosition(body, { x: centerX, y: centerY });
+            });*/
+    
+            // 벽 업데이트
+            Composite.clear(world, false); // 벽만 제거
+            addWalls();
+        });
+    
+        return {
+            engine: engine,
+            runner: runner,
+            render: render,
+            canvas: render.canvas,
+            stop: function () {
+                Matter.Render.stop(render);
+                Matter.Runner.stop(runner);
             }
-        }};
-
-        var body = options.shape === 'circle' ?
-            Bodies.circle(Math.random() * window.innerWidth, Math.random() * window.innerHeight, options.radius * scale, options) :
-            Bodies.rectangle(Math.random() * window.innerWidth, Math.random() * window.innerHeight, options.width * scale, options.height * scale, options);
-
-        body.initialScale = scale; // 초기 스케일 저장
-        shapes.push(body);
-        return body;
+        };
     };
-
-    // 도형 추가
-    // 이 부분에서 도형을 추가하며, 각 도형의 특성에 따라 조정합니다.
-    Composite.add(world, [
-        addShape('./img/icon3.png', { shape: 'rectangle', width: 1446, height: 112, scale: 0.7 }),
-        addShape('./img/icon2.png', { shape: 'circle', radius: 146, scale: 0.7 }),
-        addShape('./img/icon1.png', { shape: 'rectangle', width: 322, height: 249, scale: 0.8 }),
-        addShape('./img/tag.png', { shape: 'rectangle', width: 375, height: 136, scale: 0.6 })
-    ]);
-
-    // 벽 추가
-    Composite.add(world, [
-        Bodies.rectangle(window.innerWidth / 2, -26, window.innerWidth, 50, { isStatic: true }),
-        Bodies.rectangle(window.innerWidth / 2, window.innerHeight + 26, window.innerWidth, 50, { isStatic: true }),
-        Bodies.rectangle(-26, window.innerHeight / 2, 50, window.innerHeight, { isStatic: true }),
-        Bodies.rectangle(window.innerWidth + 26, window.innerHeight / 2, 50, window.innerHeight, { isStatic: true })
-    ]);
-
-    // 창 크기에 따른 도형 크기 비율 조정
-    var resizeShapes = function () {
-        var scale = Math.min(window.innerWidth, window.innerHeight) / 1000; // 비율 계산
-        shapes.forEach(function(shape) {
-            Matter.Body.scale(shape, scale / shape.initialScale, scale / shape.initialScale); // 현재 스케일 대비 조정
-            shape.initialScale = scale; // 새로운 스케일 저장
-        });
-    };
-
-    window.addEventListener('resize', function() {
-        resizeShapes();
-        Render.lookAt(render, {
-            min: { x: 0, y: 0 },
-            max: { x: window.innerWidth, y: window.innerHeight }
-        });
-    });
-
-    var mouse = Mouse.create(render.canvas),
-        mouseConstraint = MouseConstraint.create(engine, {
-            mouse: mouse,
-            constraint: {
-                stiffness: 1,
-                render: { visible: false }
-            }
-        });
-
-    Composite.add(world, mouseConstraint);
-    render.mouse = mouse;
-
-    return {
-        engine: engine,
-        runner: runner,
-        render: render,
-        canvas: render.canvas,
-        stop: function () {
-            Matter.Render.stop(render);
-            Matter.Runner.stop(runner);
-        }
-    };
-};
-
-Example.mixed();
-</script>
+    
+    Example.mixed();
+    </script>
+    
 </body>
 </html>

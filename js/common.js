@@ -2,7 +2,7 @@ $(function(){
 	tl = TweenMax;
     customCursorJS();
     splitJS();
-	logoHv();
+	motionLogo();
 });
 function customCursorJS(){
 	var $cursor_primary = $('#custom-cursor');
@@ -62,19 +62,19 @@ function splitJS(){
         container.appendChild(span);
     }
 }
-function logoHv() {
+function motionLogo() {
     var animation = gsap.timeline();
 
     var logo = document.querySelector('.header__logo');
 
-    animation.staggerFromTo(".header__logo span", 0.8, { y: '100%' }, { y: '0%', ease: Power2.easeInOut }, 0.05);
+    animation.staggerFromTo(".header__logo span", 0.8, { y: '100%',  }, { y: '0%',force3D: false ,ease: Power2.easeInOut }, 0.05);
 
-    logo.addEventListener('mouseenter', () => {
+   /* logo.addEventListener('mouseenter', () => {
 		var animation2 = gsap.timeline(); 
         animation2
             .staggerFromTo(".header__logo span", 0.8, { y: '0%' }, { y: '-100%', delay:'-0.1', ease: Power2.easeInOut }, 0.05)
             .staggerFromTo(".header__logo span", 0.8, { y: '100%' }, { y: '0%', delay:'-0.2', ease: Power2.easeInOut }, 0.05);
-    });
+    });*/
 	
 	
 }
