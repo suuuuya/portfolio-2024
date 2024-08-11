@@ -1,8 +1,28 @@
 @charset "UTF-8";
+/* mixin */
+@mixin font-style($family: null, $size: null, $weight: null, $color: null,  $line-height: null
+) {
+  @if $family != null {
+    font-family: $family;
+  }
+  @if $size != null {
+    font-size: $size;
+  }
+  @if $weight != null {
+    font-weight: $weight;
+  }
+  @if $color != null {
+    color: $color;
+  }
+  @if $line-height != null {
+    line-height: $line-height;
+  }
+}
 :root {
 	--main-white: #f5f5f5;
 	--main-black: #1E1F21;
 	--difference-gray: #dddddd;
+	--color-gray:#eeeeee;
 }
 html,body,form,div,p,h1,h2,h3,h4,h5,h6,dl,dt,dd,ul,ol,li,fieldset,table,th,td,figure,hr{margin:0;padding:0;font-weight:400;-webkit-text-size-adjust:none;-moz-text-size-adjust:none;-ms-text-size-adjust:none;box-sizing:border-box}
 ul,ol{list-style:none}
@@ -21,7 +41,7 @@ input{appearance:none;border-radius:0;}
 a{color:inherit;text-decoration:none;cursor:pointer}
 a:hover{color:inherit; text-decoration:none}
 button,label{cursor:pointer;}
-button{background:0;border:0;font-size:inherit;font-weight:inherit;font-family:inherit}
+button{background:0;border:0;padding: 0; font-size:inherit;font-weight:inherit;font-family:inherit}
 button img{left:-3px;left:auto}
 html:first-child select{height:20px;padding-right:6px}
 option{padding-right:6px}
@@ -43,7 +63,7 @@ video{position: absolute;top: 0;left: 0;width: 100%;height: 100%;object-fit: cov
 	span{display: inline-block; transform: translate3d(0,100%,0);}
 }
 /*custom cursor*/
-.custom-cursor{position: fixed;top: 0;left: 0;pointer-events: none;mix-blend-mode: difference;z-index: 99999;opacity: 0;  
+.custom-cursor{position: fixed;top: 0;left: 0;pointer-events: none;mix-blend-mode: difference;z-index: 1000;opacity: 0;  
 	&:not(.small) {width: 150px;height: 150px;}
 	&.small {width: 0;height: 0;}
 	&.on {mix-blend-mode: difference;  
@@ -63,6 +83,25 @@ video{position: absolute;top: 0;left: 0;width: 100%;height: 100%;object-fit: cov
 	}
 	&.drag &__txt {background-size: 89px auto;}
 }
+/*lenis js*/
+.lenis{
+	height: auto;
+	overflow-x: hidden;
+	body{overflow: hidden; @extend .lenis;}
+	&.lenis-smooth {
+		scroll-behavior: auto !important;
+		&[data-lenis-prevent] {
+			overscroll-behavior: contain;
+		}
+	}
+	&.lenis-stopped {
+		overflow: hidden;
+	}
+	&.lenis-smooth iframe {
+		pointer-events: none;
+	}
+}
+
 html{color-scheme: dark;}
 body {
 	overflow-x:hidden;
@@ -74,62 +113,34 @@ body {
 #container{background:var(--main-black);}
 .inner{position: relative; width: 100%; padding:0 30px; box-sizing: border-box; z-index: 1;}
 
-
 /*header*/
-.header{position: fixed; top:0;left: 0; width: 100%; height:100px;  mix-blend-mode: difference; color:var(--difference-gray); z-index: 100;
+.header{position: fixed; top:0;left: 0; width: 100%; height:100px; mix-blend-mode: difference; z-index: 100;
 	.inner{width: 100%;height: 100%;display: flex;align-items: center;justify-content: space-between;}
-	&__logo{position: relative; font-size: 50px; line-height:79%;font-weight: 500;letter-spacing: -1px; transform-origin: 0 0;transform: scale(8); display: block; overflow: hidden; z-index: 1; backface-visibility: hidden; -webkit-font-smoothing:subpixel-antialiased;
-		a{position: relative; display: block; padding:0 10px 0 0;}
+	&__logo{position: relative; @include font-style(null, 50px, 500, var(--difference-gray), 79%); letter-spacing: -1px; transform-origin: 0 0;transform: scale(8); display: block; overflow: hidden; z-index: 1; backface-visibility: hidden; -webkit-font-smoothing:subpixel-antialiased;
+		a{position: relative; display: block;}
 	}
-	.btn-gnb{font-size: 27px; font-weight: 500;color:var(--difference-gray);}
+	.btn-gnb{display: block; @include font-style(null, 27px, 500, var(--difference-gray), null);}
 }
-/*nav*/
-
-
 
 @media screen and (max-width: 1600px){
-	html{font-size: 0.0625vw;}
+	/*html{font-size: 0.0625vw;}*/
 }
 
 @media screen and (max-width: 1280px){
-	html{font-size: 0.0925vw;
-		.profile__row{display: block;}
-	}
+	/*html{font-size: 0.0925vw;}*/
+	.profile__row{display: block;}
 }
 @media screen and (max-width: 768px){
-	.header__logo{font-size: 20px !important;}
-	.nav{display: none;}
-	[class*=__inner]{padding: 0 20px;}
 	#wrap{
 		#content{padding-top: 170px;}
-		.header{height: 50px;}
+		.inner{padding: 0 20px;}
+		.header{height: 50px;
+			&__logo{font-size: 20px !important;}
+		}
 	} 
 }
 @media screen and (max-width: 600px){
 	html{font-size: 0.17vw;}
 }
 
-
-/*lenis js*/
-html.lenis{
-	height: auto;
-	overflow-x: hidden;
-	body{overflow: hidden; @extend .lenis}
-}
-
-.lenis.lenis-smooth {
-scroll-behavior: auto !important;
-}
-
-.lenis.lenis-smooth [data-lenis-prevent] {
-overscroll-behavior: contain;
-}
-
-.lenis.lenis-stopped {
-overflow: hidden;
-}
-
-.lenis.lenis-smooth iframe {
-pointer-events: none;
-}
 
