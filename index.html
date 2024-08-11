@@ -4,14 +4,14 @@
 	<meta charset="UTF-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no"/>
-	<meta name="description" content="웹퍼블리셔 이연수입니다." />
-	<meta name="keywords" content="Web Publisher, 웹 퍼블리셔, 포트폴리오, portfolio" />
-	<meta property="og:title" content="이연수 👩🏻‍💻 Publisher" />
-	<meta property="og:site_name" content="이연수 👩🏻‍💻 Publisher" />
-	<meta property="og:description" content="웹퍼블리셔 이연수입니다." />
+	<meta name="description" content="프론트엔드 개발자 이연수입니다." />
+	<meta name="keywords" content="Web Publisher, front-end, 웹 퍼블리셔, 프론트엔드, 개발자, 포트폴리오, portfolio" />
+	<meta property="og:title" content="front-end developer : 이연수 👩🏻‍💻" />
+	<meta property="og:site_name" content="front-end developer : 이연수 👩🏻‍💻" />
+	<meta property="og:description" content="프론트엔드 개발자 이연수입니다." />
 	<meta property="og:image" content="" />
-	<title>이연수 👩🏻‍💻 Publisher</title>
-	<!-- jquery -->
+	<title>front-end developer : 이연수 👩🏻‍💻</title>
+	<!-- common -->
 	<script src="./js/lib/jquery-1.11.3.min.js"></script>
 	<script src="./js/lib/jquery-migrate-1.2.1.min.js"></script>
 	<script type="text/javascript" src="./js/lib/jquery.easing.1.3.js"></script>
@@ -32,22 +32,14 @@
 	</div>
 </div>
 <div id="wrap">
-	<!-- <div class="loader"></div> -->
 	<!-- header -->
 	<header id="header" class="header"x>
 		<h2 class="blind">헤더 영역</h2>
-		<div class="header__inner">
+		<div class="inner">
 			<h1 class="header__logo">
-				<a href="/" class="split-text" data-hover="👻👻👻">test</a>
+				<a href="/" class="split-text" data-hover="👻👻👻">lee</a>
 			</h1>
-			<div class="nav">
-				<ul class="nav__list">
-					<li><a href="#profile"><span>profile</span></a></li>
-					<li><a href="#work"><span>work</span></a></li>
-					<li><a href="#test"><span>test1</span></a></li>
-					<li><a href="#test2"><span>test2</span></a></li>
-				</ul>
-			</div>
+			<button type="button" class="btn-gnb"><span class="blind">메뉴 열기 버튼</span>MENU</button>
 		</div>
 	</header> 
 	<!-- 본문 -->
@@ -55,33 +47,26 @@
 		<div id="content" class="main">
 			<h2 class="blind">본문 영역</h2>
 			<div id="pg-wrapper">
-				<section id="home" class="home" data-bgcolor="#f5f5f5" data-textcolor="#f5f5f5">
+				<section id="home" class="sec home" data-bgcolor="#1E1F21" data-textcolor="#f5f5f5">
 					<div class="home__sticky">
-						<div class="home__vid">
-							<div class="noise"></div>
-							<div id="canvas-container"></div>
+						<div class="home__shapes-area">
+							<div class="overlay"></div>
+							<div id="shapes-box"></div>
 						</div>
-						<div class="overlay"></div>
 					</div>
 				</section>
-				<section id="profile" class="profile" data-bgcolor="#141414" data-textcolor="#f5f5f5">
-					<div class="profile__intro-text">
-						<div class="profile__inner">
-							짧은 소개글~~~~<br>
-							짧은 소개글!!!
-						</div>
-					</div>
+				<section id="profile" class="sec profile" data-bgcolor="#141414" data-textcolor="#f5f5f5">
 					<div class="profile__box">
-						<div class="profile__inner">
-							<h3 class="profile__title">( profile )</h3>
+						<div class="inner">
+							<h3 class="sec__title--lg"><sup>1.</sup>front-end <br>developer portfolio</h3>
+                            <p class="sec_title--md">재미있는 사용자 경험을 </p>
 							<div class="profile__table">
 								<div class="profile__row profile__row--type4">
 									<div class="profile__item">
 										<div class="profile__category">About Me</div>
 										<div class="profile__contents">
 											이연수 <br>
-											서울시 영등포구 <br>
-											A대학교 A학과 졸업<br><br>
+											서울시 영등포구 <br><br>
 											<a href="https://www.notion.so/iamsuuya/Web-Publisher-5f5ae2c8e94c4e57b3bc3e03a09eff19?pvs=4" target="_blank"><i class="notion"><span class="blind">노션</span></i></a>&nbsp;
 											<a href="javaScript:alert('페이지가 없습니다.');"><i class="instagram"><span class="blind">인스타그램</span></i></a>&nbsp;
 											<a href="https://github.com/suuuuya" target="_blank"><i class="github"><span class="blind">깃랩</span></i></a>
@@ -256,37 +241,30 @@
 	</div>
 </div>
 <!-- 전체 -->
-<script type="text/javascript" src="js/lib/swiper.min.js"></script>
-<script type="text/javascript" src="js/common.js"></script>
-<script type="text/javascript" src="js/index.js"></script>
+<script type="text/javascript" src="./js/lib/swiper.min.js"></script>
 <script type="text/javascript" src="./js/lib/ScrollTrigger.min.js"></script>
 <script type="text/javascript" src="./js/lib/gsap.min.js"></script>
+<script type="text/javascript" src="./js/lib/matter.min.js"></script>
+<script type="text/javascript" src="./js/lib/matter-wrap.min.js"></script>
 <script type="text/javascript" src="./js/lib/lenis.min.js"></script>
-<script src="./js/lib/matter.min.js"></script>
-<script src="./js/lib/matter-wrap.min.js"></script>
+<script type="text/javascript" src="./js/common.js"></script>
+<script type="text/javascript" src="./js/index.js"></script>
 <script>
 
 	$(function(){
-
 		//Lenis js
-		const lenis = new Lenis()
+		const lenis = new Lenis();
 		lenis.on('scroll', (e) => {
-			//console.log(e)
+		console.log(e)
 		})
 		function raf(time) {
-			lenis.raf(time)
-			requestAnimationFrame(raf)
-		}
+		lenis.raf(time)
 		requestAnimationFrame(raf)
-		lenis.on('scroll', ScrollTrigger.update)
-		gsap.ticker.add((time)=>{
-			lenis.raf(time * 1000)
-		})
-		gsap.ticker.lagSmoothing(0)
-		
+		}
+		requestAnimationFrame(raf);
+
 		//ScrollTrigger
 		gsap.registerPlugin(ScrollTrigger);
-
 		gsap.to(".header__logo", {
 			scrollTrigger: {
 				trigger: "#wrap",
@@ -294,8 +272,6 @@
 				scrub: true,
 				start: "top top",
 				end: "+=400px",
-				invalidateOnResize: true,
-				invalidateOnRefresh: true,
 			},
 			scale: 1,
 			force3D: false,
@@ -314,8 +290,6 @@
 				scrub: true,
 				start: "+="+paddingTopValue,
 				end: "+=200vh",
-				invalidateOnResize: true,
-				invalidateOnRefresh: true,
 			},
 			background: 'rgba(0,0,0,0.3)',
 		});
@@ -330,8 +304,6 @@
 				anticipatePin: 1,
 				endTrigger: ".profile",
 				end: "bottom bottom",
-				invalidateOnResize: true,
-				invalidateOnRefresh: true,
 			},
 		});
 
@@ -342,8 +314,6 @@
 				scroller: window,
 				scrub: true,
 				pin: true,
-				invalidateOnResize: true,
-				invalidateOnRefresh: true,
 			},
 		});
 
@@ -356,8 +326,6 @@
 				scroller: window,
 				scrub: true,
 				start: ".hhh",
-				invalidateOnResize: true,
-				invalidateOnRefresh: true,
 			},
 		});
 		hhhTimeline.to(".hhh .title-group__title--big p", {
@@ -368,8 +336,6 @@
 				scroller: window,
 				scrub: true,
 				start: ".hhh",
-				invalidateOnResize: true,
-				invalidateOnRefresh: true,
 			},
 		});
 
@@ -383,8 +349,6 @@
 				scroller: window,
 				scrub: true,
 				start: ".hhh",
-				invalidateOnResize: true,
-				invalidateOnRefresh: true,
 			},
 		});
 
@@ -400,8 +364,6 @@
 					start: "top top",
 					end: "bottom bottom",
 					anticipatePin: 1,
-					invalidateOnResize: true,
-					invalidateOnRefresh: true,
 				},
 				rotation: rotationDegree,
 			});
@@ -416,8 +378,6 @@
 					scroller: window,
 					scrub: true,
 					pin: true,
-					invalidateOnResize: true,
-					invalidateOnRefresh: true,
 				},
 				rotation: -50,
 				ease: "none",
@@ -431,8 +391,6 @@
 				scrub: true,
 				start: "top 30%",
 				end: "top 0%",
-				invalidateOnResize: true,
-				invalidateOnRefresh: true,
 			},
 			opacity: 0,
 		});
@@ -455,8 +413,6 @@
 						opacity: 0,
 					});
 				},
-				invalidateOnResize: true,
-				invalidateOnRefresh: true,
 			},
 			opacity: 1,
 		});
@@ -468,8 +424,6 @@
 				scrub: true,
 				start: "top top",
 				end: "top 10%",
-				invalidateOnResize: true,
-				invalidateOnRefresh: true,
 			},
 			opacity: 1,
 		});
@@ -482,8 +436,6 @@
 				start: "top top",
 				end: "top 20%",
 				duration: 2,
-				invalidateOnResize: true,
-				invalidateOnRefresh: true,
 			},
 			scaleX: 1,
 		});
@@ -494,8 +446,6 @@
 				scroller: window,
 				scrub: true,
 				pin: true,
-				invalidateOnResize: true,
-				invalidateOnRefresh: true,
 			},
 		});
 		cardSlide2.to('.test .card1', { yPercent: 0, className: 'card1 act' })
@@ -563,7 +513,7 @@
 			world = engine.world;
 		
 		var render = Render.create({
-			element: document.getElementById('canvas-container'),
+			element: document.getElementById('shapes-box'),
 			engine: engine,
 			options: {
 				width: window.innerWidth,
@@ -632,7 +582,7 @@
 		setInterval(function() {
 			var textures = ['./img/icon2.png', './img/icon1.png', './img/tag.png', './img/tag-2.png'];
 			var options = [
-				{ shape: 'circle', radius: 146, scale: 1 },
+				{ shape: 'circle', radius: 178, scale: 1 },
 				{ shape: 'rectangle', width: 438, height: 313, scale: 1 },
 				{ shape: 'rectangle', width: 255, height: 103, scale: 1 },
 				{ shape: 'rectangle', width: 270, height: 103, scale: 1 }

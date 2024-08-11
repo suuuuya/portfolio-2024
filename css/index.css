@@ -1,11 +1,24 @@
 /*common*/
 #content {
-  padding-top: 400px;
+  padding-top: 378px;
 }
 
 section {
   position: relative;
   width: 100%;
+}
+
+.sec {
+  /*title*/
+}
+.sec__title--medium {
+  font-size: 1.563vw;
+  margin-bottom: 20px;
+}
+.sec__title--lg {
+  font-size: 6.771vw;
+  line-height: 110%;
+  letter-spacing: -1px;
 }
 
 /*noise*/
@@ -69,32 +82,15 @@ section {
   }
 }
 
-/*title*/
-.title-group {
-  margin-bottom: 70px;
-}
-.title-group__title--medium {
-  font-size: 1.563vw;
-  margin-bottom: 20px;
-}
-.title-group__title--big {
-  font-size: 6.771vw;
-  line-height: 110%;
-  letter-spacing: -1px;
-}
-
 /*home*/
 .home__sticky {
   position: relative;
 }
-.home__vid {
+.home__shapes-area {
   position: relative;
   width: 100%;
   min-height: 100vh;
-  background: #DBDBD1;
-}
-.home__vid video {
-  pointer-events: none;
+  background: #2d2e31;
 }
 .home .overlay {
   position: absolute;
@@ -133,7 +129,7 @@ section {
   -webkit-backdrop-filter: blur(20px);
   padding: 50px 0 100px;
   background: rgba(0, 0, 0, 0.5);
-  pointer-events: auto;
+  pointer-events: initial;
 }
 .profile__box:before {
   display: block;
