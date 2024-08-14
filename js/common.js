@@ -1,4 +1,5 @@
 $(function(){
+	history.scrollRestoration = "manual";
 	tl = TweenMax;
     customCursorJS();
     splitJS();
