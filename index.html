@@ -55,7 +55,7 @@
 						</div>
 					</div>
 				</section>
-				<section id="profile" class="sec profile" data-bgcolor="#141414" data-textcolor="#f5f5f5">
+				<section id="profile" class="sec profile" data-bgcolor="#1E1F21" data-textcolor="#f5f5f5">
 					<div class="profile__box">
 						<div class="inner">
 							<div class="sec__title">
@@ -149,17 +149,30 @@
 						</div>
 					</div>
 				</section>
-				<section id="hhh" class="hhh" data-bgcolor="#141414" data-textcolor="#f5f5f5">
+				<section id="work" class="sec work" data-bgcolor="#1E1F21" data-textcolor="#f5f5f5">
 					<div class="inner">
 						<div class="title-group sec__title">
-							<div class="title-group__title--big sec__title--lg" style="transform-origin: left top;"><p><span>Selected&nbsp;</span><span>Work</span></p>2019~</div>
+							<div class="sec__title--lg" style="transform-origin: left top;"><p><span>Selected&nbsp;</span><span>Work</span></p>2019~</div>
 						</div>
-						<div class="main-img">
-							<img src="./img/bg.jpg" alt="">
+						<div class="work__img">
+							<img src="./img/img-bg-works-1.jpg" alt="2024 파리올림픽 스포츠 섹션 메인 이미지">
+							<img src="./img/img-bg-works-2.jpg" alt="콩 소개 페이지 메인 이미지">
+							<img src="./img/img-bg-works-3.jpg" alt="이산가족 디아스포라 메인 이미지">
+							<img src="./img/img-bg-works-4.jpg" alt="ABU 2023 SEOUL 메인 이미지">
+							<img src="./img/img-bg-works-5.jpg" alt="VVERTIGO 메인 이미지">
+							<img src="./img/img-bg-works-6.jpg" alt="WBC 스포츠 섹션 메인 이미지">
+							<img src="./img/img-bg-works-7.jpg" alt="우리말 바로 알기 메인 이미지">
+							<img src="./img/img-bg-works-1.jpg" alt="2024 파리올림픽 스포츠 섹션 메인 이미지">
+							<img src="./img/img-bg-works-2.jpg" alt="콩 소개 페이지 메인 이미지">
+							<img src="./img/img-bg-works-3.jpg" alt="이산가족 디아스포라 메인 이미지">
+							<img src="./img/img-bg-works-4.jpg" alt="ABU 2023 SEOUL 메인 이미지">
+							<img src="./img/img-bg-works-5.jpg" alt="VVERTIGO 메인 이미지">
+							<img src="./img/img-bg-works-6.jpg" alt="WBC 스포츠 섹션 메인 이미지">
+							<img src="./img/img-bg-works-7.jpg" alt="우리말 바로 알기 메인 이미지">
 						</div>
 					</div>
 				</section>
-				<section id="work" class="work horizontal-slide" data-bgcolor="#f5f5f5" data-textcolor="#141414">
+				<section id="work2" class="work2 horizontal-slide" data-bgcolor="#f5f5f5" data-textcolor="#141414">
 					<div class="work__inner">
 						<div class="card-slider">
 							<div class="slide-area">
@@ -246,7 +259,6 @@
 		//Lenis js
 		const lenis = new Lenis();
 		lenis.on('scroll', (e) => {
-		console.log(e)
 		})
 		function raf(time) {
 		lenis.raf(time)
@@ -256,36 +268,12 @@
 
 		//ScrollTrigger
 		gsap.registerPlugin(ScrollTrigger);
-		gsap.to(".header__logo", {
-			scrollTrigger: {
-				trigger: "#wrap",
-				scroller: window,
-				scrub: true,
-				start: "top top",
-				end: "+=400px",
-			},
-			scale: 1,
-			force3D: false,
-		});
-
-		//contents padding
 		const content = document.querySelector('#wrap #content');
 		const contentPaddingTop = window.getComputedStyle(content).paddingTop;
 		const paddingTopValue = parseInt(contentPaddingTop, 10);
-		console.log(paddingTopValue);
 
-		gsap.to(".overlay", {
-			scrollTrigger: {
-				trigger: "#wrap",
-				scroller: window,
-				scrub: true,
-				start: "+="+paddingTopValue,
-				end: "+=200vh",
-			},
-			background: 'rgba(0,0,0,0.3)',
-		});
-
-		gsap.timeline({
+		//home
+		const homeTimeline = gsap.timeline({
 			scrollTrigger: {
 				trigger: ".home",
 				scroller: window,
@@ -297,52 +285,87 @@
 				end: "bottom bottom",
 			},
 		});
-
-		////////////////////////////////////////hhh
-		const hhhTimeline = gsap.timeline({
+		homeTimeline
+		.to(".header__logo", {
 			scrollTrigger: {
-				trigger: ".hhh",
+				trigger: "#wrap",
+				scroller: window,
+				scrub: true,
+				start: "top top",
+				end: "+=400px",
+			},
+			scale: 1,
+			force3D: false,
+		})
+		.to(".overlay", {
+			scrollTrigger: {
+				trigger: "#wrap",
+				scroller: window,
+				scrub: true,
+				start: "+="+paddingTopValue,
+				end: "+=200vh",
+			},
+			background: 'rgba(0,0,0,0.3)',
+		});
+
+		//works
+		const initialScale = 1;
+		const finalScale = 0.6;
+		const initialHeight = document.querySelector('.work .sec__title--lg').offsetHeight;
+		const reducedHeight = initialHeight * (initialScale - finalScale);
+		const totalImages = document.querySelectorAll('.work .work__img img').length;
+		const revealPercentage = 100 / totalImages;
+
+
+		const workTimeline = gsap.timeline({
+			scrollTrigger: {
+				trigger: ".work",
 				scroller: window,
 				scrub: true,
 				pin: true,
 			},
 		});
-
-		// Add the scale animation for the title
-		hhhTimeline.to(".hhh .title-group__title--big", {
-			scale: 0.6,
+		workTimeline
+		.to(".work .sec__title--lg", {
+			scale: finalScale,
 			force3D: false,
 			scrollTrigger: {
-				trigger: ".hhh",
+				trigger: ".work",
 				scroller: window,
 				scrub: true,
-				start: ".hhh",
+				start: ".work",
 			},
-		});
-		hhhTimeline.to(".hhh .title-group__title--big p", {
+		})
+		.to(".work .sec__title--lg p", {
 			width: '50%',
 			force3D: false,
 			scrollTrigger: {
-				trigger: ".hhh",
+				trigger: ".work",
 				scroller: window,
 				scrub: true,
-				start: ".hhh",
+				start: ".work",
 			},
-		});
-
-		// Add the scale animation for the image
-		hhhTimeline.to(".hhh .main-img", {
+		})
+		.to(".work .work__img", {
 			scale: 1,
 			force3D: false,
-			marginTop: 'calc(-7vw)',
+			marginTop: `-=${reducedHeight}px`, 
 			scrollTrigger: {
-				trigger: ".hhh",
+				trigger: ".work",
 				scroller: window,
 				scrub: true,
-				start: ".hhh",
+				start: ".work",
 			},
+		}) 
+		.to(".work .work__img img", {
+        autoAlpha: 1, 
+		display:'block',
+			stagger: {
+				amount: revealPercentage / 100,
+				start: 0,  
+			},
+			duration: 0,  
 		});
-
 
 		var cards = document.querySelectorAll(".pin-card .card");
 		cards.forEach(function (card, index) {
@@ -377,7 +400,7 @@
 
 		gsap.to(".card.next", {
 			scrollTrigger: {
-				trigger: ".work",
+				trigger: ".work2",
 				scroller: window,
 				scrub: true,
 				start: "top 30%",
@@ -388,7 +411,7 @@
 
 		gsap.to(".action-card", {
 			scrollTrigger: {
-				trigger: ".work",
+				trigger: ".work2",
 				scroller: window,
 				scrub: true,
 				endTrigger: ".test",
@@ -549,10 +572,9 @@
 		
 		// 바닥에 정지된 도형 10개 추가
 		var addInitialShapes = function () {
-			var textures = ['./img/icon2.png', './img/icon1.png', './img/tag.png', './img/tag-2.png'];
+			var textures = ['./img/icon1.png', './img/tag.png', './img/tag-2.png'];
 			var options = [
-				{ shape: 'rectangle', width: 249, height: 207, scale: 1 },
-				{ shape: 'rectangle', width: 438, height: 313, scale: 1 },
+				{ shape: 'rectangle', width: 450, height: 322, scale: 1 },
 				{ shape: 'rectangle', width: 199, height: 215, scale: 1 },
 				{ shape: 'rectangle', width: 270, height: 103, scale: 1 }
 			];
@@ -571,10 +593,9 @@
 		// 일정 시간 간격으로 도형 복제
 		// 1초마다 도형 추가
 		setInterval(function() {
-			var textures = ['./img/icon2.png', './img/icon1.png', './img/tag.png', './img/tag-2.png'];
+			var textures = ['./img/icon1.png', './img/tag.png', './img/tag-2.png'];
 			var options = [
-			{ shape: 'rectangle', width: 249, height: 207, scale: 1 },
-				{ shape: 'rectangle', width: 438, height: 313, scale: 1 },
+				{ shape: 'rectangle', width: 450, height: 322, scale: 1 },
 				{ shape: 'rectangle', width: 199, height: 215, scale: 1 },
 				{ shape: 'rectangle', width: 270, height: 103, scale: 1 }
 			];
