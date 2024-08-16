@@ -4,6 +4,7 @@
   --main-black: #1E1F21;
   --difference-gray: #dddddd;
   --color-gray:#eeeeee;
+  --border-gray:#67676b;
 }
 
 html, body, form, div, p, h1, h2, h3, h4, h5, h6, dl, dt, dd, ul, ol, li, fieldset, table, th, td, figure, hr {
