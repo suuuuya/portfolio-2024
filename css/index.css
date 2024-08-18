@@ -371,7 +371,7 @@ body {
 }
 
 #container {
-  background: var(--main-black);
+  background: #d5d5d5;
 }
 
 .inner {
@@ -535,7 +535,7 @@ html::after {
   position: relative;
   width: 100%;
   min-height: 100vh;
-  background: #2d2e31;
+  background: #b3b3b3;
 }
 .home .overlay {
   position: absolute;
@@ -573,7 +573,7 @@ html::after {
   backdrop-filter: blur(5px);
   -webkit-backdrop-filter: blur(5px);
   padding: 150px 0;
-  background: rgba(53, 54, 58, 0.6);
+  background: rgba(18, 18, 18, 0.6);
   pointer-events: initial;
 }
 .profile__box:before {

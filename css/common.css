@@ -369,7 +369,7 @@ body {
 }
 
 #container {
-  background: var(--main-black);
+  background: #d5d5d5;
 }
 
 .inner {
