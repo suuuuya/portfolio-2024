@@ -15,7 +15,7 @@ html{
   /*title*/
   &__title{
     &--md{@include font-style(null, 20px, null, null, 150%);}
-    &--lg{@include font-style(null, 10vw, null, null, 85%); letter-spacing: -7px;
+    &--lg{@include font-style(null, 9vw, null, null, 85%); letter-spacing: -7px;
       .num{font-size: 30px; vertical-align: top; display: inline-block; margin: -100px 30px 0 70px;}
     }
   }
