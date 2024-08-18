@@ -8,9 +8,8 @@ $(function(){
 function customCursorJS(){
 	var $cursor_primary = $('#custom-cursor');
 	var $circle = $cursor_primary.find('.custom-cursor__circle');
-	var $cursor_secondary = $('#custom-cursor-text');
-	var $cursor_txt = $cursor_secondary.find('.custom-cursor-text__txt');
-
+	var $cursor_secondary = $('#custom-cursor__text');
+	var $cursor_txt = $cursor_secondary.find('.custom-cursor__text__txt');
 
 	$('body').mousemove(function(e) {
 	tl.to($cursor_primary, 0.7, {opacity:1, x: e.clientX,y: e.clientY,ease: Power3.easeOut});
