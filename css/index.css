@@ -210,6 +210,13 @@ video {
   transform: translate3d(0, 100%, 0);
 }
 
+.serif-italic {
+  font-family: "editorial italic";
+}
+.serif-italic--light {
+  font-weight: 300;
+}
+
 /*custom cursor*/
 .custom-cursor {
   position: fixed;
@@ -500,14 +507,18 @@ html::after {
 }
 .sec__title--lg {
   font-size: 9vw;
-  line-height: 85%;
+  line-height: 95%;
   letter-spacing: -7px;
+  text-transform: uppercase;
 }
 .sec__title--lg .num {
   font-size: 30px;
   vertical-align: top;
   display: inline-block;
   margin: -100px 30px 0 70px;
+}
+.sec__title--lg .serif-italic {
+  text-transform: initial;
 }
 .sec__cate {
   font-size: 15px;
@@ -548,6 +559,9 @@ html::after {
   background: rgba(0, 0, 0, 0);
   pointer-events: none;
 }
+.home canvas {
+  height: 100vh;
+}
 
 /*profile*/
 .profile {
@@ -565,6 +579,10 @@ html::after {
 }
 .profile .sec__title--lg {
   margin-bottom: 50px;
+}
+.profile .sec__title .space {
+  display: flex;
+  justify-content: space-between;
 }
 .profile__box {
   position: relative;
@@ -650,6 +668,9 @@ html::after {
 }
 .work .sec__title {
   margin-bottom: 80px;
+}
+.work .sec__title--lg {
+  line-height: 85%;
 }
 .work .sec__title--lg p {
   width: 100%;
@@ -975,9 +996,6 @@ html::after {
 @media screen and (max-width: 768px) {
   .sec__title--lg {
     letter-spacing: 0;
-  }
-  .home {
-    pointer-events: none;
   }
   .profile__contents i {
     width: 20px;

@@ -208,6 +208,13 @@ video {
   transform: translate3d(0, 100%, 0);
 }
 
+.serif-italic {
+  font-family: "editorial italic";
+}
+.serif-italic--light {
+  font-weight: 300;
+}
+
 /*custom cursor*/
 .custom-cursor {
   position: fixed;

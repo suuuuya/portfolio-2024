@@ -15,8 +15,9 @@ html{
   /*title*/
   &__title{
     &--md{@include font-style(null, 20px, null, null, 150%);}
-    &--lg{@include font-style(null, 9vw, null, null, 85%); letter-spacing: -7px;
+    &--lg{@include font-style(null, 9vw, null, null, 95%); letter-spacing: -7px; text-transform: uppercase;
       .num{font-size: 30px; vertical-align: top; display: inline-block; margin: -100px 30px 0 70px;}
+      .serif-italic{text-transform: initial;}
     }
   }
   &__cate{@include font-style(null, 15px, null, null, 150%);}
@@ -35,6 +36,7 @@ html{
   &__sticky{position: relative;}
   &__shapes-area{position: relative; width: 100%; min-height: 100vh; background:#b3b3b3; }
   .overlay{position: absolute;width: 100%;height: 100%; top:0;bottom: 0; left: 0;right: 0;background: rgba(0,0,0,0); pointer-events: none;}
+  canvas{height: 100vh;}
 }
 
 /*profile*/
@@ -44,6 +46,7 @@ html{
     &__title{margin-bottom:80px;
       &--md{width: 50%;margin-left:50%;}
       &--lg{margin-bottom:50px;}
+      .space{display: flex;justify-content: space-between;}
     }
   }
   &__box{position: relative;width: 100%; border-radius: 30px 30px 0 0; backdrop-filter: blur(5px);-webkit-backdrop-filter: blur(5px); padding: 150px 0;background:rgb(18 18 18 / 60%);pointer-events: initial;
@@ -77,7 +80,7 @@ html{
   &__lineup{padding: 150px 0 0px;}
   .sec{
     &__title{ margin-bottom: 80px;
-      &--lg{
+      &--lg{line-height: 85%;
         p{width: 100%;display: flex;justify-content: space-between; align-items: baseline;}
       }
     }
@@ -178,7 +181,6 @@ html{
 }
 @media screen and (max-width: 768px){
   .sec__title--lg{letter-spacing: 0;}
-	.home{pointer-events: none;}
   .profile{
     &__contents{
       i{width: 20px; height: 20px;}
