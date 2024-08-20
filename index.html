@@ -379,38 +379,50 @@
 				</section>
 				<section id="test" class="test" data-bgcolor="#1E1F21" data-textcolor="#cdcdcd">
 					<div class="inner">
-						<div class="sec__title">
-							<h3 class="sec__title--lg"><span class="serif-italic serif-italic--light">and</span> <br>more</h3>
-							   <p class="sec__title--md"></p>
-						</div>
 						<div class="content">
 							<div class="cards">
 								<div class="group">
 									<div class="card1">
+										1. text
 									</div>
 									<div class="text1"></div>
 								</div>
 								<div class="group">
 									<div class="card2">
+										2. text
 									</div>
 									<div class="text2"></div>
 								</div>
 								<div class="group">
 									<div class="card3">
+										3. text
 									</div>
 									<div class="text3"></div>
 								</div>
-								<div class="group">
-									<div class="card4">
-									</div>
-									<div class="text4"></div>
-								</div>
-								<div class="group">
-									<div class="card5">
-									</div>
-									<div class="text5"></div>
-								</div>
 							</div>
+						</div>
+					</div>
+					<div class="bg">
+						<div class="img"><span style="background-image: url('./img/img-bg-works-1.jpg');"></span></div>
+						<div class="img"><span style="background-image: url('./img/img-bg-works-2.jpg');"></span></div>
+						<div class="img"><span style="background-image: url('./img/img-bg-works-11.jpg');"></span></div>
+					</div>
+				</section>
+				<section id="skills" class="sec skills" data-bgcolor="#1E1F21" data-textcolor="#cdcdcd">
+					<div class="inner">
+						<div class="box">
+							<ul>
+								<li>UI/UX</li>
+								<li>Plan</li>
+								<li>Design</li>
+								<li>Development</li>
+								<li>Motion</li>
+								<li>skills</li>
+								<li>skills</li>
+								<li>skills</li>
+								<li>skills</li>
+								<li>skills</li>
+							</ul>
 						</div>
 					</div>
 				</section>
@@ -567,8 +579,10 @@
 					scroller: window,
 					scrub: true,
 					pin: true,
+					start:'.pin-card',
+					end: `bottom top-=${window.innerHeight * 2}px`,
 				},
-				rotation: -50,
+				rotation: -80,
 				ease: "none",
 			});
 		});
@@ -607,27 +621,24 @@
 				scroller: window,
 				scrub: true,
 				pin: true,
+				end: `bottom top-=${window.innerHeight * 3}px`,
 			},
 		});
 		cardSlide2.to('.test .card1', { yPercent: 0, className: 'card1 act' })
-			.from('.test .card2', { yPercent: 200, opacity: 0 })
-			.to('.test .card1', { scale: 0.95, yPercent: -6 }, 0.6)
-			.to('.test .card2', { yPercent: 0, opacity: 1, className: 'card2 act' })
-			.from('.test .card3', { yPercent: 200, opacity: 0 })
-			.to('.test .card2', { scale: 0.95, yPercent: -8 }, "-=0.6")
-			.to('.test .card1', { scale: 0.90, yPercent: -16 }, "-=0.6")
-			.to('.test .card3', { yPercent: 0, opacity: 1, className: 'card3 act' })
-			.from('.test .card4', { yPercent: 200, opacity: 0 })
-			.to('.test .card3', { scale: 0.95, yPercent: -8 }, "-=0.6")
-			.to('.test .card2', { scale: 0.90, yPercent: -16 }, "-=0.6")
-			.to('.test .card1', { scale: 0.85, yPercent: -24 }, "-=0.6")
-			.to('.test .card4', { yPercent: 0, opacity: 1, className: 'card4 act' })
-			.from('.test .card5', { yPercent: 200, opacity: 0 })
-			.to('.test .card4', { scale: 0.95, yPercent: -8 }, "-=0.6")
-			.to('.test .card3', { scale: 0.90, yPercent: -16 }, "-=0.6")
-			.to('.test .card2', { scale: 0.85, yPercent: -24 }, "-=0.6")
-			.to('.test .card1', { scale: 0.80, yPercent: -32 }, "-=0.6")
-			.to('.test .card5', { yPercent: 0, opacity: 1, className: 'card5 act' });
+			.to('.test .bg', { opacity:1})
+			.to('.test .bg .img:nth-child(1) span', { opacity:1,scale:1},"-=0.6")
+			.from('.test .card2', { yPercent: 200})
+			.to('.test .bg .img:nth-child(2)', {clipPath:'inset(0px 0px 0px 0px)'},"-=0.3")
+			.to('.test .bg .img:nth-child(2) span', {y:'-10%'},"-=0.6")
+			.to('.test .card1', { scale: 0.9, y: '-100px' }, 0.6)
+			.to('.test .card2', { yPercent: 0, className: 'card2 act' })
+			.from('.test .card3', { yPercent: 200})
+			.to('.test .bg .img:nth-child(3)', {clipPath:'inset(0px 0px 0px 0px)'},"-=0.3")
+			.to('.test .bg .img:nth-child(3) span', {y:'-10%'},"-=0.6")
+			.to('.test .card2', { scale: 0.9, y: '-100px' }, "-=0.6")
+			.to('.test .card1', { scale: 0.80, y: '-200px' }, "-=0.6")
+			.to('.test .card3', { yPercent: 0, className: 'card3 act' })
+			.to('.test .bg', { opacity:0});
 
 		const scrollColorElems = document.querySelectorAll("[data-bgcolor]");
 		scrollColorElems.forEach((colorSection, i) => {
@@ -652,6 +663,30 @@
 					});
 				}
 			});
+		});
+
+		//skills
+		const skillsItems = document.querySelector('.skills ul').querySelectorAll('li');
+		const skillsTotalHeight = skillsItems.length * skillsItems[0].offsetHeight;
+		const skills = gsap.timeline({
+			scrollTrigger: {
+				trigger: ".skills",
+				scroller: window,
+				scrub: true,
+				pin: true,
+				end: `bottom top-=${skillsTotalHeight * 2}px`,
+			},
+		});
+		skills
+		.to(".skills ul", {
+			rotateX:'290deg',
+			scrollTrigger: {
+				trigger: ".skills",
+				scroller: window,
+				scrub: true,
+				start:'.skills',
+				end: `bottom top-=${skillsTotalHeight * 2}px`,
+			},
 		});
 	});
 </script>

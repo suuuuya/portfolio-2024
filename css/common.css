@@ -209,7 +209,7 @@ video {
 }
 
 .serif-italic {
-  font-family: "editorial italic";
+  font-family: "editorial italic", sans-serif;
 }
 .serif-italic--light {
   font-weight: 300;
