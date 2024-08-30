@@ -371,6 +371,7 @@ body {
   color: var(--main-black);
   background: var(--main-white);
   cursor: none;
+  font-size: 1vw;
 }
 
 #wrap, #container {
@@ -378,7 +379,7 @@ body {
 }
 
 #container {
-  background: #d5d5d5;
+  background: #e1e1e1;
 }
 
 .inner {
@@ -430,6 +431,30 @@ body {
   font-size: 27px;
   font-weight: 500;
   color: var(--difference-gray);
+}
+
+.gnb {
+  position: fixed;
+  bottom: 30px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 100;
+}
+.gnb__list {
+  display: flex;
+  gap: 0 4px;
+  text-align: center;
+  padding: 7px 7px;
+  background: rgba(30, 31, 33, 0.5);
+  border-radius: 7px;
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px);
+}
+.gnb a {
+  padding: 5px 25px;
+  border: 1px solid rgba(255, 255, 255, 0.8);
+  color: var(--main-white);
+  border-radius: 7px;
 }
 
 @media screen and (max-width: 1600px) {
@@ -506,7 +531,7 @@ html::after {
   line-height: 150%;
 }
 .sec__title--lg {
-  font-size: 9vw;
+  font-size: 9em;
   line-height: 95%;
   letter-spacing: -7px;
   text-transform: uppercase;
@@ -715,6 +740,7 @@ html::after {
 .folders {
   padding: 150px 0 250px;
   height: 100vh;
+  min-height: 950px;
   display: flex;
   align-items: center;
   box-sizing: border-box;
@@ -932,7 +958,7 @@ html::after {
   position: absolute;
   bottom: 0;
   left: 0;
-  font-size: 1.042vw;
+  font-size: 1.042em;
   line-height: 150%;
   opacity: 0;
   word-break: break-all;

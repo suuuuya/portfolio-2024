@@ -4,13 +4,13 @@
 	<meta charset="UTF-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no"/>
-	<meta name="description" content="프론트엔드 개발자 이연수입니다." />
+	<meta name="description" content="Portfolio" />
 	<meta name="keywords" content="Web Publisher, front-end, 웹 퍼블리셔, 프론트엔드, 개발자, 포트폴리오, portfolio" />
-	<meta property="og:title" content="front-end developer : 이연수 👩🏻‍💻" />
-	<meta property="og:site_name" content="front-end developer : 이연수 👩🏻‍💻" />
-	<meta property="og:description" content="프론트엔드 개발자 이연수입니다." />
+	<meta property="og:title" content="Portfolio : 이연수 👩🏻‍💻" />
+	<meta property="og:site_name" content="Portfolio : 이연수 👩🏻‍💻" />
+	<meta property="og:description" content="Portfolio" />
 	<meta property="og:image" content="" />
-	<title>front-end developer : 이연수 👩🏻‍💻</title>
+	<title>Portfolio : 이연수 👩🏻‍💻</title>
 	<!-- common -->
 	<script src="./js/lib/jquery-1.11.3.min.js"></script>
 	<script src="./js/lib/jquery-migrate-1.2.1.min.js"></script>
@@ -34,15 +34,22 @@
 </div>
 <div id="wrap">
 	<!-- header -->
-	<header id="header" class="header"x>
+	<header id="header" class="header">
 		<h2 class="blind">헤더 영역</h2>
 		<div class="inner">
 			<h1 class="header__logo">
 				<a href="/" class="split-text" data-hover="👻👻👻">lee</a>
 			</h1>
-			<button type="button" class="btn-gnb"><span class="blind">메뉴 열기 버튼</span>INDEX</button>
 		</div>
 	</header> 
+	<nav class="gnb header__gnb">
+		<ul class="gnb__list">
+			<li><a href="#">HOME</a></li>
+			<li><a href="#">ABOUT ME</a></li>
+			<li><a href="#">WORK</a></li>
+			<li><a href="#">RECORDS</a></li>
+		</ul>
+	</nav>
 	<!-- 본문 -->
 	<div id="container">
 		<div id="content" class="main">
@@ -61,7 +68,7 @@
 						<div class="inner">
 							<div class="sec__title">
 								<h3 class="sec__title--lg"><p class="space"><span>Hello,</span> <span>world!</span></p><p class="space"><span>I'm Lee,</span><span><span class="serif-italic serif-italic--light">the</span>&nbsp; developer</span></p></h3>
-                           		<p class="sec__title--md">안녕하세요. 개발하는 이연수입니다. <br>빠르게 변화하는 웹 환경 속에서 창의적이고 혁신적인 접근을 통해 더 나은 사용자 경험을 제공하고자 노력하고 있습니다. 웹 트렌드를 주시하며 디테일을 놓치지 않는 개발자가 되겠습니다.</p>
+                           		<p class="sec__title--md">안녕하세요. 웹 서비스 구축과 운영 업무를 담당하고 있는 웹 퍼블리셔 이연수입니다. 남녀노소 모두가 서비스 이용에 불편함을 겪지 않고 좋은 사용자 경험을 할 수 있도록 고민하는 일은 제가 가장 좋아하는 일이자 큰 보람입니다.</p>
 							</div>
 							<div class="profile__table">
 								<div class="profile__row profile__row--type4">
@@ -155,7 +162,7 @@
 						<div class="work__lineup">
 							<div class="title-group sec__title">
 								<div class="sec__title--lg" style="transform-origin: left top;">
-									<p><span>Selected&nbsp;&nbsp;</span><span style="padding-right: 6px;">Wor<span class="serif-italic serif-italic--light">k</span>s</span></p><span>© 2019 ~ </span>
+									<p><span>Selected&nbsp;&nbsp;</span><span style="padding-right: 6px;">Wor<span class="serif-italic serif-italic--light">k</span>s</span></p><span>© ~ 2024 </span>
 								</div>
 							</div>
 							<div class="work__img">
@@ -345,29 +352,31 @@
 				<section id="folders" class="folders horizontal-slide" data-bgcolor="#f5f5f5" data-textcolor="#1E1F21">
 					<div class="inner">
 						<div class="sec__title">
-							<h3 class="sec__title--lg">creative <br>folders</h3>
+							<h3 class="sec__title--lg">Records</h3>
 							   <p class="sec__title--md"></p>
 						</div>
 						<div class="card-slider">
 							<div class="slide-area">
 								<div class="card-holder">
 									<div class="card-transition pin-card">
-										<div class="card mouse-hv" data-hover="hover">
-											<img src="./img/icon2.png" alt="" style="position: absolute; bottom:70px;left: 20px; transform: rotate(-10deg);">
-											<img src="./img/icon3.png" alt="" style="position: absolute; bottom:100px;right: -30px; transform: rotate(20deg);">
-											<div class="card-message">file name</div>
+										<div class="card card--1 mouse-hv" data-hover="hover">
+											<img src="./img/img-records-1.png" alt="" style="position: absolute; bottom: 41px; left: calc(50% + 3px); transform: translateX(-50%); ">
+											<div class="card-message"><span class="tag">포트폴리오 제작 기간</span><span class="tag">시간</span></div>
 										</div>
-										<div class="card mouse-hv" data-hover="hover">
-											<div class="card-message">file name</div>
+										<div class="card card--2 mouse-hv" data-hover="hover">
+											<img src="./img/img-records-2.png" alt="" style="position: absolute; bottom: 0px; left: calc(50% + 15px); transform: translateX(-50%); ">
+											<div class="card-message"><span class="tag">프로젝트 참여 개수</span><span class="tag">개</span></div>
 										</div>
-										<div class="card mouse-hv" data-hover="hover">
-											<div class="card-message">file name</div>
+										<div class="card card--3 mouse-hv" data-hover="hover">
+											<img src="./img/img-records-3.png" alt="" style="position: absolute; bottom: 0px; left: calc(50% + 15px); transform: translateX(-50%); ">
+											<div class="card-message"><span class="tag">이수한 교육 과정 수</span></div>
 										</div>
-										<div class="card mouse-hv" data-hover="hover">
-											<div class="card-message">file name</div>
+										<div class="card card--4 mouse-hv" data-hover="hover">
+											<div class="card-message"><span class="tag">코드 기여도</span><span class="tag">코드 베이스의 <b>90%</b> 이상 직접 작성</span></div>
 										</div>
-										<div class="card next mouse-hv" data-hover="hover">
-											<div class="card-message">file name</div>
+										<div class="card card--5 mouse-hv" data-hover="hover">
+											<img src="./img/img-records-5.png" alt="" style="position: absolute; bottom: 30px; left: calc(50% + 15px); transform: translateX(-50%); ">
+											<div class="card-message"><span class="tag">의자에 앉아있던 시간</span></div>
 										</div>
 									</div>
 								</div>
@@ -625,20 +634,20 @@
 			},
 		});
 		cardSlide2.to('.test .card1', { yPercent: 0, className: 'card1 act' })
-			.to('.test .bg', { opacity:1})
-			.to('.test .bg .img:nth-child(1) span', { opacity:1,scale:1},"-=0.6")
-			.from('.test .card2', { yPercent: 200})
-			.to('.test .bg .img:nth-child(2)', {clipPath:'inset(0px 0px 0px 0px)'},"-=0.3")
-			.to('.test .bg .img:nth-child(2) span', {y:'-10%'},"-=0.6")
-			.to('.test .card1', { scale: 0.9, y: '-100px' }, 0.6)
-			.to('.test .card2', { yPercent: 0, className: 'card2 act' })
-			.from('.test .card3', { yPercent: 200})
-			.to('.test .bg .img:nth-child(3)', {clipPath:'inset(0px 0px 0px 0px)'},"-=0.3")
-			.to('.test .bg .img:nth-child(3) span', {y:'-10%'},"-=0.6")
-			.to('.test .card2', { scale: 0.9, y: '-100px' }, "-=0.6")
-			.to('.test .card1', { scale: 0.80, y: '-200px' }, "-=0.6")
-			.to('.test .card3', { yPercent: 0, className: 'card3 act' })
-			.to('.test .bg', { opacity:0});
+		.to('.test .bg', { opacity:1})
+		.to('.test .bg .img:nth-child(1) span', { opacity:1,scale:1},"-=0.6")
+		.from('.test .card2', { yPercent: 200})
+		.to('.test .bg .img:nth-child(2)', {clipPath:'inset(0px 0px 0px 0px)'},"-=0.3")
+		.to('.test .bg .img:nth-child(2) span', {y:'-10%'},"-=0.6")
+		.to('.test .card1', { scale: 0.9, y: '-100px' }, 0.6)
+		.to('.test .card2', { yPercent: 0, className: 'card2 act' })
+		.from('.test .card3', { yPercent: 200})
+		.to('.test .bg .img:nth-child(3)', {clipPath:'inset(0px 0px 0px 0px)'},"-=0.3")
+		.to('.test .bg .img:nth-child(3) span', {y:'-10%'},"-=0.6")
+		.to('.test .card2', { scale: 0.9, y: '-100px' }, "-=0.6")
+		.to('.test .card1', { scale: 0.80, y: '-200px' }, "-=0.6")
+		.to('.test .card3', { yPercent: 0, className: 'card3 act' })
+		.to('.test .bg', { opacity:0});
 
 		const scrollColorElems = document.querySelectorAll("[data-bgcolor]");
 		scrollColorElems.forEach((colorSection, i) => {
