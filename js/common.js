@@ -23,14 +23,32 @@ $(function(){
 		document.body.classList.add('scrolling'); 
 		clearTimeout(scrollTimer);
 		scrollTimer = setTimeout(() => {
-			document.body.classList.remove('scrolling');
+			if (!gnb.matches(':hover')) {
+				document.body.classList.remove('scrolling');
+			}
 		}, 2000);
 	});
+
+	//s:gnb
+	const gnb = document.querySelector('.gnb');
+	gnb.addEventListener('mouseenter', () => {
+		clearTimeout(scrollTimer); 
+	});
+	gnb.addEventListener('mouseleave', () => {
+		scrollTimer = setTimeout(() => {
+			if (!gnb.matches(':hover')) {
+				document.body.classList.remove('scrolling');
+			}
+		}, 2000);
+	});
+	//e:gnb
+
 	function raf(time) {
-	lenis.raf(time)
-	requestAnimationFrame(raf)
+		lenis.raf(time)
+		requestAnimationFrame(raf)
 	}
 	requestAnimationFrame(raf);
+	//js
 	tl = TweenMax;
     customCursorJS();
     splitJS();
@@ -80,7 +98,6 @@ function customCursorJS(){
 		TweenMax.to($cursor_txt, 0, {width: '0%',height: '0%',autoAlpha: 0,ease: Power0.easeNone});
 	});
 }
-
 function splitJS(){
 	var splitText = document.querySelector('.split-text').textContent;
     var container = document.querySelector('.split-text');
@@ -98,7 +115,5 @@ function motionLogo() {
     var logo = document.querySelector('.header__logo');
     animation
 	.staggerFromTo(".header__logo a", 0, {opacity:0}, {opacity:1})
-    .staggerFromTo(".header__logo span", 0.8, {y: '200%',}, { y: '0%',force3D: false ,ease: Power2.easeInOut},0.05);
-
-	
+    .staggerFromTo(".header__logo span", 0.8, {y: '200%',}, { y: '0%',force3D: false ,ease: Power2.easeInOut},0.05);	
 }

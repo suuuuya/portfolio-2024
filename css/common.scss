@@ -65,7 +65,8 @@ video{position: absolute;top: 0;left: 0;width: 100%;height: 100%;object-fit: cov
 	span{display: inline-block; transform: translate3d(0,200%,0);}
 }
 .serif-italic{font-family: 'editorial italic',sans-serif;
-	&--light{font-weight: 300;}
+	&--light{font-family: 'editorial italic',sans-serif;font-weight: 300;}
+	&--md{font-family: 'editorial italic',sans-serif;font-weight: 400;}
 }
 /*custom cursor*/
 .custom-cursor{position: fixed;top: 0;left: 0;pointer-events: none;mix-blend-mode: difference;z-index: 1000;opacity: 0;  
@@ -112,11 +113,11 @@ video{position: absolute;top: 0;left: 0;width: 100%;height: 100%;object-fit: cov
 html{color-scheme: dark;}
 body {
 	overflow-x:hidden;
-	color: var(--main-black);
-	background: var(--main-white);
+	color: var(--main-white);
+	background: var(--main-black);
 	cursor: none;
 	font-size: 1vw;
-	&.scrolling{
+	&.scrolling,&.fixed-gnb{
 		.gnb{
 			&__list{animation: showGnb 0.5s forwards;
 				@keyframes showGnb {
@@ -144,15 +145,15 @@ body {
 /*header*/
 .header{position: fixed; top:0;left: 0; width: 100%; mix-blend-mode: difference; padding-top:3vw; z-index: 100;
 	.inner{width: 100%;height: 100%;display: flex;align-items: center;justify-content: space-between;}
-	&__logo{position: relative; @include font-style(null, 3vw, 500, var(--difference-gray), 79%); letter-spacing: -1px; transform-origin: 0 0;transform: scale(5); display: block; overflow: hidden; z-index: 1; backface-visibility: hidden; -webkit-font-smoothing:subpixel-antialiased;
-		a{position: relative; display: block;overflow: hidden; opacity: 0;
-		}
+	&__logo{position: relative; @include font-style(null, 2.5vw, 500, var(--difference-gray), 79%); letter-spacing: -1px; transform-origin: 0 0;transform: scale(4.5); display: block; overflow: hidden; z-index: 1; backface-visibility: hidden; -webkit-font-smoothing:subpixel-antialiased;
+		a{position: relative; display: block;overflow: hidden; opacity: 0;}
 	}
+	.file-download{font-size: 25px; color:var(--difference-gray); font-weight: 500;}
 	.btn-gnb{display: block; @include font-style(null, 27px, 500, var(--difference-gray), null);}
 }
 .gnb{position: fixed; bottom:30px; left: 50%; transform: translateX(-50%); z-index: 100;
-	&__list{display: flex; gap: 0 4px; text-align: center; padding: 7px 7px; background: rgba(30,31,33,0.5); border-radius: 7px; backdrop-filter: blur(5px);-webkit-backdrop-filter: blur(5px); opacity:0;}
-	a{padding: 5px 25px;border: 1px solid rgba(255, 255, 255, 0.8);color: var(--main-white); border-radius: 7px;}
+	&__list{display: flex; gap: 0 4px; text-align: center; padding: 7px 7px; background: rgba(30,31,33,0.5); border-radius: 14px; backdrop-filter: blur(20px);-webkit-backdrop-filter: blur(20px); opacity:0;}
+	a{padding: 5px 25px;border: 1px solid rgba(255, 255, 255, 0.3);color: var(--main-white); border-radius: 7px;}
 }
 
 @media screen and (max-width: 1600px){
@@ -165,7 +166,6 @@ body {
 }
 @media screen and (max-width: 768px){
 	#wrap{
-		#content{padding-top: 170px;}
 		.inner{padding: 0 20px;}
 		.header{height: 50px;
 			&__logo{font-size: 20px !important;}

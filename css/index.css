@@ -215,7 +215,12 @@ video {
   font-family: "editorial italic", sans-serif;
 }
 .serif-italic--light {
+  font-family: "editorial italic", sans-serif;
   font-weight: 300;
+}
+.serif-italic--md {
+  font-family: "editorial italic", sans-serif;
+  font-weight: 400;
 }
 
 /*custom cursor*/
@@ -369,12 +374,12 @@ html {
 
 body {
   overflow-x: hidden;
-  color: var(--main-black);
-  background: var(--main-white);
+  color: var(--main-white);
+  background: var(--main-black);
   cursor: none;
   font-size: 1vw;
 }
-body.scrolling .gnb__list {
+body.scrolling .gnb__list, body.fixed-gnb .gnb__list {
   animation: showGnb 0.5s forwards;
 }
 @keyframes showGnb {
@@ -437,13 +442,13 @@ body:not(.scrolling, .scrolled-init) .gnb__list {
 }
 .header__logo {
   position: relative;
-  font-size: 3vw;
+  font-size: 2.5vw;
   font-weight: 500;
   color: var(--difference-gray);
   line-height: 79%;
   letter-spacing: -1px;
   transform-origin: 0 0;
-  transform: scale(5);
+  transform: scale(4.5);
   display: block;
   overflow: hidden;
   z-index: 1;
@@ -455,6 +460,11 @@ body:not(.scrolling, .scrolled-init) .gnb__list {
   display: block;
   overflow: hidden;
   opacity: 0;
+}
+.header .file-download {
+  font-size: 25px;
+  color: var(--difference-gray);
+  font-weight: 500;
 }
 .header .btn-gnb {
   display: block;
@@ -476,14 +486,14 @@ body:not(.scrolling, .scrolled-init) .gnb__list {
   text-align: center;
   padding: 7px 7px;
   background: rgba(30, 31, 33, 0.5);
-  border-radius: 7px;
-  backdrop-filter: blur(5px);
-  -webkit-backdrop-filter: blur(5px);
+  border-radius: 14px;
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
   opacity: 0;
 }
 .gnb a {
   padding: 5px 25px;
-  border: 1px solid rgba(255, 255, 255, 0.8);
+  border: 1px solid rgba(255, 255, 255, 0.3);
   color: var(--main-white);
   border-radius: 7px;
 }
@@ -498,9 +508,6 @@ body:not(.scrolling, .scrolled-init) .gnb__list {
   }
 }
 @media screen and (max-width: 768px) {
-  #wrap #content {
-    padding-top: 170px;
-  }
   #wrap .inner {
     padding: 0 20px;
   }
@@ -531,32 +538,6 @@ html::after {
   z-index: 10000;
 }
 
-#content {
-  padding-top: 17.6vw;
-  /*&::after{display: block; content: ""; position: fixed; top:0;left:0;width: 100%;height: 100%; background:#222222; animation: slideDownFigure 0.6s 0.2s forwards; transform-origin: bottom left; z-index: 101;}*/
-}
-#content::before {
-  display: block;
-  content: "";
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 17.6vw;
-  background: linear-gradient(90deg, #51a4d4, #7b46c4, #21976b);
-  animation: slideDownFigure 0.5s 0.4s forwards;
-  transform-origin: bottom left;
-  z-index: 100;
-}
-@keyframes slideDownFigure {
-  0% {
-    transform: scaleY(1);
-  }
-  100% {
-    transform: scaleY(0);
-  }
-}
-
 .ico-sns {
   width: 30px;
   height: 30px;
@@ -584,7 +565,7 @@ html::after {
   line-height: 150%;
 }
 .sec__title--lg {
-  font-size: 9em;
+  font-size: 10em;
   line-height: 95%;
   letter-spacing: -7px;
   text-transform: uppercase;
@@ -617,6 +598,9 @@ html::after {
 }
 
 /*home*/
+.home {
+  height: 150vh;
+}
 .home__sticky {
   position: relative;
 }
@@ -624,7 +608,7 @@ html::after {
   position: relative;
   width: 100%;
   min-height: 100vh;
-  background: linear-gradient(90deg, #51a4d4, #7b46c4, #21976b);
+  background: linear-gradient(90deg, #c8c8c8, #acacac, #7a7a7a);
 }
 .home .overlay {
   position: absolute;
@@ -639,6 +623,24 @@ html::after {
 }
 .home canvas {
   height: 100vh;
+}
+.home__title {
+  position: absolute;
+  width: auto;
+  bottom: 3vw;
+  left: 0px;
+  font-size: 2em;
+  font-weight: 600;
+  text-transform: uppercase;
+  mix-blend-mode: difference;
+  color: var(--difference-gray);
+  letter-spacing: -0.02em;
+  line-height: 125%;
+  z-index: 10;
+}
+.home__title .serif-italic--md {
+  text-transform: initial;
+  letter-spacing: 1px;
 }
 
 /*profile*/
@@ -669,7 +671,7 @@ html::after {
   backdrop-filter: blur(5px);
   -webkit-backdrop-filter: blur(5px);
   padding: 150px 0;
-  background: rgba(18, 18, 18, 0.6);
+  background: rgba(18, 18, 18, 0.7);
   pointer-events: initial;
 }
 .profile__box:before {
@@ -797,15 +799,16 @@ html::after {
 }
 .work .year-container .digit {
   position: relative;
-  min-width: 0.65em;
+  min-width: 0.62em;
   overflow: hidden;
+  letter-spacing: -2px;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
 }
 .work .year-container .digit span {
-  position: relative;
+  position: absolute;
   width: 100%;
   text-align: center;
 }
@@ -1154,6 +1157,9 @@ html::after {
   }
 }
 @media screen and (max-width: 1280px) {
+  .home .overlay {
+    pointer-events: all;
+  }
   .profile__contents i {
     width: 25px;
     height: 25px;

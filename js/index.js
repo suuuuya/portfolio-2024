@@ -1,9 +1,6 @@
 $(function(){
     //ScrollTrigger
     gsap.registerPlugin(ScrollTrigger);
-    const content = document.querySelector('#wrap #content');
-    const contentPaddingTop = window.getComputedStyle(content).paddingTop;
-    const paddingTopValue = parseInt(contentPaddingTop, 10);
 
     //home
     const homeTimeline = gsap.timeline({
@@ -25,18 +22,18 @@ $(function(){
             scroller: window,
             scrub: true,
             start: "top top",
-            end:"+=" + (paddingTopValue - 50),
+            end:"+=50%",
         },
         scale: 1,
         force3D: false,
     })
     .to(".overlay", {
         scrollTrigger: {
-            trigger: "#wrap",
+            trigger: ".profile",
             scroller: window,
             scrub: true,
-            start: "+="+paddingTopValue,
-            end: "+=200vh",
+            start:"top center",
+            end:"top +=100vh",
         },
         background: 'rgba(0,0,0,0.4)',
     });
@@ -55,7 +52,11 @@ $(function(){
     let currentYear = startYear;
     const digits = document.querySelectorAll(".digit");
 
+    let animationFrameId = null;
+
     function updateDigits(newYear, direction) {
+        if (newYear === currentYear) return; 
+        
         const newYearDigits = newYear.toString().split(""); 
         const currentYearDigits = currentYear.toString().split("");
 
@@ -67,7 +68,12 @@ $(function(){
 
             if (newDigit !== currentDigit) {
                 nextSpan.innerHTML = newDigit;
+
+                gsap.killTweensOf(currentSpan);
+                gsap.killTweensOf(nextSpan);
+
                 gsap.set(nextSpan, { y: direction === "up" ? "100%" : "-100%", opacity: 1 });
+
                 gsap.timeline()
                     .to(currentSpan, { 
                         y: direction === "up" ? "-100%" : "100%", 
@@ -85,11 +91,13 @@ $(function(){
                         onComplete: () => {
                             gsap.set(nextSpan, { opacity: 0 });
                         }
-                    }, "-=0.3");
+                    }, "-=0.4");
             }
         });
+
         currentYear = newYear;
     }
+
     ScrollTrigger.create({
         trigger: ".work__lineup",
         scroller: window,
@@ -101,9 +109,11 @@ $(function(){
             const newYear = Math.floor(startYear + (endYear - startYear) * progress);
             const direction = self.direction > 0 ? "up" : "down";
 
-            updateDigits(newYear, direction);
+            if (animationFrameId) cancelAnimationFrame(animationFrameId);
+            animationFrameId = requestAnimationFrame(() => updateDigits(newYear, direction));
         },
     });
+
     //e:digit
     const workTimeline = gsap.timeline({
         scrollTrigger: {
@@ -290,16 +300,7 @@ $(function(){
         },
     });
 });
-// 태블릿/모바일 해상도 기준으로 1024px 이하를 설정
-var isMobileOrTablet = window.innerWidth <= 1024; 
 
-if (isMobileOrTablet) {
-    loadMobileScript();
-} else {
-    loadPCScript();
-}
-
-function loadPCScript() {
     var Example = Example || {};
 
     Example.mixed = function () {
@@ -359,7 +360,7 @@ function loadPCScript() {
 
             shapeCount++;
 
-            if (shapeCount >= 50 && !wallsRemoved) {
+            if (shapeCount >= 30 && !wallsRemoved) {
                 Composite.remove(world, walls);
                 wallsRemoved = true;
             }
@@ -368,18 +369,17 @@ function loadPCScript() {
         };
 
         var addInitialShapes = function () {
-            var textures = ['./img/icon2.png','./img/icon3.png', './img/icon1.png', './img/tag-2.png'];
+            var textures = ['./img/icon2.png','./img/icon3.png', './img/tag-2.png'];
             var options = [
                 { shape: 'rectangle', width:150, height: 230, scale: 1},
                 { shape: 'rectangle', width:244, height: 250, scale: 1},
-                { shape: 'rectangle', width: 320, height: 229, scale: 1},
                 { shape: 'rectangle', width: 270, height: 103, scale: 1}
             ];
             
             var startX = 100;
             var startY = window.innerHeight - 200;
             
-            for (var i = 0; i < 25; i++) {
+            for (var i = 0; i < 20; i++) {
                 var index = i % textures.length;
                 addShape(textures[index], options[index], startX + i *150, startY);
             }
@@ -388,11 +388,10 @@ function loadPCScript() {
         addInitialShapes();
 
         setInterval(function() {
-            var textures = ['./img/icon2.png','./img/icon3.png', './img/icon1.png', './img/tag-2.png'];
+            var textures = ['./img/icon2.png','./img/icon3.png',  './img/tag-2.png'];
             var options = [
                 { shape: 'rectangle', width:150, height: 230, scale: 1},
                 { shape: 'rectangle', width:244, height: 250, scale: 1},
-                { shape: 'rectangle', width: 320, height: 229, scale: 1},
                 { shape: 'rectangle', width: 270, height: 103, scale: 1}
             ];
             var index = Math.floor(Math.random() * textures.length);
@@ -426,7 +425,7 @@ function loadPCScript() {
                     return count;
                 }, 0);
 
-                if (outOfBoundsCount >= 50) {
+                if (outOfBoundsCount >=30) {
                     shapeCount = 0;
                     wallsRemoved = false;
                     addWalls();
@@ -501,165 +500,3 @@ function loadPCScript() {
     };
 
     Example.mixed();
-}
-
-function loadMobileScript() {
-    var Example = Example || {};
-
-    Example.mixed = function () {
-        var Engine = Matter.Engine,
-            Render = Matter.Render,
-            Runner = Matter.Runner,
-            Bodies = Matter.Bodies,
-            Composite = Matter.Composite,
-            Mouse = Matter.Mouse,
-            MouseConstraint = Matter.MouseConstraint,
-            Common = Matter.Common;
-
-        var engine = Engine.create(),
-            world = engine.world;
-
-        var render = Render.create({
-            element: document.getElementById('shapes-box'),
-            engine: engine,
-            options: {
-                width: window.innerWidth,
-                height: window.innerHeight,
-                wireframes: false,
-                background: false,
-            }
-        });
-
-        Render.run(render);
-
-        var runner = Runner.create();
-        Runner.run(runner, engine);
-
-        var shapes = [];
-        var shapeCount = 0;
-        var wallsRemoved = false;
-
-        var addShape = function (texture, options, x, y) {
-            var scale = Math.min(window.innerHeight, window.innerWidth) / 1500;
-            options = {...options, ...{
-                restitution: 0.7,
-                render: {
-                    sprite: {
-                        texture: texture,
-                        xScale: scale * options.scale,
-                        yScale: scale * options.scale
-                    }
-                }
-            }};
-
-            var body = options.shape === 'circle' ?
-                Bodies.circle(x, y, options.radius * scale, options) :
-                Bodies.rectangle(x, y, options.width * scale, options.height * scale, options);
-
-            body.initialScale = scale;
-            body.options = options;
-            Composite.add(world, body);
-            shapes.push(body);
-
-            shapeCount++;
-
-            return body;
-        };
-
-        var addInitialShapes = function () {
-            var textures = ['./img/icon2.png','./img/icon3.png', './img/icon1.png', './img/tag-2.png'];
-            var options = [
-                { shape: 'rectangle', width:150, height: 230, scale: 1},
-                { shape: 'rectangle', width:244, height: 250, scale: 1},
-                { shape: 'rectangle', width: 320, height: 229, scale: 1},
-                { shape: 'rectangle', width: 270, height: 103, scale: 1}
-            ];
-            
-            for (var i = 0; i <150; i++) {
-                var index = Math.floor(Math.random() * textures.length);
-                var startX = Math.random() * window.innerWidth;
-                var startY = -window.innerHeight;
-                addShape(textures[index], options[index], startX, startY);
-            }
-        };
-
-        addInitialShapes();
-
-
-        var walls = [];
-        var addWalls = function() {
-            var newWalls = [
-                Bodies.rectangle(window.innerWidth / 2, window.innerHeight + 50, window.innerWidth, 100, { isStatic: true, render: { fillStyle: 'rgba(255, 255, 255, 1)' } }),
-                Bodies.rectangle(-50, window.innerHeight / 2, 100, window.innerHeight, { isStatic: true, render: { fillStyle: 'rgba(255, 255, 255, 1)' } }),
-                Bodies.rectangle(window.innerWidth + 50, window.innerHeight / 2, 100, window.innerHeight, { isStatic: true, render: { fillStyle: 'rgba(255, 255, 255, 1)' } })
-            ];
-            Composite.add(world, newWalls);
-            walls = newWalls;
-        };
-
-        addWalls();
-
-        var mouse = Mouse.create(render.canvas),
-            mouseConstraint = MouseConstraint.create(engine, {
-                mouse: mouse,
-                constraint: {
-                    stiffness: 1,
-                    render: { visible: true }
-                }
-            });
-
-        Composite.add(world, mouseConstraint);
-        render.mouse = mouse;
-
-        window.addEventListener('resize', function() {
-            var currentWidth = window.innerWidth;
-            var currentHeight = window.innerHeight;
-
-            var widthChange = Math.abs(currentWidth - render.options.width);
-            var heightChange = Math.abs(currentHeight - render.options.height);
-
-            if (widthChange >= 200 || heightChange >= 200) {
-                render.options.width = currentWidth;
-                render.options.height = currentHeight;
-                render.canvas.width = currentWidth;
-                render.canvas.height = currentHeight;
-
-                var newScale = Math.min(currentWidth, currentHeight) / 1000;
-
-                shapes.forEach(function(body) {
-                    var scaleRatio = newScale / body.initialScale;
-                    Matter.Body.scale(body, scaleRatio, scaleRatio);
-                    body.initialScale = newScale;
-
-                    if (body.circleRadius) {
-                        body.circleRadius = body.options.radius * newScale;
-                    } else {
-                        body.bounds.max.x = body.bounds.min.x + body.options.width * newScale;
-                        body.bounds.max.y = body.bounds.min.y + body.options.height * newScale;
-                    }
-
-                    var centerX = (body.position.x / currentWidth) * currentWidth;
-                    var centerY = (body.position.y / currentHeight) * currentHeight;
-                    Matter.Body.setPosition(body, { x: centerX, y: centerY });
-                });
-
-                Composite.clear(world, false);
-                addWalls();
-                addInitialShapes();
-            }
-        });
-
-        return {
-            engine: engine,
-            runner: runner,
-            render: render,
-            canvas: render.canvas,
-            stop: function () {
-                Matter.Render.stop(render);
-                Matter.Runner.stop(runner);
-            }
-        };
-    };
-
-    Example.mixed();
-}
