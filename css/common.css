@@ -1,6 +1,7 @@
 /* mixin */
 :root {
   --main-white: #f5f5f5;
+  --main-gray:#e1e1e1;
   --main-black: #1E1F21;
   --difference-gray: #dddddd;
   --color-gray:#eeeeee;
@@ -205,7 +206,7 @@ video {
 /*split text*/
 .split-text span {
   display: inline-block;
-  transform: translate3d(0, 100%, 0);
+  transform: translate3d(0, 200%, 0);
 }
 
 .serif-italic {
@@ -371,13 +372,40 @@ body {
   cursor: none;
   font-size: 1vw;
 }
+body.scrolling .gnb__list {
+  animation: showGnb 0.5s forwards;
+}
+@keyframes showGnb {
+  0% {
+    opacity: 0;
+    transform: translate3d(0, 150%, 0);
+  }
+  100% {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+}
+body:not(.scrolling, .scrolled-init) .gnb__list {
+  animation: hideGnb 0.3s forwards;
+}
+@keyframes hideGnb {
+  0% {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+  100% {
+    opacity: 0;
+    transform: translate3d(0, 0%, 0);
+    display: none;
+  }
+}
 
 #wrap, #container {
   position: relative;
 }
 
 #container {
-  background: #e1e1e1;
+  background: var(--main-black);
 }
 
 .inner {
@@ -394,8 +422,8 @@ body {
   top: 0;
   left: 0;
   width: 100%;
-  height: 100px;
   mix-blend-mode: difference;
+  padding-top: 3vw;
   z-index: 100;
 }
 .header .inner {
@@ -407,13 +435,13 @@ body {
 }
 .header__logo {
   position: relative;
-  font-size: 50px;
+  font-size: 3vw;
   font-weight: 500;
   color: var(--difference-gray);
   line-height: 79%;
   letter-spacing: -1px;
   transform-origin: 0 0;
-  transform: scale(8);
+  transform: scale(5);
   display: block;
   overflow: hidden;
   z-index: 1;
@@ -423,6 +451,8 @@ body {
 .header__logo a {
   position: relative;
   display: block;
+  overflow: hidden;
+  opacity: 0;
 }
 .header .btn-gnb {
   display: block;
@@ -447,6 +477,7 @@ body {
   border-radius: 7px;
   backdrop-filter: blur(5px);
   -webkit-backdrop-filter: blur(5px);
+  opacity: 0;
 }
 .gnb a {
   padding: 5px 25px;

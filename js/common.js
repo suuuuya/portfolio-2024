@@ -1,5 +1,36 @@
 $(function(){
 	history.scrollRestoration = "manual";
+	//Lenis js
+	const lenis = new Lenis();
+	let lastScroll = 0;
+	let scrollTimer; 
+
+	lenis.on('scroll', (e) => {
+		document.body.classList.remove('scrolled-init');
+		if (e.scroll > 0) {
+			document.body.classList.add('scrolled'); 
+		} else {
+			document.body.classList.remove('scrolled');
+		}
+		if (e.scroll > lastScroll) {
+			document.body.classList.add('scrolled-down');
+			document.body.classList.remove('scrolled-up');
+		} else {
+			document.body.classList.add('scrolled-up');
+			document.body.classList.remove('scrolled-down');
+		}
+		lastScroll = e.scroll; 
+		document.body.classList.add('scrolling'); 
+		clearTimeout(scrollTimer);
+		scrollTimer = setTimeout(() => {
+			document.body.classList.remove('scrolling');
+		}, 2000);
+	});
+	function raf(time) {
+	lenis.raf(time)
+	requestAnimationFrame(raf)
+	}
+	requestAnimationFrame(raf);
 	tl = TweenMax;
     customCursorJS();
     splitJS();
@@ -64,17 +95,10 @@ function splitJS(){
 }
 function motionLogo() {
     var animation = gsap.timeline();
-
     var logo = document.querySelector('.header__logo');
+    animation
+	.staggerFromTo(".header__logo a", 0, {opacity:0}, {opacity:1})
+    .staggerFromTo(".header__logo span", 0.8, {y: '200%',}, { y: '0%',force3D: false ,ease: Power2.easeInOut},0.05);
 
-    animation.staggerFromTo(".header__logo span", 0.8, { y: '100%',  }, { y: '0%',force3D: false ,ease: Power2.easeInOut }, 0.05);
-
-   /* logo.addEventListener('mouseenter', () => {
-		var animation2 = gsap.timeline(); 
-        animation2
-            .staggerFromTo(".header__logo span", 0.8, { y: '0%' }, { y: '-100%', delay:'-0.1', ease: Power2.easeInOut }, 0.05)
-            .staggerFromTo(".header__logo span", 0.8, { y: '100%' }, { y: '0%', delay:'-0.2', ease: Power2.easeInOut }, 0.05);
-    });*/
-	
 	
 }

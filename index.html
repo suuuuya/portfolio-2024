@@ -6,12 +6,12 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no"/>
 	<meta name="description" content="Portfolio" />
 	<meta name="keywords" content="Web Publisher, front-end, 웹 퍼블리셔, 프론트엔드, 개발자, 포트폴리오, portfolio" />
-	<meta property="og:title" content="Portfolio : 이연수 👩🏻‍💻" />
-	<meta property="og:site_name" content="Portfolio : 이연수 👩🏻‍💻" />
+	<meta property="og:title" content="Portfolio : 이연수" />
+	<meta property="og:site_name" content="Portfolio : 이연수" />
 	<meta property="og:description" content="Portfolio" />
 	<meta property="og:image" content="" />
-	<title>Portfolio : 이연수 👩🏻‍💻</title>
-	<!-- common -->
+	<title>[포트폴리오] 웹퍼블리셔 이연수</title>
+	<!-- common CSS JS -->
 	<script src="./js/lib/jquery-1.11.3.min.js"></script>
 	<script src="./js/lib/jquery-migrate-1.2.1.min.js"></script>
 	<script type="text/javascript" src="./js/lib/jquery.easing.1.3.js"></script>
@@ -20,1067 +20,463 @@
 	<link rel="stylesheet" type="text/css" href="./css/common.css">
 	<link rel="stylesheet" type="text/css" href="./css/index.css">
 </head>
-<body>
+<body class="scrolled-init">
 	<div class="noise"></div>
-<div id="custom-cursor" class="custom-cursor">
-	<div class="custom-cursor__body">
-		<div class="custom-cursor__circle"></div>
-	</div>
-</div>
-<div id="custom-cursor__text" class="custom-cursor__text">
-	<div class="custom-cursor__text__body">
-		<div class="custom-cursor__text__txt"><span></span></div>
-	</div>
-</div>
-<div id="wrap">
-	<!-- header -->
-	<header id="header" class="header">
-		<h2 class="blind">헤더 영역</h2>
-		<div class="inner">
-			<h1 class="header__logo">
-				<a href="/" class="split-text" data-hover="👻👻👻">lee</a>
-			</h1>
+	<div id="custom-cursor" class="custom-cursor">
+		<div class="custom-cursor__body">
+			<div class="custom-cursor__circle"></div>
 		</div>
-	</header> 
-	<nav class="gnb header__gnb">
-		<ul class="gnb__list">
-			<li><a href="#">HOME</a></li>
-			<li><a href="#">ABOUT ME</a></li>
-			<li><a href="#">WORK</a></li>
-			<li><a href="#">RECORDS</a></li>
-		</ul>
-	</nav>
-	<!-- 본문 -->
-	<div id="container">
-		<div id="content" class="main">
-			<h2 class="blind">본문 영역</h2>
-			<div id="pg-wrapper">
-				<section id="home" class="sec home" data-bgcolor="#d5d5d5" data-textcolor="#cdcdcd">
-					<div class="home__sticky">
-						<div class="home__shapes-area">
-							<div class="overlay"></div>
-							<div id="shapes-box"></div>
+	</div>
+	<div id="custom-cursor__text" class="custom-cursor__text">
+		<div class="custom-cursor__text__body">
+			<div class="custom-cursor__text__txt"><span></span></div>
+		</div>
+	</div>
+	<!-- s: wrap -->
+	<div id="wrap">
+		<!-- s: header -->
+		<header id="header" class="header">
+			<h2 class="blind">헤더 영역</h2>
+			<div class="inner">
+				<h1 class="header__logo">
+					<a href="./index.html" class="split-text" data-hover="home">©2025.LYS</a>
+				</h1>
+			</div>
+		</header>
+		<!-- e: header -->
+		<!-- s: nav -->
+		<nav class="gnb header__gnb">
+			<ul class="gnb__list">
+				<li><a href="#">HOME</a></li>
+				<li><a href="#">ABOUT ME</a></li>
+				<li><a href="#">WORK</a></li>
+				<li><a href="#">RECORDS</a></li>
+			</ul>
+		</nav>
+		<!-- e: nav -->
+		<!-- s: container -->
+		<div id="container" data-bgcolor="#1E1F21">
+			<div id="content" class="main">
+				<h2 class="blind">본문 영역</h2>
+				<div id="pg-wrapper">
+					<section id="home" class="sec home" data-bgcolor="#1E1F21" data-textcolor="#cdcdcd">
+						<div class="home__sticky">
+							<div class="home__shapes-area">
+								<div class="overlay"></div>
+								<div id="shapes-box"></div>
+							</div>
 						</div>
-					</div>
-				</section>
-				<section id="profile" class="sec profile" data-bgcolor="#1E1F21" data-textcolor="#cdcdcd">
-					<div class="profile__box">
+					</section>
+					<section id="profile" class="sec profile" data-bgcolor="#1E1F21" data-textcolor="#cdcdcd">
+						<div class="profile__box">
+							<div class="inner">
+								<div class="sec__title">
+									<h3 class="sec__title--lg"><p class="space"><span>Hello,</span> <span>world!</span></p><p class="space"><span>I'm Lee,</span><span><span class="serif-italic serif-italic--light">the</span>&nbsp; developer</span></p></h3>
+									<p class="sec__title--md">디지털 서비스 구축과 운영을 전문으로 하는 웹 퍼블리셔 이연수입니다. </br>2019년부터 90개 이상의 프로젝트를 진행하며 디지털 콘텐츠 제작 및 대규모 자사 서비스 운영 업무를 성공적으로 수행했습니다. 사용자 경험을 최우선으로 고려하여 향상된 솔루션과 서비스를 제공할 수 있도록 최선을 다하겠습니다.</p>
+								</div>
+								<div class="profile__table">
+									<div class="profile__row profile__row--type4">
+										<div class="profile__item">
+											<div class="profile__category">About Me</div>
+											<div class="profile__contents">
+												이연수 <br>
+												서울시 영등포구 <br><br>
+												<a href="https://www.notion.so/iamsuuya/Web-Publisher-5f5ae2c8e94c4e57b3bc3e03a09eff19?pvs=4" target="_blank"><i class="ico-sns ico-sns--notion"><span class="blind">노션</span></i></a>&nbsp;
+												<a href="javaScript:alert('페이지가 없습니다.');"><i class="ico-sns ico-sns--instagram"><span class="blind">인스타그램</span></i></a>&nbsp;
+												<a href="https://github.com/suuuuya" target="_blank"><i class="ico-sns ico-sns--github"><span class="blind">깃랩</span></i></a>
+											</div>
+										</div>
+										<div class="profile__item">
+											<div class="profile__category">Contact</div>
+											<div class="profile__contents">
+												<a href="tel:010-2310-8017">010 2310 8017</a><br>
+												<a href="mailTo:iamsuuya@gmail.com">iamsuuya@gmail.com</a><br>
+											</div>
+										</div>
+										<div class="profile__item">
+											<div class="profile__category">Used Skills</div>
+											<div class="profile__contents">
+												HTML5/CSS<br> 
+												SCSS <br>
+												Jquery <br>
+												JavaScript <br>
+												Ajax
+											</div>
+										</div>
+										<div class="profile__item">
+											<div class="profile__category">Used Tools</div>
+											<div class="profile__contents">
+												GitLab <br>
+												VisualStudio <br>
+												Jenkins <br>
+												Figma <br>
+												PhotoShop <br>
+												Illustrator <br>
+												MicroSoft
+											</div>
+										</div>
+									</div>
+									<div class="profile__row">
+										<div class="profile__item">
+											<div class="profile__category">Career</div>
+											<div class="profile__contents profile__contents--type1">
+												<span>2022. 10 ~ 2024. 10 </span><span>KBS미디어 디지털서비스1팀 사원</span>
+												<span>2019. 5 ~ 2022. 10 </span><span>디자인픽셀 개발팀 대리</span>
+											</div>
+										</div>
+										<div class="profile__item">
+											<div class="profile__category">Services</div>
+											<div class="profile__contents">Design<br>UX/UI<br>Publishing<br>Development<br>Interaction<br>Web Accessibility</div>
+										</div>
+									</div>
+									<div class="profile__row">
+										<div class="profile__item">
+											<div class="profile__category">Experience</div>
+											<div class="profile__contents">
+												<ul class="profile__list">
+													<li>2023 루이셀 ICT k · awards e-비즈니스 부문 금상</li>
+													<li>2023 KBS 사보 750호 &lt;코리안 디아스포라&gt; 홈페이지 개편 수록</li>
+													<li>2022 아이멜리 ICT k · awards 모바일 서비스 부문 수상</li>
+													<li>2021 이클레어 ICT k · awards 대상</li>
+													<li>더조은컴퓨터 디지털 웹&디자인(프론트엔드)과정 수강</li>
+													<li>관악현대미술대전 서양화 장려상</li>
+												</ul>
+											</div>
+										</div>
+										<div class="profile__item">
+											<div class="profile__category">How I Work</div>
+											<div class="profile__contents">
+												<ul class="profile__list">
+													<li>구축</li>
+													<li>개편</li>
+													<li>운영</li>
+													<li>취약점 점검</li>
+												</ul>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</section>
+					<section id="work" class="sec work" data-bgcolor="#1E1F21" data-textcolor="#cdcdcd">
+						<div class="inner">
+							<div class="work__lineup">
+								<div class="title-group sec__title">
+									<div class="sec__title--lg" style="transform-origin: left top;">
+										<p class="box">
+											<span>Selected&nbsp;&nbsp;</span>
+											<span style="padding-right: 6px;">Wor<span class="serif-italic serif-italic--light">k</span>s</span>
+										</p>
+										<div class="copyright">
+											<p>©</p>
+											<div class="year-container">
+												<div class="digit">
+													<span class="current">2</span>
+													<span class="next">2</span>
+												</div>
+												<div class="digit">
+													<span class="current">0</span>
+													<span class="next">0</span>
+												</div>
+												<div class="digit">
+													<span class="current">1</span>
+													<span class="next">1</span>
+												</div>
+												<div class="digit">
+													<span class="current">9</span>
+													<span class="next">9</span>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+								<div class="work__img">
+									<img src="./img/img-bg-works-1.jpg" alt="우리말 바로 알기 프로젝트 이미지">
+									<img src="./img/img-bg-works-2.jpg" alt="2024 파리올림픽 프로젝트 이미지">
+									<img src="./img/img-bg-works-3.jpg" alt="ABU 2023 SEOUL 프로젝트 이미지">
+									<img src="./img/img-bg-works-5.jpg" alt="항저우 아시안게임 프로젝트 이미지">
+									<img src="./img/img-bg-works-6.jpg" alt="버티고 프로젝트 이미지">
+									<img src="./img/img-bg-works-7.jpg" alt="KBS 수신료 프로젝트 이미지">
+									<img src="./img/img-bg-works-8.jpg" alt="WBC 프로젝트 이미지">
+									<img src="./img/img-bg-works-11.jpg" alt="콩 라디오 프로젝트 이미지">
+									<img src="./img/img-bg-works-10.jpg" alt="KBS+ 프로젝트 이미지">
+								</div>
+							</div>
+							<div class="work__history history">
+								<div class="sec__cate">(Projects)</div>
+								<ul class="history__list">
+									<li class="show-img" data-img="./img/img-project-kong.jpg">
+										<div class="date">2024</div>
+										<div class="con">KBS KONG 소개 페이지 리뉴얼</div>
+										<div class="note"><span class="tag">적응형 웹</span><span class="tag">GSAP</span></div>
+									</li>
+									<li class="show-img" data-img="./img/img-project-urimal.jpg">
+										<div class="date">2024</div>
+										<div class="con">KBS 우리말 바로알기 포털 신규 구축</div>
+										<div class="note"><span class="tag">적응형 웹</span><span class="tag">신규 서비스</span></div>
+									</li>
+									<li class="show-img" data-img="./img/img-project-media.jpg">
+										<div class="date">2024</div>
+										<div class="con">KBS미디어 홈페이지 웹퍼블리싱 및 유지보수</div>
+										<div class="note"><span class="tag">유지보수</span></div>
+									</li>
+									<li class="show-img" data-img="./img/img-project-section.jpg">
+										<div class="date">2023~2024</div>
+										<div class="con">KBS 섹션 개편 (드라마, 예능, 시사교양, 라디오)</div>
+										<div class="note"><span class="tag">적응형 웹</span></div>
+									</li>
+									<li class="show-img" data-img="./img/img-project-abu.jpg">
+										<div class="date">2023</div>
+										<div class="con">KBS ABU 2023 SEOUL 아시아 태평양 방송 연합(ABU) 60주년 총회 특집 사이트 구축</div>
+										<div class="note"><span class="tag">적응형 웹</span><span class="tag">신규 서비스</span></div>
+									</li>
+									<li class="show-img" data-img="./img/img-project-diaspora.jpg">
+										<div class="date">2023</div>
+										<div class="con">KBS 코리안 디아스포라 공영방송 50주년 기념 디아스포라 개편</div>
+										<div class="note"><span class="tag">적응형 웹</span></div>
+									</li>
+									<li class="show-img" data-img="./img/img-project-susin.jpg">
+										<div class="date">2023</div>
+										<div class="con">수신료의 가치 KBS 수신료 홈페이지 리뉴얼</div>
+										<div class="note"><span class="tag">적응형 웹</span></div>
+									</li>
+									<li class="show-img" data-img="./img/img-project-kbs50.jpg">
+										<div class="date">2023</div>
+										<div class="con">KBS 공영방송 50주년 특집 페이지 신규 제작</div>
+										<div class="note"><span class="tag">적응형 웹</span><span class="tag">신규 서비스</span></div>
+									</li>
+									<li>
+										<div class="date">2023</div>
+										<div class="con">KBS미디어기술연구소 AX Team AI 제작도구 웹 에디터</div>
+										<div class="note"><span class="tag">에디터</span><span class="tag">프론트</span></div>
+									</li>
+									<li>
+										<div class="date">2022</div>
+										<div class="con">KBS Vertigo 팜매니저 버티고 키프레임 에디터 웹버전 개발</div>
+										<div class="note"><span class="tag">에디터</span><span class="tag">프론트</span></div>
+									</li>
+									<li>
+										<div class="date">2022</div>
+										<div class="con">2022 카타르 월드컵 웹퍼블리싱 산출물 검수 및 웹 접근성 사전 검사 진행</div>
+										<div class="note"><span class="tag">진단 보고서 작성</span></div>
+									</li>
+									<li>
+										<div class="date">2022~2024</div>
+										<div class="con">KBS 회원센터 회원 서비스 실무 담당</div>
+										<div class="note"><span class="tag">EDM</span><span class="tag">유지보수</span></div>
+									</li>
+									<li>
+										<div class="date">2022~2024</div>
+										<div class="con">KBS 홈페이지 유지보수</div>
+										<div class="note"><span class="tag">상시</span><span class="tag">유지보수</span><span class="tag">프론트</span></div>
+									</li>
+									<li>
+										<div class="date">2022~2024</div>
+										<div class="con">KBSN 메인 홈페이지 UI·UX 전면 개편 및 기능 개발</div>
+										<div class="note"><span class="tag">PL</span><span class="tag">신규 서비스</span><span class="tag">유지보수</span><span class="tag">프론트</span></div>
+									</li>
+									<li>
+										<div class="date">2022</div>
+										<div class="con">CJ프레시웨이 아이누리 공모전 이벤트 페이지 구축</div>
+										<div class="note"><span class="tag">반응형 웹</span><span class="tag">프론트</span></div>
+									</li>
+									<li>
+										<div class="date">2022</div>
+										<div class="con">아이멜리 쇼핑몰 구축</div>
+										<div class="note"><span class="tag">적응형 웹</span><span class="tag">쇼핑몰</span></div>
+									</li>
+									<li>
+										<div class="date">2022</div>
+										<div class="con">한양대학교 기계공학부 홈페이지 구축</div>
+										<div class="note"><span class="tag">반응형 웹</span></div>
+									</li>
+									<li>
+										<div class="date">2021</div>
+										<div class="con">삼우씨엠건축사사무소 홈페이지 구축</div>
+										<div class="note"><span class="tag">반응형 웹</span></div>
+									</li>
+									<li>
+										<div class="date">2021</div>
+										<div class="con">유니볼 홈페이지 구축</div>
+										<div class="note"><span class="tag">반응형 웹</span><span class="tag">프론트</span></div>
+									</li>
+									<li>
+										<div class="date">2021</div>
+										<div class="con"><a href="https://www.kchglobal.com/" target="_blank">KCH그룹 홈페이지 구축</a></div>
+										<div class="note"><span class="tag">반응형 웹</span></div>
+									</li>
+									<li>
+										<div class="date">2021</div>
+										<div class="con"><a href="http://www.x4design.co.kr/" target="_blank">X4디자인브랜딩 홈페이지 구축</a></div>
+										<div class="note"><span class="tag">반응형 웹</span></div>
+									</li>
+									<li>
+										<div class="date">2021</div>
+										<div class="con">서울대학교 재료공학부 홈페이지 구축</div>
+										<div class="note"><span class="tag">반응형 웹</span></div>
+									</li>
+									<li>
+										<div class="date">2021</div>
+										<div class="con"><a href="https://www.koreabio.org/" target="_blank">한국바이오협회 홈페이지 구축</a></div>
+										<div class="note"><span class="tag">반응형 웹</span><span class="tag">프론트</span></div>
+									</li>
+									<li>
+										<div class="date">2021</div>
+										<div class="con"><a href="https://www.apis.org/" target="_blank">APIS(아시아퍼시픽 국제외국인학교) 홈페이지 구축</a></div>
+										<div class="note"><span class="tag">반응형 웹</span><span class="tag">프론트</span></div>
+									</li>
+									<li>
+										<div class="date">2021</div>
+										<div class="con">풍인무역 홈페이지 리뉴얼</div>
+										<div class="note"><span class="tag">반응형 웹</span></div>
+									</li>
+									<li>
+										<div class="date">2020</div>
+										<div class="con"><a href="https://www.polararchive.kr/" target="_blank">극지연구소 극지정책아카이브 홈페이지 구축</a></div>
+										<div class="note"><span class="tag">반응형 웹</span><span class="tag">프론트</span></div>
+									</li>
+									<li>
+										<div class="date">2020</div>
+										<div class="con">심팩 장학재단 홈페이지 구축</div>
+										<div class="note"><span class="tag">적응형 웹</span></div>
+									</li>
+									<li>
+										<div class="date">2020</div>
+										<div class="con">웨트러스트 글로벌 홈페이지 구축</div>
+										<div class="note"><span class="tag">반응형 웹</span><span class="tag">프론트</span></div>
+									</li>
+									<li>
+										<div class="date">2020</div>
+										<div class="con">대한민국 방위산업전 홈페이지 구축</div>
+										<div class="note"><span class="tag">적응형 웹</span></div>
+									</li>
+									<li>
+										<div class="date">2020</div>
+										<div class="con">카이스트 기술경영전문대학원 홈페이지 구축</div>
+										<div class="note"><span class="tag">반응형 웹</span></div>
+									</li>
+									<li>
+										<div class="date">2020</div>
+										<div class="con">금호타이어 60주년 이벤트 페이지 구축</div>
+										<div class="note"><span class="tag">적응형 웹</span><span class="tag">프론트</span></div>
+									</li>
+									<li>
+										<div class="date">2020</div>
+										<div class="con">솔브레인/솔브레인홀딩스 홈페이지 구축</div>
+										<div class="note"><span class="tag">반응형 웹</span><span class="tag">프론트</span></div>
+									</li>
+									<li>
+										<div class="date">2019</div>
+										<div class="con">모트렉스 매뉴얼 서비스 구축</div>
+										<div class="note"><span class="tag">적응형 웹</span><span class="tag">프론트</span></div>
+									</li>
+								</ul>
+							</div>
+						</div>
+					</section>
+					<section id="folders" class="folders horizontal-slide" data-bgcolor="#f5f5f5" data-textcolor="#1E1F21">
 						<div class="inner">
 							<div class="sec__title">
-								<h3 class="sec__title--lg"><p class="space"><span>Hello,</span> <span>world!</span></p><p class="space"><span>I'm Lee,</span><span><span class="serif-italic serif-italic--light">the</span>&nbsp; developer</span></p></h3>
-                           		<p class="sec__title--md">안녕하세요. 웹 서비스 구축과 운영 업무를 담당하고 있는 웹 퍼블리셔 이연수입니다. 남녀노소 모두가 서비스 이용에 불편함을 겪지 않고 좋은 사용자 경험을 할 수 있도록 고민하는 일은 제가 가장 좋아하는 일이자 큰 보람입니다.</p>
+								<h3 class="sec__title--lg">Records</h3>
+								<p class="sec__title--md"></p>
 							</div>
-							<div class="profile__table">
-								<div class="profile__row profile__row--type4">
-									<div class="profile__item">
-										<div class="profile__category">About Me</div>
-										<div class="profile__contents">
-											이연수 <br>
-											서울시 영등포구 <br><br>
-											<a href="https://www.notion.so/iamsuuya/Web-Publisher-5f5ae2c8e94c4e57b3bc3e03a09eff19?pvs=4" target="_blank"><i class="ico-sns ico-sns--notion"><span class="blind">노션</span></i></a>&nbsp;
-											<a href="javaScript:alert('페이지가 없습니다.');"><i class="ico-sns ico-sns--instagram"><span class="blind">인스타그램</span></i></a>&nbsp;
-											<a href="https://github.com/suuuuya" target="_blank"><i class="ico-sns ico-sns--github"><span class="blind">깃랩</span></i></a>
+							<div class="card-slider">
+								<div class="slide-area">
+									<div class="card-holder">
+										<div class="card-transition pin-card">
+											<div class="card card--1 mouse-hv" data-hover="hover">
+												<img src="./img/img-records-1.png" alt="" style="position: absolute; bottom: 41px; left: calc(50% + 3px); transform: translateX(-50%); ">
+												<div class="card-message"><span class="tag">포트폴리오 제작 기간</span><span class="tag">시간</span></div>
+											</div>
+											<div class="card card--2 mouse-hv" data-hover="hover">
+												<img src="./img/img-records-2.png" alt="" style="position: absolute; bottom: 0px; left: calc(50% + 15px); transform: translateX(-50%); ">
+												<div class="card-message"><span class="tag">프로젝트 참여 개수</span><span class="tag">개</span></div>
+											</div>
+											<div class="card card--3 mouse-hv" data-hover="hover">
+												<img src="./img/img-records-3.png" alt="" style="position: absolute; bottom: 0px; left: calc(50% + 15px); transform: translateX(-50%); ">
+												<div class="card-message"><span class="tag">이수한 교육 과정 수</span></div>
+											</div>
+											<div class="card card--4 mouse-hv" data-hover="hover">
+												<div class="card-message"><span class="tag">코드 기여도</span><span class="tag">코드 베이스의 <b>90%</b> 이상 직접 작성</span></div>
+											</div>
+											<div class="card card--5 mouse-hv" data-hover="hover">
+												<img src="./img/img-records-5.png" alt="" style="position: absolute; bottom: 30px; left: calc(50% + 15px); transform: translateX(-50%); ">
+												<div class="card-message"><span class="tag">의자에 앉아있던 시간</span></div>
+											</div>
 										</div>
 									</div>
-									<div class="profile__item">
-										<div class="profile__category">Contact</div>
-										<div class="profile__contents">
-											<a href="tel:010-2310-8017">010 2310 8017</a><br>
-											<a href="mailTo:iamsuuya@gmail.com">iamsuuya@gmail.com</a><br>
-										</div>
-									</div>
-									<div class="profile__item">
-										<div class="profile__category">Used Skills</div>
-										<div class="profile__contents">
-											HTML5/CSS<br> 
-											SCSS <br>
-											Jquery <br>
-											JavaScript <br>
-											Ajax
-										</div>
-									</div>
-									<div class="profile__item">
-										<div class="profile__category">Used Tools</div>
-										<div class="profile__contents">
-											GitLab <br>
-											VisualStudio <br>
-											Jenkins <br>
-											Figma <br>
-											PhotoShop <br>
-											Illustrator <br>
-											MicroSoft
-										</div>
-									</div>
-								</div>
-								<div class="profile__row">
-									<div class="profile__item">
-										<div class="profile__category">Career</div>
-										<div class="profile__contents profile__contents--type1">
-											<span>2022. 10 ~ 2024. 10 </span><span>KBS미디어 디지털서비스1팀 사원</span>
-											<span>2019. 5 ~ 2022. 10 </span><span>디자인픽셀 개발팀 대리</span>
-										</div>
-									</div>
-									<div class="profile__item">
-										<div class="profile__category">Services</div>
-										<div class="profile__contents">UX/UI<br>Development<br>Motion</div>
-									</div>
-								</div>
-								<div class="profile__row">
-									<div class="profile__item">
-										<div class="profile__category">Experience</div>
-										<div class="profile__contents">
-											<ul class="profile__list">
-												<li>&lt;루이셀&gt; ICT k · awards e-비즈니스 부문 금상</li>
-												<li>KBS 사보 750호 &lt;코리안 디아스포라&gt; 홈페이지 개편 수록</li>
-												<li>&lt;아이멜리&gt; ICT k · awards 모바일 서비스 부문 수상</li>
-												<li>&lt;이클레어&gt; ICT k · awards 대상</li>
-												<li>더조은컴퓨터 디지털 웹&디자인(프론트엔드)과정 수강</li>
-												<li>관악현대미술대전 서양화 장려상</li>
-											</ul>
-										</div>
-									</div>
-									<div class="profile__item">
-										<div class="profile__category">How I Work</div>
-										<div class="profile__contents">
-											<ul class="profile__list">
-												<li>맡은 업무를 꼼꼼히 수행하기 때문에 일정이 밀려본 경험이 없어요.</li>
-												<li>주어진 일보다 더나아가 생각하고 실천하는 사람이에요.</li>
-												<li>동료들과 함께 문제를 해결해나가는 것을 좋아합니다.</li>
-												<li>일의 과정에서 재미를 찾는 편입니다.</li>
-												<li>직접 실험해보고 결과를 확인 해보는걸 좋아합니다.</li>
-												<li>문제가 생겨도 그 상황 안에서 일을 진행할 수 있는 방향을 찾습니다.</li>
-											</ul>
-										</div>
+									<div class="action-card">
 									</div>
 								</div>
 							</div>
 						</div>
-					</div>
-				</section>
-				<section id="work" class="sec work" data-bgcolor="#1E1F21" data-textcolor="#cdcdcd">
-					<div class="inner">
-						<div class="work__lineup">
-							<div class="title-group sec__title">
-								<div class="sec__title--lg" style="transform-origin: left top;">
-									<p><span>Selected&nbsp;&nbsp;</span><span style="padding-right: 6px;">Wor<span class="serif-italic serif-italic--light">k</span>s</span></p><span>© ~ 2024 </span>
-								</div>
-							</div>
-							<div class="work__img">
-								<img src="./img/img-bg-works-1.jpg" alt="우리말 바로 알기 프로젝트 이미지">
-								<img src="./img/img-bg-works-2.jpg" alt="2024 파리올림픽 프로젝트 이미지">
-								<img src="./img/img-bg-works-3.jpg" alt="ABU 2023 SEOUL 프로젝트 이미지">
-								<img src="./img/img-bg-works-5.jpg" alt="항저우 아시안게임 프로젝트 이미지">
-								<img src="./img/img-bg-works-6.jpg" alt="버티고 프로젝트 이미지">
-								<img src="./img/img-bg-works-7.jpg" alt="KBS 수신료 프로젝트 이미지">
-								<img src="./img/img-bg-works-8.jpg" alt="WBC 프로젝트 이미지">
-								<img src="./img/img-bg-works-11.jpg" alt="콩 라디오 프로젝트 이미지">
-								<img src="./img/img-bg-works-10.jpg" alt="KBS+ 프로젝트 이미지">
-							</div>
-						</div>
-						<div class="work__history history">
-							<div class="sec__cate">(Projects)</div>
-							<ul class="history__list">
-								<li class="show-img" data-img="./img/img-project-kong.jpg">
-									<div class="date">2024</div>
-									<div class="con">KBS KONG 소개 페이지 리뉴얼</div>
-									<div class="note"><span class="tag">적응형 웹</span><span class="tag">GSAP</span></div>
-								</li>
-								<li class="show-img" data-img="./img/img-project-urimal.jpg">
-									<div class="date">2024</div>
-									<div class="con">KBS 우리말 바로알기 포털 신규 구축</div>
-									<div class="note"><span class="tag">적응형 웹</span><span class="tag">신규 서비스</span></div>
-								</li>
-								<li class="show-img" data-img="./img/img-project-media.jpg">
-									<div class="date">2024</div>
-									<div class="con">KBS미디어 홈페이지 웹퍼블리싱 및 유지보수</div>
-									<div class="note"><span class="tag">유지보수</span></div>
-								</li>
-								<li class="show-img" data-img="./img/img-project-section.jpg">
-									<div class="date">2023~2024</div>
-									<div class="con">KBS 섹션 개편 (드라마, 예능, 시사교양, 라디오)</div>
-									<div class="note"><span class="tag">적응형 웹</span></div>
-								</li>
-								<li class="show-img" data-img="./img/img-project-abu.jpg">
-									<div class="date">2023</div>
-									<div class="con">KBS ABU 2023 SEOUL 아시아 태평양 방송 연합(ABU) 60주년 총회 특집 사이트 구축</div>
-									<div class="note"><span class="tag">적응형 웹</span><span class="tag">신규 서비스</span></div>
-								</li>
-								<li class="show-img" data-img="./img/img-project-diaspora.jpg">
-									<div class="date">2023</div>
-									<div class="con">KBS 코리안 디아스포라 공영방송 50주년 기념 디아스포라 개편</div>
-									<div class="note"><span class="tag">적응형 웹</span></div>
-								</li>
-								<li class="show-img" data-img="./img/img-project-susin.jpg">
-									<div class="date">2023</div>
-									<div class="con">수신료의 가치 KBS 수신료 홈페이지 리뉴얼</div>
-									<div class="note"><span class="tag">적응형 웹</span></div>
-								</li>
-								<li class="show-img" data-img="./img/img-project-kbs50.jpg">
-									<div class="date">2023</div>
-									<div class="con">KBS 공영방송 50주년 특집 페이지 신규 제작</div>
-									<div class="note"><span class="tag">적응형 웹</span><span class="tag">신규 서비스</span></div>
-								</li>
-								<li>
-									<div class="date">2023</div>
-									<div class="con">KBS미디어기술연구소 AX Team AI 제작도구 웹 에디터</div>
-									<div class="note"><span class="tag">에디터</span><span class="tag">프론트</span></div>
-								</li>
-								<li>
-									<div class="date">2022</div>
-									<div class="con">KBS Vertigo 팜매니저 버티고 키프레임 에디터 웹버전 개발</div>
-									<div class="note"><span class="tag">에디터</span><span class="tag">프론트</span></div>
-								</li>
-								<li>
-									<div class="date">2022</div>
-									<div class="con">2022 카타르 월드컵 웹퍼블리싱 산출물 검수 및 웹 접근성 사전 검사 진행</div>
-									<div class="note"><span class="tag">진단 보고서 작성</span></div>
-								</li>
-								<li>
-									<div class="date">2022~2024</div>
-									<div class="con">KBS 회원센터 회원 서비스 실무 담당</div>
-									<div class="note"><span class="tag">EDM</span><span class="tag">유지보수</span></div>
-								</li>
-								<li>
-									<div class="date">2022~2024</div>
-									<div class="con">KBS 홈페이지 유지보수</div>
-									<div class="note"><span class="tag">상시</span><span class="tag">유지보수</span><span class="tag">프론트</span></div>
-								</li>
-								<li>
-									<div class="date">2022~2024</div>
-									<div class="con">KBSN 메인 홈페이지 UI·UX 전면 개편 및 기능 개발</div>
-									<div class="note"><span class="tag">PL</span><span class="tag">신규 서비스</span><span class="tag">유지보수</span><span class="tag">프론트</span></div>
-								</li>
-								<li>
-									<div class="date">2022</div>
-									<div class="con">CJ프레시웨이 아이누리 공모전 이벤트 페이지 구축</div>
-									<div class="note"><span class="tag">반응형 웹</span><span class="tag">프론트</span></div>
-								</li>
-								<li>
-									<div class="date">2022</div>
-									<div class="con">아이멜리 쇼핑몰 구축</div>
-									<div class="note"><span class="tag">적응형 웹</span><span class="tag">쇼핑몰</span></div>
-								</li>
-								<li>
-									<div class="date">2022</div>
-									<div class="con">한양대학교 기계공학부 홈페이지 구축</div>
-									<div class="note"><span class="tag">반응형 웹</span></div>
-								</li>
-								<li>
-									<div class="date">2021</div>
-									<div class="con">삼우씨엠건축사사무소 홈페이지 구축</div>
-									<div class="note"><span class="tag">반응형 웹</span></div>
-								</li>
-								<li>
-									<div class="date">2021</div>
-									<div class="con">유니볼 홈페이지 구축</div>
-									<div class="note"><span class="tag">반응형 웹</span><span class="tag">프론트</span></div>
-								</li>
-								<li>
-									<div class="date">2021</div>
-									<div class="con"><a href="https://www.kchglobal.com/" target="_blank">KCH그룹 홈페이지 구축</a></div>
-									<div class="note"><span class="tag">반응형 웹</span></div>
-								</li>
-								<li>
-									<div class="date">2021</div>
-									<div class="con"><a href="http://www.x4design.co.kr/" target="_blank">X4디자인브랜딩 홈페이지 구축</a></div>
-									<div class="note"><span class="tag">반응형 웹</span></div>
-								</li>
-								<li>
-									<div class="date">2021</div>
-									<div class="con">서울대학교 재료공학부 홈페이지 구축</div>
-									<div class="note"><span class="tag">반응형 웹</span></div>
-								</li>
-								<li>
-									<div class="date">2021</div>
-									<div class="con"><a href="https://www.koreabio.org/" target="_blank">한국바이오협회 홈페이지 구축</a></div>
-									<div class="note"><span class="tag">반응형 웹</span><span class="tag">프론트</span></div>
-								</li>
-								<li>
-									<div class="date">2021</div>
-									<div class="con"><a href="https://www.apis.org/" target="_blank">APIS(아시아퍼시픽 국제외국인학교) 홈페이지 구축</a></div>
-									<div class="note"><span class="tag">반응형 웹</span><span class="tag">프론트</span></div>
-								</li>
-								<li>
-									<div class="date">2021</div>
-									<div class="con">풍인무역 홈페이지 리뉴얼</div>
-									<div class="note"><span class="tag">반응형 웹</span></div>
-								</li>
-								<li>
-									<div class="date">2020</div>
-									<div class="con"><a href="https://www.polararchive.kr/" target="_blank">극지연구소 극지정책아카이브 홈페이지 구축</a></div>
-									<div class="note"><span class="tag">반응형 웹</span><span class="tag">프론트</span></div>
-								</li>
-								<li>
-									<div class="date">2020</div>
-									<div class="con">심팩 장학재단 홈페이지 구축</div>
-									<div class="note"><span class="tag">적응형 웹</span></div>
-								</li>
-								<li>
-									<div class="date">2020</div>
-									<div class="con">웨트러스트 글로벌 홈페이지 구축</div>
-									<div class="note"><span class="tag">반응형 웹</span><span class="tag">프론트</span></div>
-								</li>
-								<li>
-									<div class="date">2020</div>
-									<div class="con">대한민국 방위산업전 홈페이지 구축</div>
-									<div class="note"><span class="tag">적응형 웹</span></div>
-								</li>
-								<li>
-									<div class="date">2020</div>
-									<div class="con">카이스트 기술경영전문대학원 홈페이지 구축</div>
-									<div class="note"><span class="tag">반응형 웹</span></div>
-								</li>
-								<li>
-									<div class="date">2020</div>
-									<div class="con">금호타이어 60주년 이벤트 페이지 구축</div>
-									<div class="note"><span class="tag">적응형 웹</span><span class="tag">프론트</span></div>
-								</li>
-								<li>
-									<div class="date">2020</div>
-									<div class="con">솔브레인/솔브레인홀딩스 홈페이지 구축</div>
-									<div class="note"><span class="tag">반응형 웹</span><span class="tag">프론트</span></div>
-								</li>
-								<li>
-									<div class="date">2019</div>
-									<div class="con">모트렉스 매뉴얼 서비스 구축</div>
-									<div class="note"><span class="tag">적응형 웹</span><span class="tag">프론트</span></div>
-								</li>
-							</ul>
-						</div>
-					</div>
-				</section>
-				<section id="folders" class="folders horizontal-slide" data-bgcolor="#f5f5f5" data-textcolor="#1E1F21">
-					<div class="inner">
-						<div class="sec__title">
-							<h3 class="sec__title--lg">Records</h3>
-							   <p class="sec__title--md"></p>
-						</div>
-						<div class="card-slider">
-							<div class="slide-area">
-								<div class="card-holder">
-									<div class="card-transition pin-card">
-										<div class="card card--1 mouse-hv" data-hover="hover">
-											<img src="./img/img-records-1.png" alt="" style="position: absolute; bottom: 41px; left: calc(50% + 3px); transform: translateX(-50%); ">
-											<div class="card-message"><span class="tag">포트폴리오 제작 기간</span><span class="tag">시간</span></div>
+					</section>
+					<section id="test" class="test" data-bgcolor="#1E1F21" data-textcolor="#cdcdcd">
+						<div class="inner">
+							<div class="content">
+								<div class="cards">
+									<div class="group">
+										<div class="card1">
+											1. text
 										</div>
-										<div class="card card--2 mouse-hv" data-hover="hover">
-											<img src="./img/img-records-2.png" alt="" style="position: absolute; bottom: 0px; left: calc(50% + 15px); transform: translateX(-50%); ">
-											<div class="card-message"><span class="tag">프로젝트 참여 개수</span><span class="tag">개</span></div>
-										</div>
-										<div class="card card--3 mouse-hv" data-hover="hover">
-											<img src="./img/img-records-3.png" alt="" style="position: absolute; bottom: 0px; left: calc(50% + 15px); transform: translateX(-50%); ">
-											<div class="card-message"><span class="tag">이수한 교육 과정 수</span></div>
-										</div>
-										<div class="card card--4 mouse-hv" data-hover="hover">
-											<div class="card-message"><span class="tag">코드 기여도</span><span class="tag">코드 베이스의 <b>90%</b> 이상 직접 작성</span></div>
-										</div>
-										<div class="card card--5 mouse-hv" data-hover="hover">
-											<img src="./img/img-records-5.png" alt="" style="position: absolute; bottom: 30px; left: calc(50% + 15px); transform: translateX(-50%); ">
-											<div class="card-message"><span class="tag">의자에 앉아있던 시간</span></div>
-										</div>
+										<div class="text1"></div>
 									</div>
-								</div>
-								<div class="action-card">
+									<div class="group">
+										<div class="card2">
+											2. text
+										</div>
+										<div class="text2"></div>
+									</div>
+									<div class="group">
+										<div class="card3">
+											3. text
+										</div>
+										<div class="text3"></div>
+									</div>
 								</div>
 							</div>
 						</div>
-					</div>
-				</section>
-				<section id="test" class="test" data-bgcolor="#1E1F21" data-textcolor="#cdcdcd">
-					<div class="inner">
-						<div class="content">
-							<div class="cards">
-								<div class="group">
-									<div class="card1">
-										1. text
-									</div>
-									<div class="text1"></div>
-								</div>
-								<div class="group">
-									<div class="card2">
-										2. text
-									</div>
-									<div class="text2"></div>
-								</div>
-								<div class="group">
-									<div class="card3">
-										3. text
-									</div>
-									<div class="text3"></div>
-								</div>
+						<div class="bg">
+							<div class="img"><span style="background-image: url('./img/img-bg-works-1.jpg');"></span></div>
+							<div class="img"><span style="background-image: url('./img/img-bg-works-2.jpg');"></span></div>
+							<div class="img"><span style="background-image: url('./img/img-bg-works-11.jpg');"></span></div>
+						</div>
+					</section>
+					<section id="skills" class="sec skills" data-bgcolor="#1E1F21" data-textcolor="#cdcdcd">
+						<div class="inner">
+							<div class="box">
+								<ul>
+									<li>UI/UX</li>
+									<li>Plan</li>
+									<li>Design</li>
+									<li>Development</li>
+									<li>Motion</li>
+									<li>skills</li>
+									<li>skills</li>
+									<li>skills</li>
+									<li>skills</li>
+									<li>skills</li>
+								</ul>
 							</div>
 						</div>
-					</div>
-					<div class="bg">
-						<div class="img"><span style="background-image: url('./img/img-bg-works-1.jpg');"></span></div>
-						<div class="img"><span style="background-image: url('./img/img-bg-works-2.jpg');"></span></div>
-						<div class="img"><span style="background-image: url('./img/img-bg-works-11.jpg');"></span></div>
-					</div>
-				</section>
-				<section id="skills" class="sec skills" data-bgcolor="#1E1F21" data-textcolor="#cdcdcd">
-					<div class="inner">
-						<div class="box">
-							<ul>
-								<li>UI/UX</li>
-								<li>Plan</li>
-								<li>Design</li>
-								<li>Development</li>
-								<li>Motion</li>
-								<li>skills</li>
-								<li>skills</li>
-								<li>skills</li>
-								<li>skills</li>
-								<li>skills</li>
-							</ul>
-						</div>
-					</div>
-				</section>
+					</section>
+				</div>
+				<!-- e: pg-wrapper -->
 			</div>
 		</div>
-		<!-- 컨텐츠 끝 -->
+		<!-- e: container -->
 	</div>
-</div>
-<!-- 전체 -->
-<script type="text/javascript" src="./js/lib/swiper.min.js"></script>
-<script type="text/javascript" src="./js/lib/ScrollTrigger.min.js"></script>
-<script type="text/javascript" src="./js/lib/gsap.min.js"></script>
-<script type="text/javascript" src="./js/lib/matter.min.js"></script>
-<script type="text/javascript" src="./js/lib/matter-wrap.min.js"></script>
-<script type="text/javascript" src="./js/lib/lenis.min.js"></script>
-<script type="text/javascript" src="./js/common.js"></script>
-<script type="text/javascript" src="./js/index.js"></script>
-<script>
-
-	$(function(){
-		//Lenis js
-		const lenis = new Lenis();
-		lenis.on('scroll', (e) => {
-		})
-		function raf(time) {
-		lenis.raf(time)
-		requestAnimationFrame(raf)
-		}
-		requestAnimationFrame(raf);
-
-		//ScrollTrigger
-		gsap.registerPlugin(ScrollTrigger);
-		const content = document.querySelector('#wrap #content');
-		const contentPaddingTop = window.getComputedStyle(content).paddingTop;
-		const paddingTopValue = parseInt(contentPaddingTop, 10);
-
-		//home
-		const homeTimeline = gsap.timeline({
-			scrollTrigger: {
-				trigger: ".home",
-				scroller: window,
-				scrub: true,
-				pin: true,
-				pinSpacing: false, 
-				anticipatePin: 1,
-				endTrigger: ".profile",
-				end: "bottom bottom",
-			},
-		});
-		homeTimeline
-		.to(".header__logo", {
-			scrollTrigger: {
-				trigger: "#wrap",
-				scroller: window,
-				scrub: true,
-				start: "top top",
-				end: "+=400px",
-			},
-			scale: 1,
-			force3D: false,
-		})
-		.to(".overlay", {
-			scrollTrigger: {
-				trigger: "#wrap",
-				scroller: window,
-				scrub: true,
-				start: "+="+paddingTopValue,
-				end: "+=200vh",
-			},
-			background: 'rgba(0,0,0,0.4)',
-		});
-
-		//works
-		const initialScale = 1;
-		const finalScale = 0.7;
-		const initialHeight = document.querySelector('.work .sec__title--lg').offsetHeight;
-		const reducedHeight = initialHeight * (initialScale - finalScale);
-		const totalImages = document.querySelectorAll('.work .work__img img').length;
-		const revealPercentage = 100 / totalImages;
-
-
-		const workTimeline = gsap.timeline({
-			scrollTrigger: {
-				trigger: ".work__lineup",
-				scroller: window,
-				scrub: true,
-				pin: true,
-			},
-		});
-		workTimeline
-		.to(".work .sec__title--lg", {
-			scale: finalScale,
-			force3D: false,
-			scrollTrigger: {
-				trigger: ".work__lineup",
-				scroller: window,
-				scrub: true,
-				start: ".work",
-			},
-		})
-		.to(".work .sec__title--lg p", {
-			width: '50%',
-			force3D: false,
-			scrollTrigger: {
-				trigger: ".work__lineup",
-				scroller: window,
-				scrub: true,
-				start: ".work",
-			},
-		})
-		.to(".work .work__img", {
-			scale: 1,
-			force3D: false,
-			marginTop: `-=${reducedHeight}px`, 
-			scrollTrigger: {
-				trigger: ".work__lineup",
-				scroller: window,
-				scrub: true,
-				start: ".work",
-			},
-		}) 
-		.to(".work .work__img img", {
-        autoAlpha: 1, 
-			stagger: {
-				each: revealPercentage / 100,
-				start: 0,  
-			},
-			duration: 0,
-		});
-
-		//card
-		var cards = document.querySelectorAll(".pin-card .card");
-		cards.forEach(function (card, index) {
-			var rotationDegree = (index + 1) * 10;
-			gsap.to(card, {
-				scrollTrigger: {
-					trigger: "#wrap",
-					scroller: window,
-					scrub: true,
-					start: "top top",
-					end: "bottom bottom",
-					anticipatePin: 1,
-				},
-				rotation: rotationDegree,
-			});
-		});
-
-		let horizontalSlider = document.querySelectorAll(".horizontal-slide");
-		horizontalSlider.forEach((horizontalSlide) => {
-			let pinCard = horizontalSlide.querySelector(".pin-card");
-			gsap.to(pinCard, {
-				scrollTrigger: {
-					trigger: horizontalSlide,
-					scroller: window,
-					scrub: true,
-					pin: true,
-					start:'.pin-card',
-					end: `bottom top-=${window.innerHeight * 2}px`,
-				},
-				rotation: -80,
-				ease: "none",
-			});
-		});
-
-		gsap.to(".card.next", {
-			scrollTrigger: {
-				trigger: ".folders",
-				scroller: window,
-				scrub: true,
-				start: "top 30%",
-				end: "top 0%",
-			},
-			opacity: 0,
-		});
-
-		gsap.to(".action-card", {
-			scrollTrigger: {
-				trigger: ".folders",
-				scroller: window,
-				scrub: true,
-				endTrigger: ".test",
-				onEnter: () => {
-					gsap.to(".action-card", {
-						top: '100%',
-						marginLeft: '0%',
-						rotateY: '-360deg',
-					});
-				},
-			},
-			opacity: 1,
-		});
-
-		const cardSlide2 = gsap.timeline({
-			scrollTrigger: {
-				trigger: ".test",
-				scroller: window,
-				scrub: true,
-				pin: true,
-				end: `bottom top-=${window.innerHeight * 3}px`,
-			},
-		});
-		cardSlide2.to('.test .card1', { yPercent: 0, className: 'card1 act' })
-		.to('.test .bg', { opacity:1})
-		.to('.test .bg .img:nth-child(1) span', { opacity:1,scale:1},"-=0.6")
-		.from('.test .card2', { yPercent: 200})
-		.to('.test .bg .img:nth-child(2)', {clipPath:'inset(0px 0px 0px 0px)'},"-=0.3")
-		.to('.test .bg .img:nth-child(2) span', {y:'-10%'},"-=0.6")
-		.to('.test .card1', { scale: 0.9, y: '-100px' }, 0.6)
-		.to('.test .card2', { yPercent: 0, className: 'card2 act' })
-		.from('.test .card3', { yPercent: 200})
-		.to('.test .bg .img:nth-child(3)', {clipPath:'inset(0px 0px 0px 0px)'},"-=0.3")
-		.to('.test .bg .img:nth-child(3) span', {y:'-10%'},"-=0.6")
-		.to('.test .card2', { scale: 0.9, y: '-100px' }, "-=0.6")
-		.to('.test .card1', { scale: 0.80, y: '-200px' }, "-=0.6")
-		.to('.test .card3', { yPercent: 0, className: 'card3 act' })
-		.to('.test .bg', { opacity:0});
-
-		const scrollColorElems = document.querySelectorAll("[data-bgcolor]");
-		scrollColorElems.forEach((colorSection, i) => {
-			const prevBg = i === 0 ? "" : scrollColorElems[i - 1].dataset.bgcolor;
-			const prevText = i === 0 ? "" : scrollColorElems[i - 1].dataset.textcolor;
-			ScrollTrigger.create({
-				trigger: colorSection,
-				scroller: window,
-				start: "top 40%",
-				onEnter: () => {
-					gsap.to("#container", {
-						backgroundColor: colorSection.dataset.bgcolor,
-						color: colorSection.dataset.textcolor,
-						overwrite: "auto",
-					});
-				},
-				onLeaveBack: () => {
-					gsap.to("#container", {
-						backgroundColor: prevBg,
-						color: prevText,
-						overwrite: "auto",
-					});
-				}
-			});
-		});
-
-		//skills
-		const skillsItems = document.querySelector('.skills ul').querySelectorAll('li');
-		const skillsTotalHeight = skillsItems.length * skillsItems[0].offsetHeight;
-		const skills = gsap.timeline({
-			scrollTrigger: {
-				trigger: ".skills",
-				scroller: window,
-				scrub: true,
-				pin: true,
-				end: `bottom top-=${skillsTotalHeight * 2}px`,
-			},
-		});
-		skills
-		.to(".skills ul", {
-			rotateX:'290deg',
-			scrollTrigger: {
-				trigger: ".skills",
-				scroller: window,
-				scrub: true,
-				start:'.skills',
-				end: `bottom top-=${skillsTotalHeight * 2}px`,
-			},
-		});
-	});
-</script>
-
-<script>
-	var isMobileOrTablet = window.innerWidth <= 1024; // 태블릿/모바일 해상도 기준으로 1024px 이하를 설정
-
-	if (isMobileOrTablet) {
-		loadMobileScript();
-	} else {
-		loadPCScript();
-	}
-
-	function loadPCScript() {
-        var Example = Example || {};
-
-        Example.mixed = function () {
-            var Engine = Matter.Engine,
-                Render = Matter.Render,
-                Runner = Matter.Runner,
-                Bodies = Matter.Bodies,
-                Composite = Matter.Composite,
-                Mouse = Matter.Mouse,
-                MouseConstraint = Matter.MouseConstraint,
-                Common = Matter.Common;
-
-            var engine = Engine.create(),
-                world = engine.world;
-
-            var render = Render.create({
-                element: document.getElementById('shapes-box'),
-                engine: engine,
-                options: {
-                    width: window.innerWidth,
-                    height: window.innerHeight,
-                    wireframes: false,
-                    background: false,
-                }
-            });
-
-            Render.run(render);
-
-            var runner = Runner.create();
-            Runner.run(runner, engine);
-
-            var shapes = [];
-            var shapeCount = 0;
-            var wallsRemoved = false;
-
-            var addShape = function (texture, options, x, y) {
-                var scale = Math.min(window.innerHeight, window.innerWidth) / 1500;
-                options = {...options, ...{
-                    restitution: 0.7,
-                    render: {
-                        sprite: {
-                            texture: texture,
-                            xScale: scale * options.scale,
-                            yScale: scale * options.scale
-                        }
-                    }
-                }};
-
-                var body = options.shape === 'circle' ?
-                    Bodies.circle(x, y, options.radius * scale, options) :
-                    Bodies.rectangle(x, y, options.width * scale, options.height * scale, options);
-
-                body.initialScale = scale;
-                body.options = options;
-                Composite.add(world, body);
-                shapes.push(body);
-
-                shapeCount++;
-
-                if (shapeCount >= 50 && !wallsRemoved) {
-                    Composite.remove(world, walls);
-                    wallsRemoved = true;
-                }
-
-                return body;
-            };
-
-            var addInitialShapes = function () {
-                var textures = ['./img/icon2-1.png','./img/icon2.png','./img/icon3.png', './img/icon1.png', './img/tag-2.png'];
-                var options = [
-                    { shape: 'rectangle', width:170, height: 297, scale: 1 },
-                    { shape: 'rectangle', width:150, height: 230, scale: 1 },
-                    { shape: 'rectangle', width:244, height: 250, scale: 1 },
-                    { shape: 'rectangle', width: 320, height: 229, scale: 1 },
-                    { shape: 'rectangle', width: 270, height: 103, scale: 1 }
-                ];
-                
-                var startX = 100;
-                var startY = window.innerHeight - 200;
-                
-                for (var i = 0; i < 15; i++) {
-                    var index = i % textures.length;
-                    addShape(textures[index], options[index], startX + i *150, startY);
-                }
-            };
-
-            addInitialShapes();
-
-            setInterval(function() {
-                var textures = ['./img/icon2-1.png','./img/icon2.png', './img/icon3.png', './img/icon1.png', './img/tag-2.png'];
-                var options = [
-                    { shape: 'rectangle', width:170, height: 297, scale: 1 },
-                    { shape: 'rectangle', width:150, height: 230, scale: 1 },
-                    { shape: 'rectangle', width:244, height: 250, scale: 1 },
-                    { shape: 'rectangle', width: 320, height: 229, scale: 1 },
-                    { shape: 'rectangle', width: 270, height: 103, scale: 1 }
-                ];
-                var index = Math.floor(Math.random() * textures.length);
-                var startX = Math.random() * (window.innerWidth - 200) + 100;
-                var startY = -100;
-
-                addShape(textures[index], options[index], startX, startY);
-            }, 500);
-
-            var walls = [];
-            var addWalls = function() {
-                var newWalls = [
-                    Bodies.rectangle(window.innerWidth / 2, window.innerHeight + 50, window.innerWidth, 100, { isStatic: true, render: { fillStyle: 'rgba(255, 255, 255, 1)' } }),
-                    Bodies.rectangle(-50, window.innerHeight / 2, 100, window.innerHeight, { isStatic: true, render: { fillStyle: 'rgba(255, 255, 255, 1)' } }),
-                    Bodies.rectangle(window.innerWidth + 50, window.innerHeight / 2, 100, window.innerHeight, { isStatic: true, render: { fillStyle: 'rgba(255, 255, 255, 1)' } })
-                ];
-                Composite.add(world, newWalls);
-                walls = newWalls;
-            };
-
-            addWalls();
-
-            setInterval(function() {
-                if (wallsRemoved) {
-                    var outOfBoundsCount = shapes.reduce(function(count, body) {
-                        if (body.position.y > window.innerHeight + 100 ||
-                            body.position.x < -100 ||
-                            body.position.x > window.innerWidth + 100) {
-                            return count + 1;
-                        }
-                        return count;
-                    }, 0);
-
-                    if (outOfBoundsCount >= 50) {
-                        shapeCount = 0;
-                        wallsRemoved = false;
-                        addWalls();
-                        shapes = shapes.filter(function(body) {
-                            return body.position.y <= window.innerHeight + 100 &&
-                                   body.position.x >= -100 &&
-                                   body.position.x <= window.innerWidth + 100;
-                        });
-                    }
-                }
-            }, 1000);
-
-            var mouse = Mouse.create(render.canvas),
-                mouseConstraint = MouseConstraint.create(engine, {
-                    mouse: mouse,
-                    constraint: {
-                        stiffness: 1,
-                        render: { visible: true }
-                    }
-                });
-
-            Composite.add(world, mouseConstraint);
-            render.mouse = mouse;
-
-            window.addEventListener('resize', function() {
-                var currentWidth = window.innerWidth;
-                var currentHeight = window.innerHeight;
-
-                var widthChange = Math.abs(currentWidth - render.options.width);
-                var heightChange = Math.abs(currentHeight - render.options.height);
-
-                if (widthChange >= 200 || heightChange >= 200) {
-                    render.options.width = currentWidth;
-                    render.options.height = currentHeight;
-                    render.canvas.width = currentWidth;
-                    render.canvas.height = currentHeight;
-
-                    var newScale = Math.min(currentWidth, currentHeight) / 1000;
-
-                    shapes.forEach(function(body) {
-                        var scaleRatio = newScale / body.initialScale;
-                        Matter.Body.scale(body, scaleRatio, scaleRatio);
-                        body.initialScale = newScale;
-
-                        if (body.circleRadius) {
-                            body.circleRadius = body.options.radius * newScale;
-                        } else {
-                            body.bounds.max.x = body.bounds.min.x + body.options.width * newScale;
-                            body.bounds.max.y = body.bounds.min.y + body.options.height * newScale;
-                        }
-
-                        var centerX = (body.position.x / currentWidth) * currentWidth;
-                        var centerY = (body.position.y / currentHeight) * currentHeight;
-                        Matter.Body.setPosition(body, { x: centerX, y: centerY });
-                    });
-
-                    Composite.clear(world, false);
-                    addWalls();
-                }
-            });
-
-            return {
-                engine: engine,
-                runner: runner,
-                render: render,
-                canvas: render.canvas,
-                stop: function () {
-                    Matter.Render.stop(render);
-                    Matter.Runner.stop(runner);
-                }
-            };
-        };
-
-        Example.mixed();
-    }
-
-    function loadMobileScript() {
-		var Example = Example || {};
-
-        Example.mixed = function () {
-            var Engine = Matter.Engine,
-                Render = Matter.Render,
-                Runner = Matter.Runner,
-                Bodies = Matter.Bodies,
-                Composite = Matter.Composite,
-                Mouse = Matter.Mouse,
-                MouseConstraint = Matter.MouseConstraint,
-                Common = Matter.Common;
-
-            var engine = Engine.create(),
-                world = engine.world;
-
-            var render = Render.create({
-                element: document.getElementById('shapes-box'),
-                engine: engine,
-                options: {
-                    width: window.innerWidth,
-                    height: window.innerHeight,
-                    wireframes: false,
-                    background: false,
-                }
-            });
-
-            Render.run(render);
-
-            var runner = Runner.create();
-            Runner.run(runner, engine);
-
-            var shapes = [];
-            var shapeCount = 0;
-            var wallsRemoved = false;
-
-            var addShape = function (texture, options, x, y) {
-                var scale = Math.min(window.innerHeight, window.innerWidth) / 1500;
-                options = {...options, ...{
-                    restitution: 0.7,
-                    render: {
-                        sprite: {
-                            texture: texture,
-                            xScale: scale * options.scale,
-                            yScale: scale * options.scale
-                        }
-                    }
-                }};
-
-                var body = options.shape === 'circle' ?
-                    Bodies.circle(x, y, options.radius * scale, options) :
-                    Bodies.rectangle(x, y, options.width * scale, options.height * scale, options);
-
-                body.initialScale = scale;
-                body.options = options;
-                Composite.add(world, body);
-                shapes.push(body);
-
-                shapeCount++;
-
-                return body;
-            };
-
-            var addInitialShapes = function () {
-                var textures = ['./img/icon2-1.png','./img/icon2.png','./img/icon3.png', './img/icon1.png', './img/tag-2.png'];
-                var options = [
-                    { shape: 'rectangle', width:170, height: 297, scale: 1 },
-                    { shape: 'rectangle', width:150, height: 230, scale: 1 },
-                    { shape: 'rectangle', width:244, height: 250, scale: 1 },
-                    { shape: 'rectangle', width: 320, height: 229, scale: 1 },
-                    { shape: 'rectangle', width: 270, height: 103, scale: 1 }
-                ];
-                
-                
-                for (var i = 0; i <150; i++) {
-                    var index = Math.floor(Math.random() * textures.length);
-					var startX = Math.random() * window.innerWidth;
-					var startY = -window.innerHeight;
-                    addShape(textures[index], options[index], startX, startY);
-                }
-            };
-
-            addInitialShapes();
-
-
-            var walls = [];
-            var addWalls = function() {
-                var newWalls = [
-                    Bodies.rectangle(window.innerWidth / 2, window.innerHeight + 50, window.innerWidth, 100, { isStatic: true, render: { fillStyle: 'rgba(255, 255, 255, 1)' } }),
-                    Bodies.rectangle(-50, window.innerHeight / 2, 100, window.innerHeight, { isStatic: true, render: { fillStyle: 'rgba(255, 255, 255, 1)' } }),
-                    Bodies.rectangle(window.innerWidth + 50, window.innerHeight / 2, 100, window.innerHeight, { isStatic: true, render: { fillStyle: 'rgba(255, 255, 255, 1)' } })
-                ];
-                Composite.add(world, newWalls);
-                walls = newWalls;
-            };
-
-            addWalls();
-
-            var mouse = Mouse.create(render.canvas),
-                mouseConstraint = MouseConstraint.create(engine, {
-                    mouse: mouse,
-                    constraint: {
-                        stiffness: 1,
-                        render: { visible: true }
-                    }
-                });
-
-            Composite.add(world, mouseConstraint);
-            render.mouse = mouse;
-
-			window.addEventListener('resize', function() {
-                var currentWidth = window.innerWidth;
-                var currentHeight = window.innerHeight;
-
-                var widthChange = Math.abs(currentWidth - render.options.width);
-                var heightChange = Math.abs(currentHeight - render.options.height);
-
-                if (widthChange >= 200 || heightChange >= 200) {
-                    render.options.width = currentWidth;
-                    render.options.height = currentHeight;
-                    render.canvas.width = currentWidth;
-                    render.canvas.height = currentHeight;
-
-                    var newScale = Math.min(currentWidth, currentHeight) / 1000;
-
-                    shapes.forEach(function(body) {
-                        var scaleRatio = newScale / body.initialScale;
-                        Matter.Body.scale(body, scaleRatio, scaleRatio);
-                        body.initialScale = newScale;
-
-                        if (body.circleRadius) {
-                            body.circleRadius = body.options.radius * newScale;
-                        } else {
-                            body.bounds.max.x = body.bounds.min.x + body.options.width * newScale;
-                            body.bounds.max.y = body.bounds.min.y + body.options.height * newScale;
-                        }
-
-                        var centerX = (body.position.x / currentWidth) * currentWidth;
-                        var centerY = (body.position.y / currentHeight) * currentHeight;
-                        Matter.Body.setPosition(body, { x: centerX, y: centerY });
-                    });
-
-                    Composite.clear(world, false);
-                    addWalls();
-					addInitialShapes();
-                }
-            });
-
-            return {
-                engine: engine,
-                runner: runner,
-                render: render,
-                canvas: render.canvas,
-                stop: function () {
-                    Matter.Render.stop(render);
-                    Matter.Runner.stop(runner);
-                }
-            };
-        };
-
-        Example.mixed();
-	}
-
-</script>
-
+	<!-- e: wrap -->
+	<!-- s: JS -->
+	<script type="text/javascript" src="./js/lib/swiper.min.js"></script>
+	<script type="text/javascript" src="./js/lib/ScrollTrigger.min.js"></script>
+	<script type="text/javascript" src="./js/lib/gsap.min.js"></script>
+	<script type="text/javascript" src="./js/lib/matter.min.js"></script>
+	<script type="text/javascript" src="./js/lib/matter-wrap.min.js"></script>
+	<script type="text/javascript" src="./js/lib/lenis.min.js"></script>
+	<script type="text/javascript" src="./js/common.js"></script>
+	<script type="text/javascript" src="./js/index.js"></script>
 	
-</div><!--//wrap-->
 </body>
 </html>

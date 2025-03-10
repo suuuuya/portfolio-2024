@@ -3,9 +3,16 @@
 
 /*noise*/
 html{
-  &::after{content: "";position: fixed;top:0;left:0;width:100%;height:100%;background-image: url(../img/noise.png);background-repeat: repeat; pointer-events: none; opacity: .6; z-index: 10000;}
+  &::after{content: "";position: fixed;top:0;left:0;width:100%;height:100%;background-image: url(../img/noise.png);background-repeat: repeat; pointer-events: none; opacity: 0.7; z-index: 10000;}
 }
-#content{padding-top: 378px;}
+#content{padding-top: 17.6vw;
+  &::before{display: block; content: ""; position: fixed; top:0;left:0;width: 100%;height: 17.6vw;background:linear-gradient(90deg, #51a4d4,#7b46c4,#21976b);animation: slideDownFigure 0.5s 0.4s forwards; transform-origin: bottom left; z-index: 100;}
+  /*&::after{display: block; content: ""; position: fixed; top:0;left:0;width: 100%;height: 100%; background:#222222; animation: slideDownFigure 0.6s 0.2s forwards; transform-origin: bottom left; z-index: 101;}*/
+  @keyframes slideDownFigure {
+    0% {transform: scaleY(1);}
+    100%{transform: scaleY(0);}
+  }
+}
 .ico-sns{width: 30px; height: 30px; display: inline-block;vertical-align: middle; background-repeat:no-repeat;
   &--instagram{background-image:url('../img/ico/ico-instagram.svg');}
   &--github{background-image: url('../img/ico/ico-git.svg');}
@@ -34,7 +41,7 @@ html{
 /*home*/
 .home{
   &__sticky{position: relative;}
-  &__shapes-area{position: relative; width: 100%; min-height: 100vh; background:#c7c7c7; }
+  &__shapes-area{position: relative; width: 100%; min-height: 100vh; background:linear-gradient(90deg, #51a4d4,#7b46c4,#21976b); }
   .overlay{position: absolute;width: 100%;height: 100%; top:0;bottom: 0; left: 0;right: 0;background: rgba(0,0,0,0); pointer-events: none;}
   canvas{height: 100vh;}
 }
@@ -81,7 +88,7 @@ html{
   .sec{
     &__title{ margin-bottom: 80px;
       &--lg{line-height: 85%;
-        p{width: 100%;display: flex;justify-content: space-between; align-items: baseline;}
+        .box{width: 100%;display: flex;justify-content: space-between; align-items: baseline;}
       }
     }
   }
@@ -93,6 +100,15 @@ html{
   .history{
     &__list{@extend .font__style--md; border-top:1px solid var(--border-gray);
       li{display: grid; grid-template-columns: 120px auto 300px; align-items: center; gap:0 20px; padding: 5px 0; border-bottom:1px solid var(--border-gray);}
+    }
+  }
+  .copyright{display: flex;}
+  .year-container{display: flex;overflow: hidden;
+    .digit{position: relative;min-width: 0.65em;overflow: hidden;display: flex;flex-direction: column;align-items: center;justify-content: center;
+      span{position: relative;width: 100%;text-align: center;
+        &.current {z-index: 2; }
+        &.next{position: absolute; z-index: 1;opacity: 0;}
+      }
     }
   }
 }

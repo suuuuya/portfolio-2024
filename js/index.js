@@ -1,0 +1,665 @@
+$(function(){
+    //ScrollTrigger
+    gsap.registerPlugin(ScrollTrigger);
+    const content = document.querySelector('#wrap #content');
+    const contentPaddingTop = window.getComputedStyle(content).paddingTop;
+    const paddingTopValue = parseInt(contentPaddingTop, 10);
+
+    //home
+    const homeTimeline = gsap.timeline({
+        scrollTrigger: {
+            trigger: ".home",
+            scroller: window,
+            scrub: true,
+            pin: true,
+            pinSpacing: false, 
+            anticipatePin: 1,
+            endTrigger: ".profile",
+            end: "bottom bottom",
+        },
+    });
+    homeTimeline
+    .to(".header__logo", {
+        scrollTrigger: {
+            trigger: "#wrap",
+            scroller: window,
+            scrub: true,
+            start: "top top",
+            end:"+=" + (paddingTopValue - 50),
+        },
+        scale: 1,
+        force3D: false,
+    })
+    .to(".overlay", {
+        scrollTrigger: {
+            trigger: "#wrap",
+            scroller: window,
+            scrub: true,
+            start: "+="+paddingTopValue,
+            end: "+=200vh",
+        },
+        background: 'rgba(0,0,0,0.4)',
+    });
+
+    //works
+    const initialScale = 1;
+    const finalScale = 0.7;
+    const initialHeight = document.querySelector('.work .sec__title--lg').offsetHeight;
+    const reducedHeight = initialHeight * (initialScale - finalScale);
+    const totalImages = document.querySelectorAll('.work .work__img img').length;
+    const revealPercentage = 100 / totalImages;
+
+    //s: digit
+    const startYear = 2019;
+    const endYear = 2025;
+    let currentYear = startYear;
+    const digits = document.querySelectorAll(".digit");
+
+    function updateDigits(newYear, direction) {
+        const newYearDigits = newYear.toString().split(""); 
+        const currentYearDigits = currentYear.toString().split("");
+
+        digits.forEach((digit, index) => {
+            const currentSpan = digit.querySelector(".current");
+            const nextSpan = digit.querySelector(".next");
+            const newDigit = newYearDigits[index] || "0"; 
+            const currentDigit = currentYearDigits[index] || "0";
+
+            if (newDigit !== currentDigit) {
+                nextSpan.innerHTML = newDigit;
+                gsap.set(nextSpan, { y: direction === "up" ? "100%" : "-100%", opacity: 1 });
+                gsap.timeline()
+                    .to(currentSpan, { 
+                        y: direction === "up" ? "-100%" : "100%", 
+                        duration: 0.4, 
+                        ease: "power2.inOut",
+                        onComplete: () => {
+                            currentSpan.innerHTML = newDigit;
+                            gsap.set(currentSpan, { y: "0%" }); 
+                        }
+                    })
+                    .to(nextSpan, { 
+                        y: "0%", 
+                        duration: 0.4, 
+                        ease: "power2.inOut",
+                        onComplete: () => {
+                            gsap.set(nextSpan, { opacity: 0 });
+                        }
+                    }, "-=0.3");
+            }
+        });
+        currentYear = newYear;
+    }
+    ScrollTrigger.create({
+        trigger: ".work__lineup",
+        scroller: window,
+        scrub: true,
+        pin: true,
+        start: ".work",
+        onUpdate: (self) => {
+            const progress = self.progress;
+            const newYear = Math.floor(startYear + (endYear - startYear) * progress);
+            const direction = self.direction > 0 ? "up" : "down";
+
+            updateDigits(newYear, direction);
+        },
+    });
+    //e:digit
+    const workTimeline = gsap.timeline({
+        scrollTrigger: {
+            trigger: ".work__lineup",
+            scroller: window,
+            scrub: true,
+            pin: true,
+        },
+    });
+    workTimeline
+    .to(".work .sec__title--lg", {
+        scale: finalScale,
+        force3D: false,
+        scrollTrigger: {
+            trigger: ".work__lineup",
+            scroller: window,
+            scrub: true,
+            start: ".work",
+        },
+    })
+    .to(".work .sec__title--lg .box", {
+        width: '50%',
+        force3D: false,
+        scrollTrigger: {
+            trigger: ".work__lineup",
+            scroller: window,
+            scrub: true,
+            start: ".work",
+        },
+    })
+    .to(".work .work__img", {
+        scale: 1,
+        force3D: false,
+        marginTop: `-=${reducedHeight}px`, 
+        scrollTrigger: {
+            trigger: ".work__lineup",
+            scroller: window,
+            scrub: true,
+            start: ".work",
+        },
+    }) 
+    .to(".work .work__img img", {
+        autoAlpha: 1, 
+        stagger: {
+            each: revealPercentage / 100,
+            start: 0,  
+        },
+        duration: 0,
+    });
+
+    //card
+    var cards = document.querySelectorAll(".pin-card .card");
+    cards.forEach(function (card, index) {
+        var rotationDegree = (index + 1) * 10;
+        gsap.to(card, {
+            scrollTrigger: {
+                trigger: "#wrap",
+                scroller: window,
+                scrub: true,
+                start: "top top",
+                end: "bottom bottom",
+                anticipatePin: 1,
+            },
+            rotation: rotationDegree,
+        });
+    });
+
+    let horizontalSlider = document.querySelectorAll(".horizontal-slide");
+    horizontalSlider.forEach((horizontalSlide) => {
+        let pinCard = horizontalSlide.querySelector(".pin-card");
+        gsap.to(pinCard, {
+            scrollTrigger: {
+                trigger: horizontalSlide,
+                scroller: window,
+                scrub: true,
+                pin: true,
+                start:'.pin-card',
+                end: `bottom top-=${window.innerHeight * 2}px`,
+            },
+            rotation: -80,
+            ease: "none",
+        });
+    });
+
+    gsap.to(".card.next", {
+        scrollTrigger: {
+            trigger: ".folders",
+            scroller: window,
+            scrub: true,
+            start: "top 30%",
+            end: "top 0%",
+        },
+        opacity: 0,
+    });
+
+    gsap.to(".action-card", {
+        scrollTrigger: {
+            trigger: ".folders",
+            scroller: window,
+            scrub: true,
+            endTrigger: ".test",
+            onEnter: () => {
+                gsap.to(".action-card", {
+                    top: '100%',
+                    marginLeft: '0%',
+                    rotateY: '-360deg',
+                });
+            },
+        },
+        opacity: 1,
+    });
+
+    const cardSlide2 = gsap.timeline({
+        scrollTrigger: {
+            trigger: ".test",
+            scroller: window,
+            scrub: true,
+            pin: true,
+            end: `bottom top-=${window.innerHeight * 3}px`,
+        },
+    });
+    cardSlide2.to('.test .card1', { yPercent: 0, className: 'card1 act' })
+    .to('.test .bg', { opacity:1})
+    .to('.test .bg .img:nth-child(1) span', { opacity:1,scale:1},"-=0.6")
+    .from('.test .card2', { yPercent: 200})
+    .to('.test .bg .img:nth-child(2)', {clipPath:'inset(0px 0px 0px 0px)'},"-=0.3")
+    .to('.test .bg .img:nth-child(2) span', {y:'-10%'},"-=0.6")
+    .to('.test .card1', { scale: 0.9, y: '-100px' }, 0.6)
+    .to('.test .card2', { yPercent: 0, className: 'card2 act' })
+    .from('.test .card3', { yPercent: 200})
+    .to('.test .bg .img:nth-child(3)', {clipPath:'inset(0px 0px 0px 0px)'},"-=0.3")
+    .to('.test .bg .img:nth-child(3) span', {y:'-10%'},"-=0.6")
+    .to('.test .card2', { scale: 0.9, y: '-100px' }, "-=0.6")
+    .to('.test .card1', { scale: 0.80, y: '-200px' }, "-=0.6")
+    .to('.test .card3', { yPercent: 0, className: 'card3 act' })
+    .to('.test .bg', { opacity:0});
+
+    const scrollColorElems = document.querySelectorAll("[data-bgcolor]");
+    scrollColorElems.forEach((colorSection, i) => {
+        const prevBg = i === 0 ? "" : scrollColorElems[i - 1].dataset.bgcolor;
+        const prevText = i === 0 ? "" : scrollColorElems[i - 1].dataset.textcolor;
+        ScrollTrigger.create({
+            trigger: colorSection,
+            scroller: window,
+            start: "top 40%",
+            onEnter: () => {
+                gsap.to("#container", {
+                    backgroundColor: colorSection.dataset.bgcolor,
+                    color: colorSection.dataset.textcolor,
+                    overwrite: "auto",
+                });
+            },
+            onLeaveBack: () => {
+                gsap.to("#container", {
+                    backgroundColor: prevBg,
+                    color: prevText,
+                    overwrite: "auto",
+                });
+            }
+        });
+    });
+
+    //skills
+    const skillsItems = document.querySelector('.skills ul').querySelectorAll('li');
+    const skillsTotalHeight = skillsItems.length * skillsItems[0].offsetHeight;
+    const skills = gsap.timeline({
+        scrollTrigger: {
+            trigger: ".skills",
+            scroller: window,
+            scrub: true,
+            pin: true,
+            end: `bottom top-=${skillsTotalHeight * 2}px`,
+        },
+    });
+    skills
+    .to(".skills ul", {
+        rotateX:'290deg',
+        scrollTrigger: {
+            trigger: ".skills",
+            scroller: window,
+            scrub: true,
+            start:'.skills',
+            end: `bottom top-=${skillsTotalHeight * 2}px`,
+        },
+    });
+});
+// 태블릿/모바일 해상도 기준으로 1024px 이하를 설정
+var isMobileOrTablet = window.innerWidth <= 1024; 
+
+if (isMobileOrTablet) {
+    loadMobileScript();
+} else {
+    loadPCScript();
+}
+
+function loadPCScript() {
+    var Example = Example || {};
+
+    Example.mixed = function () {
+        var Engine = Matter.Engine,
+            Render = Matter.Render,
+            Runner = Matter.Runner,
+            Bodies = Matter.Bodies,
+            Composite = Matter.Composite,
+            Mouse = Matter.Mouse,
+            MouseConstraint = Matter.MouseConstraint,
+            Common = Matter.Common;
+
+        var engine = Engine.create(),
+            world = engine.world;
+
+        var render = Render.create({
+            element: document.getElementById('shapes-box'),
+            engine: engine,
+            options: {
+                width: window.innerWidth,
+                height: window.innerHeight,
+                wireframes: false,
+                background: false,
+            }
+        });
+
+        Render.run(render);
+
+        var runner = Runner.create();
+        Runner.run(runner, engine);
+
+        var shapes = [];
+        var shapeCount = 0;
+        var wallsRemoved = false;
+
+        var addShape = function (texture, options, x, y) {
+            var scale = Math.min(window.innerHeight, window.innerWidth) / 1500;
+            options = {...options, ...{
+                restitution: 0.7,
+                render: {
+                    sprite: {
+                        texture: texture,
+                        xScale: scale * options.scale,
+                        yScale: scale * options.scale
+                    }
+                }
+            }};
+
+            var body = options.shape === 'circle' ?
+                Bodies.circle(x, y, options.radius * scale, options) :
+                Bodies.rectangle(x, y, options.width * scale, options.height * scale, options);
+
+            body.initialScale = scale;
+            body.options = options;
+            Composite.add(world, body);
+            shapes.push(body);
+
+            shapeCount++;
+
+            if (shapeCount >= 50 && !wallsRemoved) {
+                Composite.remove(world, walls);
+                wallsRemoved = true;
+            }
+
+            return body;
+        };
+
+        var addInitialShapes = function () {
+            var textures = ['./img/icon2.png','./img/icon3.png', './img/icon1.png', './img/tag-2.png'];
+            var options = [
+                { shape: 'rectangle', width:150, height: 230, scale: 1},
+                { shape: 'rectangle', width:244, height: 250, scale: 1},
+                { shape: 'rectangle', width: 320, height: 229, scale: 1},
+                { shape: 'rectangle', width: 270, height: 103, scale: 1}
+            ];
+            
+            var startX = 100;
+            var startY = window.innerHeight - 200;
+            
+            for (var i = 0; i < 25; i++) {
+                var index = i % textures.length;
+                addShape(textures[index], options[index], startX + i *150, startY);
+            }
+        };
+
+        addInitialShapes();
+
+        setInterval(function() {
+            var textures = ['./img/icon2.png','./img/icon3.png', './img/icon1.png', './img/tag-2.png'];
+            var options = [
+                { shape: 'rectangle', width:150, height: 230, scale: 1},
+                { shape: 'rectangle', width:244, height: 250, scale: 1},
+                { shape: 'rectangle', width: 320, height: 229, scale: 1},
+                { shape: 'rectangle', width: 270, height: 103, scale: 1}
+            ];
+            var index = Math.floor(Math.random() * textures.length);
+            var startX = Math.random() * (window.innerWidth - 200) + 100;
+            var startY = -100;
+
+            addShape(textures[index], options[index], startX, startY);
+        }, 400);
+
+        var walls = [];
+        var addWalls = function() {
+            var newWalls = [
+                Bodies.rectangle(window.innerWidth / 2, window.innerHeight + 50, window.innerWidth, 100, { isStatic: true, render: { fillStyle: 'rgba(255, 255, 255, 1)' } }),
+                Bodies.rectangle(-50, window.innerHeight / 2, 100, window.innerHeight, { isStatic: true, render: { fillStyle: 'rgba(255, 255, 255, 1)' } }),
+                Bodies.rectangle(window.innerWidth + 50, window.innerHeight / 2, 100, window.innerHeight, { isStatic: true, render: { fillStyle: 'rgba(255, 255, 255, 1)' } })
+            ];
+            Composite.add(world, newWalls);
+            walls = newWalls;
+        };
+
+        addWalls();
+
+        setInterval(function() {
+            if (wallsRemoved) {
+                var outOfBoundsCount = shapes.reduce(function(count, body) {
+                    if (body.position.y > window.innerHeight + 100 ||
+                        body.position.x < -100 ||
+                        body.position.x > window.innerWidth + 100) {
+                        return count + 1;
+                    }
+                    return count;
+                }, 0);
+
+                if (outOfBoundsCount >= 50) {
+                    shapeCount = 0;
+                    wallsRemoved = false;
+                    addWalls();
+                    shapes = shapes.filter(function(body) {
+                        return body.position.y <= window.innerHeight + 100 &&
+                            body.position.x >= -100 &&
+                            body.position.x <= window.innerWidth + 100;
+                    });
+                }
+            }
+        }, 1000);
+
+        var mouse = Mouse.create(render.canvas),
+            mouseConstraint = MouseConstraint.create(engine, {
+                mouse: mouse,
+                constraint: {
+                    stiffness: 1,
+                    render: { visible: true }
+                }
+            });
+
+        Composite.add(world, mouseConstraint);
+        render.mouse = mouse;
+
+        window.addEventListener('resize', function() {
+            var currentWidth = window.innerWidth;
+            var currentHeight = window.innerHeight;
+
+            var widthChange = Math.abs(currentWidth - render.options.width);
+            var heightChange = Math.abs(currentHeight - render.options.height);
+
+            if (widthChange >= 200 || heightChange >= 200) {
+                render.options.width = currentWidth;
+                render.options.height = currentHeight;
+                render.canvas.width = currentWidth;
+                render.canvas.height = currentHeight;
+
+                var newScale = Math.min(currentWidth, currentHeight) / 1000;
+
+                shapes.forEach(function(body) {
+                    var scaleRatio = newScale / body.initialScale;
+                    Matter.Body.scale(body, scaleRatio, scaleRatio);
+                    body.initialScale = newScale;
+
+                    if (body.circleRadius) {
+                        body.circleRadius = body.options.radius * newScale;
+                    } else {
+                        body.bounds.max.x = body.bounds.min.x + body.options.width * newScale;
+                        body.bounds.max.y = body.bounds.min.y + body.options.height * newScale;
+                    }
+
+                    var centerX = (body.position.x / currentWidth) * currentWidth;
+                    var centerY = (body.position.y / currentHeight) * currentHeight;
+                    Matter.Body.setPosition(body, { x: centerX, y: centerY });
+                });
+
+                Composite.clear(world, false);
+                addWalls();
+            }
+        });
+
+        return {
+            engine: engine,
+            runner: runner,
+            render: render,
+            canvas: render.canvas,
+            stop: function () {
+                Matter.Render.stop(render);
+                Matter.Runner.stop(runner);
+            }
+        };
+    };
+
+    Example.mixed();
+}
+
+function loadMobileScript() {
+    var Example = Example || {};
+
+    Example.mixed = function () {
+        var Engine = Matter.Engine,
+            Render = Matter.Render,
+            Runner = Matter.Runner,
+            Bodies = Matter.Bodies,
+            Composite = Matter.Composite,
+            Mouse = Matter.Mouse,
+            MouseConstraint = Matter.MouseConstraint,
+            Common = Matter.Common;
+
+        var engine = Engine.create(),
+            world = engine.world;
+
+        var render = Render.create({
+            element: document.getElementById('shapes-box'),
+            engine: engine,
+            options: {
+                width: window.innerWidth,
+                height: window.innerHeight,
+                wireframes: false,
+                background: false,
+            }
+        });
+
+        Render.run(render);
+
+        var runner = Runner.create();
+        Runner.run(runner, engine);
+
+        var shapes = [];
+        var shapeCount = 0;
+        var wallsRemoved = false;
+
+        var addShape = function (texture, options, x, y) {
+            var scale = Math.min(window.innerHeight, window.innerWidth) / 1500;
+            options = {...options, ...{
+                restitution: 0.7,
+                render: {
+                    sprite: {
+                        texture: texture,
+                        xScale: scale * options.scale,
+                        yScale: scale * options.scale
+                    }
+                }
+            }};
+
+            var body = options.shape === 'circle' ?
+                Bodies.circle(x, y, options.radius * scale, options) :
+                Bodies.rectangle(x, y, options.width * scale, options.height * scale, options);
+
+            body.initialScale = scale;
+            body.options = options;
+            Composite.add(world, body);
+            shapes.push(body);
+
+            shapeCount++;
+
+            return body;
+        };
+
+        var addInitialShapes = function () {
+            var textures = ['./img/icon2.png','./img/icon3.png', './img/icon1.png', './img/tag-2.png'];
+            var options = [
+                { shape: 'rectangle', width:150, height: 230, scale: 1},
+                { shape: 'rectangle', width:244, height: 250, scale: 1},
+                { shape: 'rectangle', width: 320, height: 229, scale: 1},
+                { shape: 'rectangle', width: 270, height: 103, scale: 1}
+            ];
+            
+            for (var i = 0; i <150; i++) {
+                var index = Math.floor(Math.random() * textures.length);
+                var startX = Math.random() * window.innerWidth;
+                var startY = -window.innerHeight;
+                addShape(textures[index], options[index], startX, startY);
+            }
+        };
+
+        addInitialShapes();
+
+
+        var walls = [];
+        var addWalls = function() {
+            var newWalls = [
+                Bodies.rectangle(window.innerWidth / 2, window.innerHeight + 50, window.innerWidth, 100, { isStatic: true, render: { fillStyle: 'rgba(255, 255, 255, 1)' } }),
+                Bodies.rectangle(-50, window.innerHeight / 2, 100, window.innerHeight, { isStatic: true, render: { fillStyle: 'rgba(255, 255, 255, 1)' } }),
+                Bodies.rectangle(window.innerWidth + 50, window.innerHeight / 2, 100, window.innerHeight, { isStatic: true, render: { fillStyle: 'rgba(255, 255, 255, 1)' } })
+            ];
+            Composite.add(world, newWalls);
+            walls = newWalls;
+        };
+
+        addWalls();
+
+        var mouse = Mouse.create(render.canvas),
+            mouseConstraint = MouseConstraint.create(engine, {
+                mouse: mouse,
+                constraint: {
+                    stiffness: 1,
+                    render: { visible: true }
+                }
+            });
+
+        Composite.add(world, mouseConstraint);
+        render.mouse = mouse;
+
+        window.addEventListener('resize', function() {
+            var currentWidth = window.innerWidth;
+            var currentHeight = window.innerHeight;
+
+            var widthChange = Math.abs(currentWidth - render.options.width);
+            var heightChange = Math.abs(currentHeight - render.options.height);
+
+            if (widthChange >= 200 || heightChange >= 200) {
+                render.options.width = currentWidth;
+                render.options.height = currentHeight;
+                render.canvas.width = currentWidth;
+                render.canvas.height = currentHeight;
+
+                var newScale = Math.min(currentWidth, currentHeight) / 1000;
+
+                shapes.forEach(function(body) {
+                    var scaleRatio = newScale / body.initialScale;
+                    Matter.Body.scale(body, scaleRatio, scaleRatio);
+                    body.initialScale = newScale;
+
+                    if (body.circleRadius) {
+                        body.circleRadius = body.options.radius * newScale;
+                    } else {
+                        body.bounds.max.x = body.bounds.min.x + body.options.width * newScale;
+                        body.bounds.max.y = body.bounds.min.y + body.options.height * newScale;
+                    }
+
+                    var centerX = (body.position.x / currentWidth) * currentWidth;
+                    var centerY = (body.position.y / currentHeight) * currentHeight;
+                    Matter.Body.setPosition(body, { x: centerX, y: centerY });
+                });
+
+                Composite.clear(world, false);
+                addWalls();
+                addInitialShapes();
+            }
+        });
+
+        return {
+            engine: engine,
+            runner: runner,
+            render: render,
+            canvas: render.canvas,
+            stop: function () {
+                Matter.Render.stop(render);
+                Matter.Runner.stop(runner);
+            }
+        };
+    };
+
+    Example.mixed();
+}
