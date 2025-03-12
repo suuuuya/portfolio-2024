@@ -32,6 +32,14 @@
 			<div class="custom-cursor__text__txt"><span></span></div>
 		</div>
 	</div>
+	<div id="custom-cursor__img" class="custom-cursor__img">
+		<div class="custom-cursor__img__body">
+			<div class="custom-cursor__img__src">
+				<img src="" alt="">
+				<div class="background"></div>
+			</div>
+		</div>
+	</div>
 	<!-- s: wrap -->
 	<div id="wrap">
 		<!-- s: header -->
@@ -39,19 +47,20 @@
 			<h2 class="blind">헤더 영역</h2>
 			<div class="inner">
 				<h1 class="header__logo">
-					<a href="./index.html" class="split-text" data-hover="home">©2025.LYS</a>
+					<a href="./index.html" class="split-text" data-hover="🏠🏠🏠">©<div class="current-year"></div>.LYS</a>
 				</h1>
-				<a class="file-download" href="" data-hover="Go to">(Resume)</a>
+				<a class="portfolio" href="https://drive.google.com/file/d/1IsSLbek6BeIKddXPRK_oRocVG2fQBrgE/view" target="_blank" data-hover="">portfolio.pdf ( <i class="ico-arrow--goto"></i> )</a>
 			</div>
 		</header>
 		<!-- e: header -->
 		<!-- s: nav -->
 		<nav class="gnb header__gnb">
 			<ul class="gnb__list">
-				<li><a href="#">HOME</a></li>
-				<li><a href="#">ABOUT ME</a></li>
-				<li><a href="#">WORK</a></li>
-				<li><a href="#">RECORDS</a></li>
+				<li><a href="#container">🏠</a></li>
+				<li><a href="#profile">PROFILE</a></li>
+				<li><a href="#work">WORKS</a></li>
+				<li><a href="#folders">RECORDS</a></li>
+				<li><a href="#test">TEST</a></li>
 			</ul>
 		</nav>
 		<!-- e: nav -->
@@ -73,8 +82,8 @@
 						<div class="profile__box">
 							<div class="inner">
 								<div class="sec__title">
-									<h3 class="sec__title--lg"><p class="space"><span>WEB</span> <span>Publisher</span></p><p class="space"><span>Portfolio</span><span><span class="serif-italic serif-italic--light">2025</span></span></p></h3>
-									<p class="sec__title--md">디지털 서비스 구축과 운영을 전문으로 하는 웹 퍼블리셔 이연수입니다. </br>2019년부터 90개 이상의 프로젝트를 진행하며 디지털 콘텐츠 제작 및 대규모 자사 서비스 운영 업무를 성공적으로 수행했습니다. 사용자 경험을 최우선으로 고려하여 향상된 솔루션과 서비스를 제공할 수 있도록 최선을 다하겠습니다.</p>
+									<h3 class="sec__title--lg"><p class="space"><span>WEB</span> <span>Publisher</span></p><p class="space"><span>Portfolio</span><span><span class="serif-italic serif-italic--light year current-year"></span></span></p></h3>
+									<p class="sec__title--md">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;디지털 서비스 구축과 운영을 전문으로 하는 웹 퍼블리셔 이연수입니다. </br>2019년부터 90개 이상의 프로젝트를 진행하며 디지털 콘텐츠 제작 및 대규모 자사 서비스 운영 업무를 성공적으로 수행했습니다. 사용자 경험을 최우선으로 고려하여 향상된 솔루션과 서비스를 제공할 수 있도록 최선을 다하겠습니다.</p>
 								</div>
 								<div class="profile__table">
 									<div class="profile__row profile__row--type4">
@@ -208,13 +217,14 @@
 									</div>
 								</div>
 								<div class="work__img">
-									<img src="./img/img-bg-works-1.jpg" alt="우리말 바로 알기 프로젝트 이미지">
+									<img src="./img/img-bg-works-3.jpg" alt="유니볼 프로젝트 이미지">
+									<img src="./img/img-bg-works-4.jpg" alt="아이멜리 프로젝트 이미지">
+									<img src="./img/img-bg-works-1.jpg" alt="삼우씨엠건축사사무소 프로젝트 이미지">
+									<img src="./img/img-bg-works-6.jpg" alt="금호타이어 프로젝트 이미지">
+									<img src="./img/img-bg-works-5.jpg" alt="CJ프레시웨이 프로젝트 이미지">
+									<img src="./img/img-bg-works-8.jpg" alt="서울대학교 재료공학부 프로젝트 이미지">
+									<img src="./img/img-bg-works-7.jpg" alt="극지연구소 프로젝트 이미지">
 									<img src="./img/img-bg-works-2.jpg" alt="2024 파리올림픽 프로젝트 이미지">
-									<img src="./img/img-bg-works-3.jpg" alt="ABU 2023 SEOUL 프로젝트 이미지">
-									<img src="./img/img-bg-works-5.jpg" alt="항저우 아시안게임 프로젝트 이미지">
-									<img src="./img/img-bg-works-6.jpg" alt="버티고 프로젝트 이미지">
-									<img src="./img/img-bg-works-7.jpg" alt="KBS 수신료 프로젝트 이미지">
-									<img src="./img/img-bg-works-8.jpg" alt="WBC 프로젝트 이미지">
 									<img src="./img/img-bg-works-11.jpg" alt="콩 라디오 프로젝트 이미지">
 									<img src="./img/img-bg-works-10.jpg" alt="KBS+ 프로젝트 이미지">
 								</div>
@@ -222,167 +232,177 @@
 							<div class="work__history history">
 								<div class="sec__cate">(Projects)</div>
 								<ul class="history__list">
-									<li class="show-img" data-img="./img/img-project-kong.jpg">
+									<li class="mouse-hv" data-hoverimg="./img/img-project-kong.jpg" data-hoveralt="KBS KONG 이미지">
 										<div class="date">2024</div>
 										<div class="con">KBS KONG 소개 페이지 리뉴얼</div>
 										<div class="note"><span class="tag">적응형 웹</span><span class="tag">GSAP</span></div>
 									</li>
-									<li class="show-img" data-img="./img/img-project-urimal.jpg">
+									<li class="mouse-hv" data-hoverimg="./img/img-project-urimal.jpg" data-hoveralt="KBS 우리말 바로알기 이미지">
 										<div class="date">2024</div>
 										<div class="con">KBS 우리말 바로알기 포털 신규 구축</div>
 										<div class="note"><span class="tag">적응형 웹</span><span class="tag">신규 서비스</span></div>
 									</li>
-									<li class="show-img" data-img="./img/img-project-media.jpg">
+									<li class="mouse-hv" data-hoverimg="./img/img-project-kbsmedia.jpg" data-hoveralt="KBS미디어 이미지">
 										<div class="date">2024</div>
 										<div class="con">KBS미디어 홈페이지 웹퍼블리싱 및 유지보수</div>
 										<div class="note"><span class="tag">유지보수</span></div>
 									</li>
-									<li class="show-img" data-img="./img/img-project-section.jpg">
+									<li class="mouse-hv" data-hoverimg="./img/img-project-section.jpg" data-hoveralt="KBS 개편 이미지지">
 										<div class="date">2023~2024</div>
 										<div class="con">KBS 섹션 개편 (드라마, 예능, 시사교양, 라디오)</div>
 										<div class="note"><span class="tag">적응형 웹</span></div>
 									</li>
-									<li class="show-img" data-img="./img/img-project-abu.jpg">
+									<li class="mouse-hv" data-hoverimg="./img/img-project-abu.jpg" data-hoveralt="KBS ABU SEOUL 이미지">
 										<div class="date">2023</div>
 										<div class="con">KBS ABU 2023 SEOUL 아시아 태평양 방송 연합(ABU) 60주년 총회 특집 사이트 구축</div>
 										<div class="note"><span class="tag">적응형 웹</span><span class="tag">신규 서비스</span></div>
 									</li>
-									<li class="show-img" data-img="./img/img-project-diaspora.jpg">
+									<li class="mouse-hv" data-hoverimg="./img/img-project-diaspora.jpg" data-hoveralt="KBS 코리안 디아스포라 이미지">
 										<div class="date">2023</div>
 										<div class="con">KBS 코리안 디아스포라 공영방송 50주년 기념 디아스포라 개편</div>
 										<div class="note"><span class="tag">적응형 웹</span></div>
 									</li>
-									<li class="show-img" data-img="./img/img-project-susin.jpg">
+									<li class="mouse-hv" data-hoverimg="./img/img-project-susin.jpg" data-hoveralt="KBS 수신료 홈페이지 이미지">
 										<div class="date">2023</div>
 										<div class="con">수신료의 가치 KBS 수신료 홈페이지 리뉴얼</div>
 										<div class="note"><span class="tag">적응형 웹</span></div>
 									</li>
-									<li class="show-img" data-img="./img/img-project-kbs50.jpg">
+									<li class="mouse-hv" data-hoverimg="./img/img-project-kbs50.jpg" data-hoveralt="KBS 공영방송 50주년 이미지">
 										<div class="date">2023</div>
 										<div class="con">KBS 공영방송 50주년 특집 페이지 신규 제작</div>
 										<div class="note"><span class="tag">적응형 웹</span><span class="tag">신규 서비스</span></div>
 									</li>
-									<li>
+									<li class="mouse-hv" data-hoverimg="./img/img-project-axteam.jpg" data-hoveralt="KBS미디어기술연구소 AX Team 이미지">
 										<div class="date">2023</div>
 										<div class="con">KBS미디어기술연구소 AX Team AI 제작도구 웹 에디터</div>
 										<div class="note"><span class="tag">에디터</span><span class="tag">프론트</span></div>
 									</li>
-									<li>
+									<li class="mouse-hv" data-hoverimg="./img/img-project-vertigo.jpg" data-hoveralt="KBS Vertigo 팜매니저 버티고 이미지">
 										<div class="date">2022</div>
 										<div class="con">KBS Vertigo 팜매니저 버티고 키프레임 에디터 웹버전 개발</div>
 										<div class="note"><span class="tag">에디터</span><span class="tag">프론트</span></div>
 									</li>
-									<li>
+									<li class="mouse-hv" data-hoverimg="./img/img-project-qatar.jpg" data-hoveralt="2022 카타르 월드컵 이미지">
 										<div class="date">2022</div>
-										<div class="con">2022 카타르 월드컵 웹퍼블리싱 산출물 검수 및 웹 접근성 사전 검사 진행</div>
+										<div class="con">2022 카타르 월드컵 웹퍼블리싱 산출물 검수 및 웹 접근성 사전 검사 진행</div> 
 										<div class="note"><span class="tag">진단 보고서 작성</span></div>
 									</li>
-									<li>
+									<li class="mouse-hv" data-hoverimg="./img/img-project-personalpolicies.jpg" data-hoveralt="KBS 회원센터 회원 이미지">
 										<div class="date">2022~2024</div>
 										<div class="con">KBS 회원센터 회원 서비스 실무 담당</div>
 										<div class="note"><span class="tag">EDM</span><span class="tag">유지보수</span></div>
 									</li>
-									<li>
+									<li class="mouse-hv" data-hoverimg="./img/img-project-kbs.jpg" data-hoveralt="KBS 이미지">
 										<div class="date">2022~2024</div>
 										<div class="con">KBS 홈페이지 유지보수</div>
 										<div class="note"><span class="tag">상시</span><span class="tag">유지보수</span><span class="tag">프론트</span></div>
 									</li>
-									<li>
+									<li class="mouse-hv" data-hoverimg="./img/img-project-kbsn.jpg" data-hoveralt="KBSN 이미지">
 										<div class="date">2022~2024</div>
 										<div class="con">KBSN 메인 홈페이지 UI·UX 전면 개편 및 기능 개발</div>
 										<div class="note"><span class="tag">PL</span><span class="tag">신규 서비스</span><span class="tag">유지보수</span><span class="tag">프론트</span></div>
 									</li>
-									<li>
+									<li class="mouse-hv" data-hoverimg="./img/img-project-cjfreshway.jpg" data-hoveralt="CJ프레시웨이 아이누리 공모전 이미지">
 										<div class="date">2022</div>
 										<div class="con">CJ프레시웨이 아이누리 공모전 이벤트 페이지 구축</div>
 										<div class="note"><span class="tag">반응형 웹</span><span class="tag">프론트</span></div>
 									</li>
-									<li>
+									<li class="mouse-hv" data-hoverimg="./img/img-project-rooicell.jpg" data-hoveralt="루이셀 쇼핑몰 이미지">
 										<div class="date">2022</div>
-										<div class="con">아이멜리 쇼핑몰 구축</div>
-										<div class="note"><span class="tag">적응형 웹</span><span class="tag">쇼핑몰</span></div>
+										<div class="con"><a href="https://rooicell.co.kr/" target="_blank">루이셀 쇼핑몰 구축 <i class="ico-arrow--goto"></i></a></div>
+										<div class="note"><span class="tag">인터랙션</span><span class="tag">브랜딩</span></div>
 									</li>
-									<li>
+									<li class="mouse-hv" data-hoverimg="./img/img-project-hmech.jpg" data-hoveralt="한양대학교 기계공학부 이미지">
 										<div class="date">2022</div>
 										<div class="con">한양대학교 기계공학부 홈페이지 구축</div>
 										<div class="note"><span class="tag">반응형 웹</span></div>
 									</li>
-									<li>
+									<li class="mouse-hv" data-hoverimg="./img/img-project-imele.jpg" data-hoveralt="아이멜리 쇼핑몰 이미지">
+										<div class="date">2021</div>
+										<div class="con">아이멜리 쇼핑몰 구축</div>
+										<div class="note"><span class="tag">적응형 웹</span><span class="tag">쇼핑몰</span></div>
+									</li>
+									<li class="mouse-hv" data-hoverimg="./img/img-project-scm.jpg" data-hoveralt="SCM생명과학 쇼핑몰 이미지">
+										<div class="date">2021</div>
+										<div class="con"><a href="http://www.scmlifescience.com/" target="_blank">SCM생명과학 홈페이지 구축 <i class="ico-arrow--goto"></i></a></div>
+										<div class="note"><span class="tag">반응형 웹</span><span class="tag">인터랙션션</span></div>
+									</li>
+									<li class="mouse-hv" data-hoverimg="./img/img-project-samoocm.jpg" data-hoveralt="삼우씨엠건축사사무소 이미지">
 										<div class="date">2021</div>
 										<div class="con">삼우씨엠건축사사무소 홈페이지 구축</div>
 										<div class="note"><span class="tag">반응형 웹</span></div>
 									</li>
-									<li>
+									<li class="mouse-hv" data-hoverimg="./img/img-project-uni.jpg" data-hoveralt="유니볼 이미지">
 										<div class="date">2021</div>
 										<div class="con">유니볼 홈페이지 구축</div>
 										<div class="note"><span class="tag">반응형 웹</span><span class="tag">프론트</span></div>
 									</li>
-									<li>
+									<li class="mouse-hv" data-hoverimg="./img/img-project-kch.jpg" data-hoveralt="KCH그룹 이미지">
 										<div class="date">2021</div>
-										<div class="con"><a href="https://www.kchglobal.com/" target="_blank">KCH그룹 홈페이지 구축</a></div>
+										<div class="con"><a href="https://www.kchglobal.com/" target="_blank">KCH그룹 홈페이지 구축 <i class="ico-arrow--goto"></i></a></div>
 										<div class="note"><span class="tag">반응형 웹</span></div>
 									</li>
-									<li>
+									<li class="mouse-hv" data-hoverimg="./img/img-project-x4.jpg" data-hoveralt="X4디자인브랜딩 이미지">
 										<div class="date">2021</div>
-										<div class="con"><a href="http://www.x4design.co.kr/" target="_blank">X4디자인브랜딩 홈페이지 구축</a></div>
+										<div class="con"><a href="http://www.x4design.co.kr/" target="_blank">X4디자인브랜딩 홈페이지 구축 <i class="ico-arrow--goto"></i></a></div>
 										<div class="note"><span class="tag">반응형 웹</span></div>
 									</li>
-									<li>
+									<li class="mouse-hv" data-hoverimg="./img/img-project-snu.jpg" data-hoveralt="서울대학교 재료공학부 이미지">
 										<div class="date">2021</div>
 										<div class="con">서울대학교 재료공학부 홈페이지 구축</div>
 										<div class="note"><span class="tag">반응형 웹</span></div>
 									</li>
-									<li>
+									<li class="mouse-hv" data-hoverimg="./img/img-project-koreabio.jpg" data-hoveralt="한국바이오협회 이미지">
 										<div class="date">2021</div>
-										<div class="con"><a href="https://www.koreabio.org/" target="_blank">한국바이오협회 홈페이지 구축</a></div>
+										<div class="con"><a href="https://www.koreabio.org/" target="_blank">한국바이오협회 홈페이지 구축 <i class="ico-arrow--goto"></i></a></div>
 										<div class="note"><span class="tag">반응형 웹</span><span class="tag">프론트</span></div>
 									</li>
-									<li>
+									<li class="mouse-hv" data-hoverimg="./img/img-project-apis.jpg" data-hoveralt="APIS(아시아퍼시픽 국제외국인학교) 이미지">
 										<div class="date">2021</div>
-										<div class="con"><a href="https://www.apis.org/" target="_blank">APIS(아시아퍼시픽 국제외국인학교) 홈페이지 구축</a></div>
+										<div class="con"><a href="https://www.apis.org/" target="_blank">APIS(아시아퍼시픽 국제외국인학교) 홈페이지 구축 <i class="ico-arrow--goto"></i></a></div>
 										<div class="note"><span class="tag">반응형 웹</span><span class="tag">프론트</span></div>
 									</li>
-									<li>
+									<li class="mouse-hv" data-hoverimg="./img/img-project-poongin.jpg" data-hoveralt="풍인무역 이미지">
 										<div class="date">2021</div>
 										<div class="con">풍인무역 홈페이지 리뉴얼</div>
 										<div class="note"><span class="tag">반응형 웹</span></div>
 									</li>
-									<li>
+									<li class="mouse-hv" data-hoverimg="./img/img-project-kopri.jpg" data-hoveralt="극지연구소 극지정책아카이브 이미지">
 										<div class="date">2020</div>
-										<div class="con"><a href="https://www.polararchive.kr/" target="_blank">극지연구소 극지정책아카이브 홈페이지 구축</a></div>
+										<div class="con"><a href="https://www.polararchive.kr/" target="_blank">극지연구소 극지정책아카이브 홈페이지 구축 <i class="ico-arrow--goto"></i></a></div>
 										<div class="note"><span class="tag">반응형 웹</span><span class="tag">프론트</span></div>
 									</li>
-									<li>
+									<li class="mouse-hv" data-hoverimg="./img/img-project-simpac.jpg" data-hoveralt="심팩 장학재단 이미지">
 										<div class="date">2020</div>
 										<div class="con">심팩 장학재단 홈페이지 구축</div>
 										<div class="note"><span class="tag">적응형 웹</span></div>
 									</li>
-									<li>
+									<li class="mouse-hv" data-hoverimg="./img/img-project-wettrust.jpg" data-hoveralt="웨트러스트 글로벌 이미지">
 										<div class="date">2020</div>
 										<div class="con">웨트러스트 글로벌 홈페이지 구축</div>
 										<div class="note"><span class="tag">반응형 웹</span><span class="tag">프론트</span></div>
 									</li>
-									<li>
+									<li class="mouse-hv" data-hoverimg="./img/img-project-dx.jpg" data-hoveralt="대한민국 방위산업전 이미지">
 										<div class="date">2020</div>
 										<div class="con">대한민국 방위산업전 홈페이지 구축</div>
 										<div class="note"><span class="tag">적응형 웹</span></div>
 									</li>
-									<li>
+									<li class="mouse-hv" data-hoverimg="./img/img-project-kaist.jpg" data-hoveralt="카이스트 기술경영전문대학원 이미지">
 										<div class="date">2020</div>
 										<div class="con">카이스트 기술경영전문대학원 홈페이지 구축</div>
 										<div class="note"><span class="tag">반응형 웹</span></div>
 									</li>
-									<li>
+									<li class="mouse-hv" data-hoverimg="./img/img-project-kumho.jpg" data-hoveralt="금호타이어 60주년 이미지">
 										<div class="date">2020</div>
 										<div class="con">금호타이어 60주년 이벤트 페이지 구축</div>
 										<div class="note"><span class="tag">적응형 웹</span><span class="tag">프론트</span></div>
 									</li>
-									<li>
+									<li class="mouse-hv" data-hoverimg="./img/img-project-soulbrain.jpg" data-hoveralt="솔브레인/솔브레인홀딩스 이미지">
 										<div class="date">2020</div>
 										<div class="con">솔브레인/솔브레인홀딩스 홈페이지 구축</div>
 										<div class="note"><span class="tag">반응형 웹</span><span class="tag">프론트</span></div>
 									</li>
-									<li>
+									<li class="mouse-hv" data-hoverimg="./img/img-project-motrex.jpg" data-hoveralt="모트렉스 매뉴얼 이미지">
 										<div class="date">2019</div>
 										<div class="con">모트렉스 매뉴얼 서비스 구축</div>
 										<div class="note"><span class="tag">적응형 웹</span><span class="tag">프론트</span></div>
@@ -391,7 +411,7 @@
 							</div>
 						</div>
 					</section>
-					<section id="folders" class="folders horizontal-slide" data-bgcolor="#f5f5f5" data-textcolor="#1E1F21">
+					<section id="folders" class="folders horizontal-slide pinned" data-bgcolor="#f5f5f5" data-textcolor="#1E1F21">
 						<div class="inner">
 							<div class="sec__title">
 								<h3 class="sec__title--lg">Records</h3>
@@ -428,7 +448,7 @@
 							</div>
 						</div>
 					</section>
-					<section id="test" class="test" data-bgcolor="#1E1F21" data-textcolor="#cdcdcd">
+					<section id="test" class="test pinned" data-bgcolor="#1E1F21" data-textcolor="#cdcdcd">
 						<div class="inner">
 							<div class="content">
 								<div class="cards">

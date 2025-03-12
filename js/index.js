@@ -1,3 +1,11 @@
+function resizeHeight() {
+    const windowHeight = window.innerHeight;
+    document.querySelector(".home__sticky").style.height = `${windowHeight}px`;
+}
+
+window.addEventListener("resize", resizeHeight);
+resizeHeight();
+
 $(function(){
     //ScrollTrigger
     gsap.registerPlugin(ScrollTrigger);
@@ -40,7 +48,7 @@ $(function(){
 
     //works
     const initialScale = 1;
-    const finalScale = 0.7;
+    const finalScale = 0.6;
     const initialHeight = document.querySelector('.work .sec__title--lg').offsetHeight;
     const reducedHeight = initialHeight * (initialScale - finalScale);
     const totalImages = document.querySelectorAll('.work .work__img img').length;
@@ -161,7 +169,7 @@ $(function(){
             each: revealPercentage / 100,
             start: 0,  
         },
-        duration: 0,
+        duration: 0.05,
     });
 
     //card

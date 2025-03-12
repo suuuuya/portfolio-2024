@@ -279,7 +279,7 @@ video {
   top: 0;
   left: 0;
   pointer-events: none;
-  mix-blend-mode: difference;
+  mix-blend-mode: normal;
   z-index: 99999;
 }
 .custom-cursor__text__body {
@@ -343,6 +343,49 @@ video {
 }
 .custom-cursor__text.drag .custom-cursor__text__txt {
   background-size: 89px auto;
+}
+.custom-cursor__img {
+  position: fixed;
+  top: 0;
+  left: 0;
+  pointer-events: none;
+  z-index: 99999;
+}
+.custom-cursor__img__body {
+  position: relative;
+  width: 280px;
+  height: 373px;
+  border-radius: 15px;
+  overflow: hidden;
+}
+.custom-cursor__img__body img {
+  position: relative;
+  width: 100%;
+  z-index: 2;
+}
+.custom-cursor__img__body .background {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: top left;
+  z-index: 1;
+}
+.custom-cursor__img.ani img {
+  animation: insetImg 0.4s forwards;
+}
+@keyframes insetImg {
+  0% {
+    clip-path: inset(0 100% 0 0);
+    transform: scale(1.4);
+  }
+  100% {
+    clip-path: inset(0 0 0 0%);
+    transform: scale(1);
+  }
 }
 
 /*lenis js*/
@@ -421,6 +464,29 @@ body:not(.scrolling, .scrolled-init) .gnb__list {
   z-index: 1;
 }
 
+.ico-sns {
+  width: 30px;
+  height: 30px;
+  display: inline-block;
+  vertical-align: middle;
+  background-repeat: no-repeat;
+}
+.ico-sns--instagram {
+  background-image: url("../img/ico/ico-instagram.svg");
+}
+.ico-sns--github {
+  background-image: url("../img/ico/ico-git.svg");
+}
+.ico-sns--notion {
+  background-image: url("../img/ico/ico-notion.svg");
+}
+
+.ico-arrow--goto {
+  display: inline-block;
+  background-size: 100%;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12' fill='none'%3E%3Cpath d='M1.29289 9.29289L0.585786 10L2 11.4142L2.70711 10.7071L1.29289 9.29289ZM12 1C12 0.447716 11.5523 5.78052e-07 11 5.78052e-07H2C1.44771 5.78052e-07 1 0.447716 1 1C1 1.55229 1.44771 2 2 2H10V10C10 10.5523 10.4477 11 11 11C11.5523 11 12 10.5523 12 10V1ZM2.70711 10.7071L11.7071 1.70711L10.2929 0.292894L1.29289 9.29289L2.70711 10.7071Z' fill='%23dddddd'/%3E%3C/svg%3E");
+}
+
 /*header*/
 .header {
   position: fixed;
@@ -443,7 +509,7 @@ body:not(.scrolling, .scrolled-init) .gnb__list {
   font-size: 2.5vw;
   font-weight: 500;
   color: var(--difference-gray);
-  line-height: 79%;
+  line-height: 85%;
   letter-spacing: -1px;
   transform-origin: 0 0;
   transform: scale(4.5);
@@ -459,10 +525,14 @@ body:not(.scrolling, .scrolled-init) .gnb__list {
   overflow: hidden;
   opacity: 0;
 }
-.header .file-download {
+.header .portfolio {
   font-size: 25px;
   color: var(--difference-gray);
   font-weight: 500;
+}
+.header .portfolio .ico-arrow--goto {
+  width: 15px;
+  height: 15px;
 }
 .header .btn-gnb {
   display: block;
@@ -481,6 +551,7 @@ body:not(.scrolling, .scrolled-init) .gnb__list {
 .gnb__list {
   display: flex;
   gap: 0 4px;
+  font-size: 13px;
   text-align: center;
   padding: 7px 7px;
   background: rgba(30, 31, 33, 0.5);
@@ -494,6 +565,10 @@ body:not(.scrolling, .scrolled-init) .gnb__list {
   border: 1px solid rgba(255, 255, 255, 0.3);
   color: var(--main-white);
   border-radius: 7px;
+}
+.gnb .is-active {
+  color: var(--main-white);
+  border-color: var(--main-white);
 }
 
 @media screen and (max-width: 1600px) {
