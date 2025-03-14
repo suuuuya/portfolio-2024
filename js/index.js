@@ -52,9 +52,9 @@ $(function(){
             scroller: window,
             scrub: true,
             start: "top top",
-            end:"+=5%",
+            end:"+=50%",
         },
-        background:'#2b2c2f',
+        background:'#3c3d40',
     })
     .to(".home__shapes-area", {
         scrollTrigger: {
