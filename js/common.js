@@ -1,5 +1,8 @@
 $(function(){
+	//s:setup
 	history.scrollRestoration = "manual";
+	tl = TweenMax;
+
 	//현재 연도 표기
 	document.querySelectorAll(".current-year").forEach(el => {
 		el.textContent = new Date().getFullYear();
@@ -52,20 +55,23 @@ $(function(){
 		requestAnimationFrame(raf)
 	}
 	requestAnimationFrame(raf);
+	//e:setup
+
 	//js
-	tl = TweenMax;
     headerJS();
     customCursorJS();
     splitJS();
 	motionLogo();
 });
+////////////////////////////////////////////////////////////////////////////////////
+
 function headerJS() {
 	document.querySelectorAll("nav.gnb li a").forEach(anchor => {
 		anchor.addEventListener("click", function (e) {
 			e.preventDefault();
 			let targetId = this.getAttribute("href").substring(1);
 			let targetSection = document.getElementById(targetId);
-			//현재 스크롤 위치치 좌표
+			//현재 스크롤 위치 좌표
 			let scrollToPosition = window.scrollY + targetSection.getBoundingClientRect().top;
 			//console.log(scrollToPosition);
 			window.scrollTo({
@@ -75,71 +81,82 @@ function headerJS() {
 		});
 	});
 }
+
 function customCursorJS(){
-	var $cursor_primary = $('#custom-cursor');
-	var $circle = $cursor_primary.find('.custom-cursor__circle');
-	var $cursor_secondary = $('#custom-cursor__text');
-	var $cursor_txt = $cursor_secondary.find('.custom-cursor__text__txt');
-	var $cursor_secondary2 = $('#custom-cursor__img');
-	var $cursor_img = $cursor_secondary2.find('.custom-cursor__img__src');
+	const $cursor_primary = $('#custom-cursor');
+    const $circle = $cursor_primary.find('.custom-cursor__circle');
+    const $cursor_secondary = $('#custom-cursor__text');
+    const $cursor_txt = $cursor_secondary.find('.custom-cursor__text__txt');
+    const $cursor_secondary2 = $('#custom-cursor__img');
+    const $cursor_img = $cursor_secondary2.find('.custom-cursor__img__src');
 
-	$('body').mousemove(function(e) {
-	tl.to($cursor_primary, 0.7, {opacity:1, x: e.clientX,y: e.clientY,ease: Power3.easeOut});
-		TweenMax.to($cursor_primary, 0.3, {x: e.clientX,y: e.clientY,ease: Power3.easeOut});
-		TweenMax.to($cursor_secondary, 0.5, {x: e.clientX,y: e.clientY,ease: Power3.easeOut});
-		TweenMax.to($cursor_secondary2, 1, {x: e.clientX,y: e.clientY,ease: Power3.easeOut});
-	});
+    // mousemove
+    $('body').mousemove(function (e) {
+        TweenMax.to($cursor_primary, 0.3, {opacity:1, x: e.clientX, y: e.clientY, ease: Power3.easeOut });
+        TweenMax.to($cursor_secondary, 0.5, { x: e.clientX, y: e.clientY, ease: Power3.easeOut });
+        TweenMax.to($cursor_secondary2, 1, { x: e.clientX+100, y: e.clientY-100, ease: Power3.easeOut });
+    });
+
+    // [common] mouseenter 
+    $(document).on('mouseenter', 'button, a, .mouse-hv', function () {
+        const $this = $(this);
+        const words = $this.data('hover') || '';
+        const size = $this.data('size') || '100%';
+        $cursor_txt.find('> span').text(words);
+        TweenMax.to($circle, 0.3, { width: size, height: size, autoAlpha: 1, ease: Power0.easeNone });
+        TweenMax.to($cursor_txt, 0.7, { width: size, height: size, autoAlpha: 1, ease: Power0.easeNone });
+    });
+	// [common] mouseleave
+    $(document).on('mouseleave', 'button, a, .mouse-hv', function () {
+		$cursor_txt.find('> span').text('');
+        TweenMax.to($circle, 0.3, { width: '15px', height: '15px', ease: Power0.easeNone });
+        TweenMax.to($cursor_txt, 0, { width: '0%', height: '0%', autoAlpha: 0, ease: Power0.easeNone });
+    });
+    // [.hover-image-cursor] mouseenter
+    $(document).on('mouseenter', '.hover-image-cursor', function () {
+        const $this = $(this);
+        const imgs = $this.data('hoverimg') || '';
+        const alt = $this.data('hoveralt') || '';
+        const size = $this.data('size') || '100%';
+        $cursor_secondary2.addClass('ani');
+        $cursor_img.find('> img').attr({ src: imgs, alt: alt });
+        setTimeout(() => {
+            $cursor_img.find('.background').stop(true).css('background-image', `url(${imgs})`);
+        }, 400);
+
+        TweenMax.to($cursor_img, 0.1, { width: size, height: size, autoAlpha: 1, ease: Power0.easeNone });
+    });
+	// [.hover-image-cursor] mouseleave
+    $(document).on('mouseleave', '.hover-image-cursor', function () {
+		setTimeout(() => {
+        	$cursor_secondary2.removeClass('ani');
+		}, 400);
+        $cursor_img.find('> img').attr({ src: '', alt: '' });
+        TweenMax.to($cursor_img, 0.1, { autoAlpha: 0, ease: Power0.easeNone });
+    });
 	
+	//drag
+    $(document).on('mouseenter', '.drag', function () {
+        $cursor_primary.addClass('drag');
+        $cursor_secondary.addClass('drag');
+        $cursor_secondary2.addClass('drag');
+    });
+    $(document).on('mouseleave', '.drag', function () {
+        $cursor_primary.removeClass('drag');
+        $cursor_secondary.removeClass('drag');
+        $cursor_secondary2.removeClass('drag');
+    });
 
-	$(document).on('mouseenter', 'button, a, .mouse-hv', function(){
-		var $this = $(this);
-		var words = ( $this.data('hover') != undefined ) ? $this.data('hover') : '';
-		var imgs = ( $this.data('hoverimg') != undefined ) ? $this.data('hoverimg') : '';
-		var alt = ( $this.data('hoveralt') != undefined ) ? $this.data('hoveralt') : '';
-		var size = ( $this.data('size') != undefined ) ? $this.data('size') : '100%';
+    // TweenMax.killTweensOf
+    TweenMax.killTweensOf($circle);
+    TweenMax.killTweensOf($cursor_txt);
+    TweenMax.killTweensOf($cursor_img);
 
-		if( $this.hasClass('drag') ){
-			$cursor_primary.addClass('drag');
-			$cursor_secondary.addClass('drag');
-			$cursor_secondary2.addClass('drag');
-		}
-		
-		$cursor_secondary2.addClass('ani');
-		$cursor_txt.find('> span').text( words );
-		$cursor_img.find('> img').attr( 'src', imgs );
-		$cursor_img.find('> img').attr( 'alt', alt );
-		setTimeout(function() {
-			$cursor_img.find('.background').css('background-image', 'url(' + imgs + ')');
-		  }, 400);
-		TweenMax.killTweensOf($circle);
-		TweenMax.killTweensOf($cursor_txt);
-		TweenMax.killTweensOf($cursor_img);
-		TweenMax.to($circle, .3, {width: size,height: size,autoAlpha: 1,ease: Power0.easeNone});
-		TweenMax.to($cursor_txt, .7, {width: size,height: size,autoAlpha: 1,ease: Power0.easeNone});
-		TweenMax.to($cursor_img, .1,{width: size,height: size,autoAlpha: 1,ease: Power0.easeNone});
-	});
-
-	$(document).on('mouseleave', 'button, a, .mouse-hv', function(){
-		var $this = $(this);
-
-		if( $this.hasClass('drag') ){
-			$cursor_primary.removeClass('drag');
-			$cursor_secondary.removeClass('drag');
-			$cursor_secondary2.removeClass('drag');
-		}
-		$cursor_secondary2.removeClass('ani');
-		TweenMax.killTweensOf($circle);
-		TweenMax.killTweensOf($cursor_txt);
-		TweenMax.killTweensOf($cursor_img);
-		TweenMax.to($circle, .3, {width: '15px',height: '15px',ease: Power0.easeNone});
-		TweenMax.to($cursor_txt, 0, {width: '0%',height: '0%',autoAlpha: 0,ease: Power0.easeNone});
-		TweenMax.to($cursor_img, .1, {autoAlpha: 0,ease: Power0.easeNone});
-	});
 }
+
 function splitJS(){
 	var splitText = document.querySelector('.split-text').textContent;
     var container = document.querySelector('.split-text');
-
     container.innerHTML = '';
 
     for (var i = 0; i < splitText.length; i++) {
@@ -148,6 +165,7 @@ function splitJS(){
         container.appendChild(span);
     }
 }
+
 function motionLogo() {
     var animation = gsap.timeline();
     var logo = document.querySelector('.header__logo');

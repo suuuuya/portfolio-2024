@@ -35,15 +35,48 @@ $(function(){
         scale: 1,
         force3D: false,
     })
+    .to(".home__title", {
+        scrollTrigger: {
+            trigger: "#wrap",
+            scroller: window,
+            scrub: true,
+            start: "top top",
+            end:"+=30%",
+        },
+        opacity:0,
+        force3D: false,
+    })
+    .to(".home__shapes-area", {
+        scrollTrigger: {
+            trigger: "#wrap",
+            scroller: window,
+            scrub: true,
+            start: "top top",
+            end:"+=5%",
+        },
+        background:'#2b2c2f',
+    })
+    .to(".home__shapes-area", {
+        scrollTrigger: {
+            trigger: "#wrap",
+            scroller: window,
+            scrub: true,
+            start: "top top",
+            end:"+=50%",
+        },
+        scale:'1',
+        x:'0',
+        borderRadius:'0px',
+    })
     .to(".overlay", {
         scrollTrigger: {
             trigger: ".profile",
             scroller: window,
             scrub: true,
-            start:"top center",
+            start:"top bottom",
             end:"top +=100vh",
         },
-        background: 'rgba(0,0,0,0.4)',
+        background: 'rgba(0,0,0,0.1)',
     });
 
     //works
@@ -172,6 +205,32 @@ $(function(){
         duration: 0.05,
     });
 
+    //test
+    const cardSlide2 = gsap.timeline({
+        scrollTrigger: {
+            trigger: ".test",
+            scroller: window,
+            scrub: true,
+            pin: true,
+            end: `bottom top-=${window.innerHeight * 3}px`,
+        },
+    });
+    cardSlide2.to('.test .card1', { yPercent: 0, className: 'card1 act' })
+    .to('.test .bg', { opacity:1})
+    .to('.test .bg .img:nth-child(1) span', { opacity:1,scale:1},"-=0.6")
+    .from('.test .card2', { yPercent: 200})
+    .to('.test .bg .img:nth-child(2)', {clipPath:'inset(0px 0px 0px 0px)'},"-=0.3")
+    .to('.test .bg .img:nth-child(2) span', {y:'-10%'},"-=0.6")
+    .to('.test .card1', { scale: 0.9, y: '-100px' }, 0.6)
+    .to('.test .card2', { yPercent: 0, className: 'card2 act' })
+    .from('.test .card3', { yPercent: 200})
+    .to('.test .bg .img:nth-child(3)', {clipPath:'inset(0px 0px 0px 0px)'},"-=0.3")
+    .to('.test .bg .img:nth-child(3) span', {y:'-10%'},"-=0.6")
+    .to('.test .card2', { scale: 0.9, y: '-100px' }, "-=0.6")
+    .to('.test .card1', { scale: 0.80, y: '-200px' }, "-=0.6")
+    .to('.test .card3', { yPercent: 0, className: 'card3 act' })
+    .to('.test .bg', { opacity:0});
+    
     //card
     var cards = document.querySelectorAll(".pin-card .card");
     cards.forEach(function (card, index) {
@@ -222,7 +281,7 @@ $(function(){
             trigger: ".folders",
             scroller: window,
             scrub: true,
-            endTrigger: ".test",
+            endTrigger: ".skills",
             onEnter: () => {
                 gsap.to(".action-card", {
                     top: '100%',
@@ -234,30 +293,7 @@ $(function(){
         opacity: 1,
     });
 
-    const cardSlide2 = gsap.timeline({
-        scrollTrigger: {
-            trigger: ".test",
-            scroller: window,
-            scrub: true,
-            pin: true,
-            end: `bottom top-=${window.innerHeight * 3}px`,
-        },
-    });
-    cardSlide2.to('.test .card1', { yPercent: 0, className: 'card1 act' })
-    .to('.test .bg', { opacity:1})
-    .to('.test .bg .img:nth-child(1) span', { opacity:1,scale:1},"-=0.6")
-    .from('.test .card2', { yPercent: 200})
-    .to('.test .bg .img:nth-child(2)', {clipPath:'inset(0px 0px 0px 0px)'},"-=0.3")
-    .to('.test .bg .img:nth-child(2) span', {y:'-10%'},"-=0.6")
-    .to('.test .card1', { scale: 0.9, y: '-100px' }, 0.6)
-    .to('.test .card2', { yPercent: 0, className: 'card2 act' })
-    .from('.test .card3', { yPercent: 200})
-    .to('.test .bg .img:nth-child(3)', {clipPath:'inset(0px 0px 0px 0px)'},"-=0.3")
-    .to('.test .bg .img:nth-child(3) span', {y:'-10%'},"-=0.6")
-    .to('.test .card2', { scale: 0.9, y: '-100px' }, "-=0.6")
-    .to('.test .card1', { scale: 0.80, y: '-200px' }, "-=0.6")
-    .to('.test .card3', { yPercent: 0, className: 'card3 act' })
-    .to('.test .bg', { opacity:0});
+    
 
     const scrollColorElems = document.querySelectorAll("[data-bgcolor]");
     scrollColorElems.forEach((colorSection, i) => {
@@ -368,40 +404,62 @@ $(function(){
 
             shapeCount++;
 
-            if (shapeCount >= 30 && !wallsRemoved) {
+            if (shapeCount >= 50 && !wallsRemoved) {
                 Composite.remove(world, walls);
                 wallsRemoved = true;
             }
 
             return body;
         };
-
         var addInitialShapes = function () {
-            var textures = ['./img/icon2.png','./img/icon3.png', './img/tag-2.png'];
+            var icoTagHeightSize = 103;
+            var textures = [
+                './img/ico-canvas-ui.png',
+                './img/ico-canvas-ux.png',
+                './img/ico-canvas-bulid.png',
+                './img/ico-canvas-work.png',
+                './img/ico-canvas-digital.png',
+                './img/ico-canvas-service.png',
+            ];
             var options = [
-                { shape: 'rectangle', width:150, height: 230, scale: 1},
-                { shape: 'rectangle', width:244, height: 250, scale: 1},
-                { shape: 'rectangle', width: 270, height: 103, scale: 1}
+                { shape: 'rectangle', width: 142, height: icoTagHeightSize,scale: 1},
+                { shape: 'rectangle', width: 170, height: icoTagHeightSize,scale: 1},
+                { shape: 'rectangle', width: 251, height: icoTagHeightSize,scale: 1},
+                { shape: 'rectangle', width: 270, height: icoTagHeightSize,scale: 1},
+                { shape: 'rectangle', width: 303, height: icoTagHeightSize,scale: 1},
+                { shape: 'rectangle', width: 321, height: icoTagHeightSize,scale: 1},
             ];
             
-            var startX = 100;
-            var startY = window.innerHeight - 200;
+            var startX = 50;
+            var startY = -window.innerHeight/50;
             
-            for (var i = 0; i < 20; i++) {
+            for (var i = 0; i < 30; i++) {
                 var index = i % textures.length;
-                addShape(textures[index], options[index], startX + i *150, startY);
+                addShape(textures[index], options[index], startX + i * 70, startY - i *50);
             }
         };
 
         addInitialShapes();
 
         setInterval(function() {
-            var textures = ['./img/icon2.png','./img/icon3.png',  './img/tag-2.png'];
-            var options = [
-                { shape: 'rectangle', width:150, height: 230, scale: 1},
-                { shape: 'rectangle', width:244, height: 250, scale: 1},
-                { shape: 'rectangle', width: 270, height: 103, scale: 1}
+            var icoTagHeightSize = 103;
+            var textures = [
+                './img/ico-canvas-ui.png',
+                './img/ico-canvas-ux.png',
+                './img/ico-canvas-bulid.png',
+                './img/ico-canvas-work.png',
+                './img/ico-canvas-digital.png',
+                './img/ico-canvas-service.png',
             ];
+            var options = [
+                { shape: 'rectangle', width: 142, height: icoTagHeightSize,scale: 1},
+                { shape: 'rectangle', width: 170, height: icoTagHeightSize,scale: 1},
+                { shape: 'rectangle', width: 251, height: icoTagHeightSize,scale: 1},
+                { shape: 'rectangle', width: 270, height: icoTagHeightSize,scale: 1},
+                { shape: 'rectangle', width: 303, height: icoTagHeightSize,scale: 1},
+                { shape: 'rectangle', width: 321, height: icoTagHeightSize,scale: 1},
+            ];
+            
             var index = Math.floor(Math.random() * textures.length);
             var startX = Math.random() * (window.innerWidth - 200) + 100;
             var startY = -100;

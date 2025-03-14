@@ -435,6 +435,14 @@ body.scrolling .gnb__list, body.fixed-gnb .gnb__list {
     transform: translate3d(0, 0, 0);
   }
 }
+body:not(.scrolling, .scrolled-init) .gnb {
+  animation: hide 0.3s forwards;
+}
+@keyframes hide {
+  100% {
+    display: none;
+  }
+}
 body:not(.scrolling, .scrolled-init) .gnb__list {
   animation: hideGnb 0.3s forwards;
 }
@@ -446,7 +454,6 @@ body:not(.scrolling, .scrolled-init) .gnb__list {
   100% {
     opacity: 0;
     transform: translate3d(0, 0%, 0);
-    display: none;
   }
 }
 
@@ -618,12 +625,16 @@ html::after {
   width: 100%;
   /*title*/
 }
+.sec__title--sub {
+  font-size: 20px;
+  line-height: 150%;
+}
 .sec__title--md {
   font-size: 20px;
   line-height: 150%;
 }
 .sec__title--lg {
-  font-size: 9em;
+  font-size: 8em;
   line-height: 95%;
   letter-spacing: -7px;
   text-transform: uppercase;
@@ -666,7 +677,9 @@ html::after {
   position: relative;
   width: 100%;
   min-height: 100vh;
-  background: linear-gradient(91deg, #e8e8e8, #bcbcbc, #929090);
+  border-radius: 40px;
+  background: #2b2c2f;
+  transform: scale(0.35) translateX(80vw);
 }
 .home .overlay {
   position: absolute;
@@ -680,7 +693,8 @@ html::after {
   pointer-events: none;
 }
 .home canvas {
-  height: 100vh;
+  height: 100%;
+  display: block;
 }
 .home__title {
   position: absolute;
@@ -714,6 +728,7 @@ html::after {
 .profile .sec__title--md {
   width: 50%;
   margin-left: 50%;
+  padding-left: 30px;
 }
 .profile .sec__title--lg {
   margin-bottom: 50px;
@@ -725,14 +740,17 @@ html::after {
 .profile .sec__title .year {
   margin-right: 17px;
 }
+.profile .sec__cate {
+  margin-bottom: 100px;
+}
 .profile__box {
   position: relative;
   width: 100%;
   border-radius: 30px 30px 0 0;
-  backdrop-filter: blur(30px);
-  -webkit-backdrop-filter: blur(30px);
-  padding: 150px 0;
-  background: rgba(18, 18, 18, 0.5);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  padding: 80px 0 150px;
+  background: rgba(30, 31, 33, 0.8);
   pointer-events: initial;
 }
 .profile__box:before {
@@ -742,7 +760,7 @@ html::after {
   bottom: -1px;
   left: 0;
   width: 100%;
-  height: 200px;
+  height: 150px;
   background: linear-gradient(0deg, #1E1F21, transparent 100%);
 }
 .profile__item {
@@ -819,6 +837,10 @@ html::after {
   justify-content: space-between;
   align-items: baseline;
 }
+.work .sec__title--lg .box .move {
+  position: relative;
+  top: 0.05em;
+}
 .work__img {
   position: relative;
   transform: scale(0.4);
@@ -865,6 +887,7 @@ html::after {
 .work .year-container .digit {
   position: relative;
   min-width: 0.62em;
+  height: 0.8em;
   overflow: hidden;
   letter-spacing: -2px;
   display: flex;
