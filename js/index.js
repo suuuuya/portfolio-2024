@@ -3,8 +3,8 @@ function resizeHeight() {
     document.querySelector(".home__sticky").style.height = `${windowHeight}px`;
 }
 
-window.addEventListener("resize", resizeHeight);
-resizeHeight();
+//window.addEventListener("resize", resizeHeight);
+//resizeHeight();
 
 $(function(){
     //ScrollTrigger
@@ -76,7 +76,7 @@ $(function(){
             start:"top bottom",
             end:"top +=100vh",
         },
-        background: 'rgba(0,0,0,0.1)',
+        background: 'rgba(0,0,0,0.3)',
     });
 
     //works

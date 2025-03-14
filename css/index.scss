@@ -29,7 +29,7 @@ html{
 /*home*/
 .home{height: 150vh;
   &__sticky{position: relative;}
-  &__shapes-area{position: relative; width: 100%; height: 100vh !important; border-radius: 40px; background:#2d2f34; transform:scale(0.35) translateX(80vw);}
+  &__shapes-area{position: relative; width: 100%; height: 100%; border-radius: 40px; background:#2b2c2f; transform:scale(0.35) translateX(80vw);}
   .overlay{position: absolute;width: 100%;height: 100%; top:0;bottom: 0; left: 0;right: 0;background: rgba(0,0,0,0); pointer-events: none;}
   canvas{height: 100%; display:block;}
   &__title{position: absolute;width: auto; bottom:3vw; left:0px; font-size: 2em; font-weight: 600; text-transform: uppercase; mix-blend-mode: difference; color: var(--difference-gray); letter-spacing: -0.02em; line-height: 125%; z-index:10;

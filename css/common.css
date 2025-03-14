@@ -531,6 +531,7 @@ body:not(.scrolling, .scrolled-init) .gnb__list {
   display: block;
   overflow: hidden;
   opacity: 0;
+  padding-right: 1px;
 }
 .header .portfolio {
   font-size: 25px;
@@ -591,11 +592,18 @@ body:not(.scrolling, .scrolled-init) .gnb__list {
   #wrap .inner {
     padding: 0 20px;
   }
-  #wrap .header {
-    height: 50px;
+  #wrap .header .portfolio {
+    display: none;
   }
   #wrap .header__logo {
-    font-size: 20px !important;
+    transform: scale(2.55);
+    font-size: 7vw;
+  }
+  #wrap .gnb {
+    display: none;
+  }
+  #wrap .home__title {
+    font-size: 4.2em;
   }
 }
 @media screen and (max-width: 600px) {
