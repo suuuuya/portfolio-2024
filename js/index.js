@@ -3,13 +3,13 @@ function resizeHeight() {
     document.querySelector(".home__sticky").style.height = `${windowHeight}px`;
 }
 
-//window.addEventListener("resize", resizeHeight);
-//resizeHeight();
+window.addEventListener("resize", resizeHeight);
+resizeHeight();
 
 $(function(){
     //ScrollTrigger
     gsap.registerPlugin(ScrollTrigger);
-
+    
     //home
     const homeTimeline = gsap.timeline({
         scrollTrigger: {
@@ -76,12 +76,12 @@ $(function(){
             start:"top bottom",
             end:"top +=100vh",
         },
-        background: 'rgba(0,0,0,0.3)',
+        background: 'rgba(0,0,0,0)',
     });
 
     //works
     const initialScale = 1;
-    const finalScale = 0.6;
+    const finalScale = 0.75;
     const initialHeight = document.querySelector('.work .sec__title--lg').offsetHeight;
     const reducedHeight = initialHeight * (initialScale - finalScale);
     const totalImages = document.querySelectorAll('.work .work__img img').length;
@@ -205,34 +205,27 @@ $(function(){
         duration: 0.05,
     });
 
-    //test
+    //expertise
     const cardSlide2 = gsap.timeline({
         scrollTrigger: {
-            trigger: ".test",
+            trigger: ".expertise",
             scroller: window,
             scrub: true,
             pin: true,
             end: `bottom top-=${window.innerHeight * 3}px`,
         },
     });
-    cardSlide2.to('.test .card1', { yPercent: 0, className: 'card1 act' })
-    .to('.test .bg', { opacity:1})
-    .to('.test .bg .img:nth-child(1) span', { opacity:1,scale:1},"-=0.6")
-    .from('.test .card2', { yPercent: 200})
-    .to('.test .bg .img:nth-child(2)', {clipPath:'inset(0px 0px 0px 0px)'},"-=0.3")
-    .to('.test .bg .img:nth-child(2) span', {y:'-10%'},"-=0.6")
-    .to('.test .card1', { scale: 0.9, y: '-100px' }, 0.6)
-    .to('.test .card2', { yPercent: 0, className: 'card2 act' })
-    .from('.test .card3', { yPercent: 200})
-    .to('.test .bg .img:nth-child(3)', {clipPath:'inset(0px 0px 0px 0px)'},"-=0.3")
-    .to('.test .bg .img:nth-child(3) span', {y:'-10%'},"-=0.6")
-    .to('.test .card2', { scale: 0.9, y: '-100px' }, "-=0.6")
-    .to('.test .card1', { scale: 0.80, y: '-200px' }, "-=0.6")
-    .to('.test .card3', { yPercent: 0, className: 'card3 act' })
-    .to('.test .bg', { opacity:0});
+    cardSlide2.to('.expertise .card1', { yPercent: 0, className: 'card card1 act' })
+    .from('.expertise .card2', { yPercent: 200})
+    .to('.expertise .card1', { scale: 0.9, y: '-60px' }, 0.6)
+    .to('.expertise .card2', { yPercent: 0, className: 'card card2 act' })
+    .from('.expertise .card3', { yPercent: 200})
+    .to('.expertise .card2', { scale: 0.9, y: '-60px' }, "-=0.6")
+    .to('.expertise .card1', { scale: 0.8, y: '-120px' }, "-=0.6")
+    .to('.expertise .card3', { yPercent: 0, className: 'card card3 act' })
     
     //card
-    var cards = document.querySelectorAll(".pin-card .card");
+    var cards = document.querySelectorAll(".folders .pin-card .card");
     cards.forEach(function (card, index) {
         var rotationDegree = (index + 1) * 10;
         gsap.to(card, {
@@ -265,7 +258,7 @@ $(function(){
         });
     });
 
-    gsap.to(".card.next", {
+    gsap.to(".folders .card.next", {
         scrollTrigger: {
             trigger: ".folders",
             scroller: window,

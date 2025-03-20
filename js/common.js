@@ -1,6 +1,34 @@
 $(function(){
 	//s:setup
 	history.scrollRestoration = "manual";
+
+	const getDeviceType = () => {
+		let width = window.innerWidth;
+		if (width >= 1280) return "pc";
+		if (width >= 768) return "tablet";
+		return "mobile";
+	};
+	let currentDeviceType = getDeviceType();
+	//scroll 위치 저장
+	const saveScrollPosition = () => {
+		localStorage.setItem("scrollPosition", window.scrollY);
+	};
+	window.addEventListener("resize", () => {
+		const newDeviceType = getDeviceType();
+		if (newDeviceType !== currentDeviceType) {
+			saveScrollPosition(); //스크롤 위치 저장
+			location.reload(); //페이지 새로고침
+		}
+	});
+	//scroll 위치 복구
+	window.addEventListener("load", () => {
+		const savedScrollPosition = localStorage.getItem("scrollPosition");
+		if (savedScrollPosition !== null) {
+			window.scrollTo(0, parseInt(savedScrollPosition));
+			localStorage.removeItem("scrollPosition");
+		}
+	});
+	
 	tl = TweenMax;
 
 	//현재 연도 표기
@@ -131,7 +159,7 @@ function customCursorJS(){
 		setTimeout(() => {
         	$cursor_secondary2.removeClass('ani');
 		}, 400);
-        $cursor_img.find('> img').attr({ src: '', alt: '' });
+        $cursor_img.find('> img').attr({ src: '../img/no-img.png', alt: '' });
         TweenMax.to($cursor_img, 0.1, { autoAlpha: 0, ease: Power0.easeNone });
     });
 	
