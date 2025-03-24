@@ -3,13 +3,13 @@
 /* mixin */
 :root {
   --main-white: #f5f5f5;
-  --main-black: #1E1F21;
+  --main-black: #141516;
   --main-gray: #353535;
   --gray-type1: #cdcdcd;
   --main-text-desc: #cdcdcd;
   --difference-gray: #dddddd;
   --color-gray:#eeeeee;
-  --border-gray:#8f8f8f;
+  --border-gray:rgba(255,255,255,0.2);
 }
 
 html, body, form, div, p, h1, h2, h3, h4, h5, h6, dl, dt, dd, ul, ol, li, fieldset, table, th, td, figure, hr {
@@ -737,7 +737,7 @@ html::after {
   min-height: 100vh;
   border-radius: 40px;
   overflow: hidden;
-  background: linear-gradient(91deg, #989ca3, #686b72);
+  background: url(../img/test-img.png) no-repeat center/cover;
   transform: scale(0.35) translateX(80vw);
 }
 .home .overlay {
@@ -814,7 +814,7 @@ html::after {
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
   padding: 80px 0 150px;
-  background: rgba(30, 31, 33, 0.8);
+  background: rgba(0, 0, 0, 0.5);
   pointer-events: initial;
 }
 .profile__box:before {
@@ -825,7 +825,7 @@ html::after {
   left: 0;
   width: 100%;
   height: 150px;
-  background: linear-gradient(0deg, #1E1F21, transparent 100%);
+  background: linear-gradient(0deg, var(--main-black), transparent 100%);
 }
 .profile__item {
   border-top: 1px solid var(--border-gray);

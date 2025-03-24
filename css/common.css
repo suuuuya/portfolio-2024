@@ -1,13 +1,13 @@
 /* mixin */
 :root {
   --main-white: #f5f5f5;
-  --main-black: #1E1F21;
+  --main-black: #141516;
   --main-gray: #353535;
   --gray-type1: #cdcdcd;
   --main-text-desc: #cdcdcd;
   --difference-gray: #dddddd;
   --color-gray:#eeeeee;
-  --border-gray:#8f8f8f;
+  --border-gray:rgba(255,255,255,0.2);
 }
 
 html, body, form, div, p, h1, h2, h3, h4, h5, h6, dl, dt, dd, ul, ol, li, fieldset, table, th, td, figure, hr {

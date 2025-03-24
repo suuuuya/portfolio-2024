@@ -4,7 +4,7 @@
 /*home*/
 .home{height: 150vh;
   &__sticky{position: relative;}
-  &__shapes-area{position: relative; width: 100%; height: 100%; min-height: 100vh; border-radius: 40px; overflow: hidden; background:linear-gradient(91deg, #989ca3, #686b72); transform:scale(0.35) translateX(80vw);
+  &__shapes-area{position: relative; width: 100%; height: 100%; min-height: 100vh; border-radius: 40px; overflow: hidden; background:url(../img/test-img.png)no-repeat center/cover; transform:scale(0.35) translateX(80vw);
   }
   .overlay{position: absolute;width: 100%;height: 100%; top:0;bottom: 0; left: 0;right: 0;background: rgba(0,0,0,0); pointer-events: none; z-index: 2;}
   canvas{position: absolute;width: 100%;height: 100%; top:0;bottom: 0; left: 0;right: 0; display:block;}
@@ -26,8 +26,8 @@
     }
     &__cate{margin-bottom:40px;}
   }
-  &__box{position: relative;width: 100%; border-radius: 30px 30px 0 0; backdrop-filter: blur(10px);-webkit-backdrop-filter: blur(10px); padding: 80px 0 150px;background:rgba(30, 31, 33, 0.8);pointer-events: initial;
-    &:before{display: block; content: ""; position: absolute; bottom: -1px;left: 0;width: 100%;height: 150px;background: linear-gradient(0deg, #1E1F21, transparent 100%);}
+  &__box{position: relative;width: 100%; border-radius: 30px 30px 0 0; backdrop-filter: blur(10px);-webkit-backdrop-filter: blur(10px); padding: 80px 0 150px;background:rgba(0, 0, 0, 0.5);pointer-events: initial;
+    &:before{display: block; content: ""; position: absolute; bottom: -1px;left: 0;width: 100%;height: 150px;background: linear-gradient(0deg, var(--main-black), transparent 100%);}
   }
   &__item{border-top:1px solid var(--border-gray); padding: 25px 0 30px;}  
   &__category{font-size:15px; margin-bottom: 10px;}

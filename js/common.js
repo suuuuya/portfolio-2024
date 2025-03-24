@@ -148,17 +148,13 @@ function customCursorJS(){
         const size = $this.data('size') || '100%';
         $cursor_secondary2.addClass('ani');
         $cursor_img.find('> img').attr({ src: imgs, alt: alt });
-        setTimeout(() => {
-            $cursor_img.find('.background').stop(true).css('background-image', `url(${imgs})`);
-        }, 400);
+		$cursor_img.find('.background').stop(true).css('background-image', `url(${imgs})`);
 
         TweenMax.to($cursor_img, 0.1, { width: size, height: size, autoAlpha: 1, ease: Power0.easeNone });
     });
 	// [.hover-image-cursor] mouseleave
     $(document).on('mouseleave', '.hover-image-cursor', function () {
-		setTimeout(() => {
-        	$cursor_secondary2.removeClass('ani');
-		}, 400);
+		$cursor_secondary2.removeClass('ani');
         $cursor_img.find('> img').attr({ src: '../img/no-img.png', alt: '' });
         TweenMax.to($cursor_img, 0.1, { autoAlpha: 0, ease: Power0.easeNone });
     });

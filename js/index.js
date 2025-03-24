@@ -76,9 +76,9 @@ $(function(){
         background: 'rgba(0,0,0,.4)',
     });
 
-    //works
+    //portfolio
     const initialScale = 1;
-    const finalScale = 0.75;
+    const finalScale = 1;
     const initialHeight = document.querySelector('.work .sec__title--lg').offsetHeight;
     const reducedHeight = initialHeight * (initialScale - finalScale);
     const totalImages = document.querySelectorAll('.work .work__img img').length;
@@ -283,12 +283,7 @@ $(function(){
         opacity: 1,
     });
 
-    // [canvas JS] 그라디언트
- 
-
-
-
-    // [canvas JS] 도형
+    
     const scrollColorElems = document.querySelectorAll("[data-bgcolor]");
     scrollColorElems.forEach((colorSection, i) => {
         const prevBg = i === 0 ? "" : scrollColorElems[i - 1].dataset.bgcolor;
@@ -338,7 +333,7 @@ $(function(){
         },
     });
 });
-
+/*
     var Example = Example || {};
 
     Example.mixed = function () {
@@ -517,3 +512,4 @@ $(function(){
     };
 
     Example.mixed();
+*/
