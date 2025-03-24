@@ -9,7 +9,14 @@ resizeHeight();
 $(function(){
     //ScrollTrigger
     gsap.registerPlugin(ScrollTrigger);
-    
+    gsap.timeline()
+    .add([
+        gsap.fromTo(".intro-bg", {height: '100%'}, {height: '0%', ease: Power2.easeInOut, duration: 0.8}),
+        gsap.fromTo(".home__sticky > div", {y: '200px'}, {y: '0px', ease: Power2.easeInOut, duration: 0.8}),
+    ]);
+    gsap.timeline()
+    .fromTo(".header__logo a", 0, {opacity:0}, {opacity:1})
+    .staggerFromTo(".header__logo span", 0.8, {y: '200%',}, { y: '0%',force3D: false ,ease: Power2.easeInOut},0.05);
     //home
     const homeTimeline = gsap.timeline({
         scrollTrigger: {
@@ -54,16 +61,6 @@ $(function(){
             start: "top top",
             end:"+=50%",
         },
-        background:'#3c3d40',
-    })
-    .to(".home__shapes-area", {
-        scrollTrigger: {
-            trigger: "#wrap",
-            scroller: window,
-            scrub: true,
-            start: "top top",
-            end:"+=50%",
-        },
         scale:'1',
         x:'0',
         borderRadius:'0px',
@@ -76,7 +73,7 @@ $(function(){
             start:"top bottom",
             end:"top +=100vh",
         },
-        background: 'rgba(0,0,0,0)',
+        background: 'rgba(0,0,0,.4)',
     });
 
     //works
@@ -208,7 +205,7 @@ $(function(){
     //expertise
     const cardSlide2 = gsap.timeline({
         scrollTrigger: {
-            trigger: ".expertise",
+            trigger: ".expertise .content",
             scroller: window,
             scrub: true,
             pin: true,
@@ -286,8 +283,12 @@ $(function(){
         opacity: 1,
     });
 
-    
+    // [canvas JS] 그라디언트
+ 
 
+
+
+    // [canvas JS] 도형
     const scrollColorElems = document.querySelectorAll("[data-bgcolor]");
     scrollColorElems.forEach((colorSection, i) => {
         const prevBg = i === 0 ? "" : scrollColorElems[i - 1].dataset.bgcolor;
@@ -374,7 +375,7 @@ $(function(){
         var wallsRemoved = false;
 
         var addShape = function (texture, options, x, y) {
-            var scale = Math.min(window.innerHeight, window.innerWidth) / 1500;
+            var scale = Math.min(window.innerHeight, window.innerWidth) / 1000;
             options = {...options, ...{
                 restitution: 0.7,
                 render: {
@@ -397,7 +398,7 @@ $(function(){
 
             shapeCount++;
 
-            if (shapeCount >= 50 && !wallsRemoved) {
+            if (shapeCount >= 60 && !wallsRemoved) {
                 Composite.remove(world, walls);
                 wallsRemoved = true;
             }
@@ -407,58 +408,38 @@ $(function(){
         var addInitialShapes = function () {
             var icoTagHeightSize = 103;
             var textures = [
+                './img/ico-canvas-chrome.png',
+                './img/ico-canvas-work.png',
+                './img/ico-canvas-service.png',
+                './img/ico-canvas-bulid.png',
+                './img/ico-canvas-coffee.png',
+                './img/ico-canvas-branding.png',
+                './img/ico-canvas-digital.png',
                 './img/ico-canvas-ui.png',
                 './img/ico-canvas-ux.png',
-                './img/ico-canvas-bulid.png',
-                './img/ico-canvas-work.png',
-                './img/ico-canvas-digital.png',
-                './img/ico-canvas-service.png',
             ];
             var options = [
-                { shape: 'rectangle', width: 142, height: icoTagHeightSize,scale: 1},
-                { shape: 'rectangle', width: 170, height: icoTagHeightSize,scale: 1},
-                { shape: 'rectangle', width: 251, height: icoTagHeightSize,scale: 1},
-                { shape: 'rectangle', width: 270, height: icoTagHeightSize,scale: 1},
-                { shape: 'rectangle', width: 303, height: icoTagHeightSize,scale: 1},
-                { shape: 'rectangle', width: 321, height: icoTagHeightSize,scale: 1},
+                { shape: 'rectangle', width: 150, height: 150, scale: 1},
+                { shape: 'rectangle', width: 127, height: 152, scale: 1},
+                { shape: 'rectangle', width: 150, height: 150, scale: 1},
+                { shape: 'rectangle', width: 150, height: 150, scale: 1},
+                { shape: 'rectangle', width: 150, height: 150, scale: 1},
+                { shape: 'rectangle', width: 145, height: 174, scale: 1},
+                { shape: 'rectangle', width: 150, height: 150, scale: 1},
+                { shape: 'rectangle', width: 150, height: 150, scale: 1},
+                { shape: 'rectangle', width: 150, height: 150, scale: 1},
             ];
             
-            var startX = 50;
+            var startX = window.innerWidth/2.5;
             var startY = -window.innerHeight/50;
             
-            for (var i = 0; i < 30; i++) {
+            for (var i = 0; i < 40; i++) {
                 var index = i % textures.length;
-                addShape(textures[index], options[index], startX + i * 70, startY - i *50);
+                addShape(textures[index], options[index], startX + i *2, startY - i *100);
             }
         };
 
         addInitialShapes();
-
-        setInterval(function() {
-            var icoTagHeightSize = 103;
-            var textures = [
-                './img/ico-canvas-ui.png',
-                './img/ico-canvas-ux.png',
-                './img/ico-canvas-bulid.png',
-                './img/ico-canvas-work.png',
-                './img/ico-canvas-digital.png',
-                './img/ico-canvas-service.png',
-            ];
-            var options = [
-                { shape: 'rectangle', width: 142, height: icoTagHeightSize,scale: 1},
-                { shape: 'rectangle', width: 170, height: icoTagHeightSize,scale: 1},
-                { shape: 'rectangle', width: 251, height: icoTagHeightSize,scale: 1},
-                { shape: 'rectangle', width: 270, height: icoTagHeightSize,scale: 1},
-                { shape: 'rectangle', width: 303, height: icoTagHeightSize,scale: 1},
-                { shape: 'rectangle', width: 321, height: icoTagHeightSize,scale: 1},
-            ];
-            
-            var index = Math.floor(Math.random() * textures.length);
-            var startX = Math.random() * (window.innerWidth - 200) + 100;
-            var startY = -100;
-
-            addShape(textures[index], options[index], startX, startY);
-        }, 400);
 
         var walls = [];
         var addWalls = function() {
@@ -473,29 +454,6 @@ $(function(){
 
         addWalls();
 
-        setInterval(function() {
-            if (wallsRemoved) {
-                var outOfBoundsCount = shapes.reduce(function(count, body) {
-                    if (body.position.y > window.innerHeight + 100 ||
-                        body.position.x < -100 ||
-                        body.position.x > window.innerWidth + 100) {
-                        return count + 1;
-                    }
-                    return count;
-                }, 0);
-
-                if (outOfBoundsCount >=30) {
-                    shapeCount = 0;
-                    wallsRemoved = false;
-                    addWalls();
-                    shapes = shapes.filter(function(body) {
-                        return body.position.y <= window.innerHeight + 100 &&
-                            body.position.x >= -100 &&
-                            body.position.x <= window.innerWidth + 100;
-                    });
-                }
-            }
-        }, 1000);
 
         var mouse = Mouse.create(render.canvas),
             mouseConstraint = MouseConstraint.create(engine, {

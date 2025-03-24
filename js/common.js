@@ -89,7 +89,7 @@ $(function(){
     headerJS();
     customCursorJS();
     splitJS();
-	motionLogo();
+	//motionLogo();
 });
 ////////////////////////////////////////////////////////////////////////////////////
 
