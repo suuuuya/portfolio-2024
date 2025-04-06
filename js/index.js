@@ -11,215 +11,404 @@ $(function(){
     gsap.registerPlugin(ScrollTrigger);
     gsap.timeline()
     .add([
-        gsap.fromTo(".intro-bg", {height: '100%'}, {height: '0%', ease: Power2.easeInOut, duration: 0.8}),
-        gsap.fromTo(".home__sticky > div", {y: '200px'}, {y: '0px', ease: Power2.easeInOut, duration: 0.8}),
+        gsap.fromTo(".intro-bg", {opacity:1}, {opacity:0, display:'none', ease: Power1.easeInOut, duration: 0.8}),
+        gsap.fromTo(".home__letter > *", {opacity:0, y:'30px'}, {opacity:1,y:'0%', delay:'.5',  duration: 0.5}),
     ]);
-    gsap.timeline()
-    .fromTo(".header__logo a", 0, {opacity:0}, {opacity:1})
-    .staggerFromTo(".header__logo span", 0.8, {y: '200%',}, { y: '0%',force3D: false ,ease: Power2.easeInOut},0.05);
+    gsap.timeline().staggerFromTo(".header__logo .split-text span", 1, 
+        {opacity:0, y: '0%',}, 
+        {opacity:1, y: '0%',delay:.5,force3D: false ,ease: Power1.easeInOut,
+        
+    },.05);
+
+
     //home
+    gsap.timeline()
+    .fromTo(".home .stemp__item.center .stemp__act", 1, {y: '-30%',rotateY:'-180deg'}, { y: '0%',rotateY:'0deg',delay:'.1', force3D: false ,ease: Power1.easeInOut});
+    gsap.timeline().fromTo(".home .stemp__item:nth-child(1) .stemp__item--front", 1, {scale:0,y: '-30%', x: '200%',rotate:'-60deg'}, {scale:1, y: '0%',x: '0%',rotate:'0deg',delay:0.2, force3D: false ,});
+    gsap.timeline().fromTo(".home .stemp__item:nth-child(2) .stemp__item--front", 1, {scale:0,y: '-30%', x: '200%',rotate:'-60deg'}, {scale:1, y: '0%',x: '0%',rotate:'0deg',delay:0.2,force3D: false ,});
+    gsap.timeline().fromTo(".home .stemp__item:nth-child(4) .stemp__item--front", 1, {scale:0,y: '-30%', x: '-200%',rotate:'60deg'}, {scale:1, y: '0%',x: '0%',rotate:'0deg',delay:0.2,force3D: false ,});
+    gsap.timeline().fromTo(".home .stemp__item:nth-child(5) .stemp__item--front", 1, {scale:0,y: '-30%', x: '-200%',rotate:'60deg'}, {scale:1, y: '0%',x: '0%',rotate:'0deg',delay:0.2,force3D: false ,});
+    
+    const parentWidth = document.querySelector(".home .stemp__item.center").offsetWidth;
     const homeTimeline = gsap.timeline({
         scrollTrigger: {
             trigger: ".home",
             scroller: window,
-            scrub: true,
+            scrub: 1,
             pin: true,
             pinSpacing: false, 
             anticipatePin: 1,
-            endTrigger: ".profile",
-            end: "bottom bottom",
+            end: "bottom+=500% bottom",
         },
     });
+    
     homeTimeline
     .to(".header__logo", {
         scrollTrigger: {
             trigger: "#wrap",
             scroller: window,
-            scrub: true,
+            scrub: 1,
             start: "top top",
             end:"+=50%",
         },
         scale: 1,
+        y:'0px',
         force3D: false,
     })
-    .to(".home__title", {
+    .to(".home__letter", {
         scrollTrigger: {
             trigger: "#wrap",
             scroller: window,
-            scrub: true,
+            scrub: 1,
             start: "top top",
             end:"+=30%",
         },
         opacity:0,
         force3D: false,
     })
-    .to(".home__shapes-area", {
+    
+    
+    const homeTimeline3 = gsap.timeline({
         scrollTrigger: {
             trigger: "#wrap",
             scroller: window,
-            scrub: true,
+            scrub: 1,
             start: "top top",
-            end:"+=50%",
-        },
-        scale:'1',
-        x:'0',
-        borderRadius:'0px',
-    })
-    .to(".overlay", {
+            end:"+=100%",
+        }
+    });
+    homeTimeline3.to(".home .stemp__item:nth-child(1),.home .stemp__item:nth-child(5)", {
+        y: "-200%",
+        force3D: false,
+    }, 0); 
+    
+    homeTimeline3.to(".home .stemp__item:nth-child(1),.home .stemp__item:nth-child(5)", {
+        opacity:0,
+    }, 0.3);
+
+    const homeTimeline4 = gsap.timeline({
         scrollTrigger: {
-            trigger: ".profile",
+            trigger: "#wrap",
             scroller: window,
-            scrub: true,
-            start:"top bottom",
-            end:"top +=100vh",
-        },
-        background: 'rgba(0,0,0,.4)',
+            scrub: 1,
+            start: "top top",
+            end:"+=100%",
+        }
+    });
+    homeTimeline4.to(".home .stemp__item:nth-child(2),.home .stemp__item:nth-child(4)", {
+        y: "-110%",
+        force3D: false,
+    }, 0); 
+    
+    homeTimeline4.to(".home .stemp__item:nth-child(2),.home .stemp__item:nth-child(4)", {
+        opacity:0,
+    }, 0.3);
+      
+    const homeTimeline2 = gsap.timeline({
+        scrollTrigger: {
+          trigger: "#wrap",
+          scroller: window,
+          scrub: 1,
+          start: "top top",
+          end: "+=120%",
+        }
+     });
+      
+    homeTimeline2.to(".home .stemp__item.center", {
+    scale: 1,
+    y: "10%",
+    rotateY: "-360deg",
+    force3D: false,
+    }, 0); 
+    
+    homeTimeline2.to(".home .stemp__item.center", {
+    opacity:.1,
+    rotate:'5deg',
+    x:'-15px',
+    }, 0.8);
+  
+    //Projects
+    //s: digit
+    // 연도 설정
+// 연도 설정
+const startYear = 2019;
+const endYear = 2025;
+let currentYear = startYear;
+let previousYear = startYear;
+const digits = document.querySelectorAll(".digit");
+let animationFrameId = null;
+
+// 연도 디지털 애니메이션 함수
+function updateDigits(newYear, direction) {
+    if (newYear === currentYear) return;
+
+    const newYearDigits = newYear.toString().split("");
+    const currentYearDigits = currentYear.toString().split("");
+
+    digits.forEach((digit, index) => {
+        const currentSpan = digit.querySelector(".current");
+        const nextSpan = digit.querySelector(".next");
+        const newDigit = newYearDigits[index] || "0";
+        const currentDigit = currentYearDigits[index] || "0";
+
+        if (newDigit !== currentDigit) {
+            nextSpan.innerHTML = newDigit;
+
+            gsap.killTweensOf(currentSpan);
+            gsap.killTweensOf(nextSpan);
+
+            gsap.set(nextSpan, { y: direction === "up" ? "100%" : "-100%", opacity: 1 });
+
+            gsap.timeline()
+                .to(currentSpan, {
+                    y: direction === "up" ? "-100%" : "100%",
+                    duration: 0.4,
+                    ease: "power2.inOut",
+                    onComplete: () => {
+                        currentSpan.innerHTML = newDigit;
+                        gsap.set(currentSpan, { y: "0%" });
+                    }
+                })
+                .to(nextSpan, {
+                    y: "0%",
+                    duration: 0.4,
+                    ease: "power2.inOut",
+                    onComplete: () => {
+                        gsap.set(nextSpan, { opacity: 0 });
+                    }
+                }, "-=0.4");
+        }
     });
 
-    //portfolio
-    const initialScale = 1;
-    const finalScale = 1;
-    const initialHeight = document.querySelector('.work .sec__title--lg').offsetHeight;
-    const reducedHeight = initialHeight * (initialScale - finalScale);
-    const totalImages = document.querySelectorAll('.work .work__img img').length;
-    const revealPercentage = 100 / totalImages;
+    currentYear = newYear;
+}
 
-    //s: digit
-    const startYear = 2019;
-    const endYear = 2025;
-    let currentYear = startYear;
-    const digits = document.querySelectorAll(".digit");
+// 가운데 기준 split-text span 애니메이션 설정
+const spans = gsap.utils.toArray(".work .split-text span");
 
-    let animationFrameId = null;
-
-    function updateDigits(newYear, direction) {
-        if (newYear === currentYear) return; 
-        
-        const newYearDigits = newYear.toString().split(""); 
-        const currentYearDigits = currentYear.toString().split("");
-
-        digits.forEach((digit, index) => {
-            const currentSpan = digit.querySelector(".current");
-            const nextSpan = digit.querySelector(".next");
-            const newDigit = newYearDigits[index] || "0"; 
-            const currentDigit = currentYearDigits[index] || "0";
-
-            if (newDigit !== currentDigit) {
-                nextSpan.innerHTML = newDigit;
-
-                gsap.killTweensOf(currentSpan);
-                gsap.killTweensOf(nextSpan);
-
-                gsap.set(nextSpan, { y: direction === "up" ? "100%" : "-100%", opacity: 1 });
-
-                gsap.timeline()
-                    .to(currentSpan, { 
-                        y: direction === "up" ? "-100%" : "100%", 
-                        duration: 0.4, 
-                        ease: "power2.inOut",
-                        onComplete: () => {
-                            currentSpan.innerHTML = newDigit;
-                            gsap.set(currentSpan, { y: "0%" }); 
-                        }
-                    })
-                    .to(nextSpan, { 
-                        y: "0%", 
-                        duration: 0.4, 
-                        ease: "power2.inOut",
-                        onComplete: () => {
-                            gsap.set(nextSpan, { opacity: 0 });
-                        }
-                    }, "-=0.4");
-            }
-        });
-
-        currentYear = newYear;
-    }
-
-    ScrollTrigger.create({
-        trigger: ".work__lineup",
+// 메인 타임라인
+const projectsTimeline = gsap.timeline({
+    scrollTrigger: {
+        trigger: ".work-intro",
         scroller: window,
-        scrub: true,
+        scrub: 0.5,
         pin: true,
-        start: ".work",
+        start: "top top",
+        end: "bottom+=200% top",
         onUpdate: (self) => {
             const progress = self.progress;
-            const newYear = Math.floor(startYear + (endYear - startYear) * progress);
-            const direction = self.direction > 0 ? "up" : "down";
 
-            if (animationFrameId) cancelAnimationFrame(animationFrameId);
-            animationFrameId = requestAnimationFrame(() => updateDigits(newYear, direction));
+            // 연도 변경을 특정 progress 구간에서만 실행
+            const min = 0.6;
+            const max = 1;
+
+            if (progress >= min && progress <= max) {
+                const localProgress = (progress - min) / (max - min); // 0~1
+                const newYear = Math.floor(startYear + (endYear - startYear) * localProgress);
+                const direction = newYear > previousYear ? "up" : "down";
+
+                previousYear = newYear;
+
+                if (animationFrameId) cancelAnimationFrame(animationFrameId);
+                animationFrameId = requestAnimationFrame(() => updateDigits(newYear, direction));
+            }
+        },
+    },
+});
+
+// 타임라인 애니메이션 정의
+projectsTimeline
+    .to(".work-intro .inner", {
+        scale: 1,
+        y: '0px',
+        borderRadius: '0px',
+        force3D: false,
+    }, 0)
+    .to(".work .item-l", {
+        x: '-20%',
+        force3D: false,
+    }, 0)
+    .to(".work .item-r", {
+        x: '20%',
+        force3D: false,
+    }, 0)
+    .to(".work .year-container", {
+        height: '100%',
+        force3D: false,
+    }, '+=0.4')
+    .to(".work .copyright .sec__title--lg", {
+        scale:'3',
+        force3D: false,
+    }, '-=0.4')
+    .to(".work .work-intro__desc", {
+        y: '-170%',
+        force3D: false,
+    }, '-=0.6')
+    .to(spans, {
+        y: '200%',
+        force3D: false,
+        stagger: function(index, target, list) {
+            const middle = (list.length - 1) / 2;
+            return Math.abs(index - middle) * 0.03; // 더 빠르게
+        }
+    }, '-=0.6');
+
+
+
+    
+    //expertise
+    const expertiseTimeline = gsap.timeline({
+        scrollTrigger: {
+            trigger: ".expertise",
+            scroller: window,
+            scrub:.5,
+            pin: true,
+            start: "top top",
+            end: `+=400%`, 
         },
     });
+    expertiseTimeline
+    .to(".expertise__wrap", {
+        scale: 1,
+        y: '0px',
+        borderRadius: '0px',
+        force3D: false,
+    }, 0)
+    .to(".expertise .bg-1", {
+        x: '-20%',
+        force3D: false,
+    }, 0)
+    .to(".expertise .bg-2", {
+        x: '20%',
+        force3D: false,
+    }, 0)
+    .to(".expertise .split-text span", {
+        y: '0%',
+        stagger: 0.05,
+        ease: Power2.easeInOut,
+        force3D: false,
+        start: "top top",
+        end: "bottom bottom",
+    }, 0)
+    .to(".expertise__cont .intro-img.img-2", {
+        y: '-100%',
+        force3D: false,
+        duration: 1 
+    }, "+=1")
+    .to(".expertise__items", {
+        y: '0%',
+        force3D: false,
+        duration: 1
+    }, "-=1")
+    .to(".expertise__items", {
+        y: '-100%',
+        force3D: false,
+        duration: 3
+    }, "+=0")
+    .to(".expertise .split-text span", {
+        y: '100%',
+        stagger: 0.05,
+        ease: Power2.easeInOut,
+        force3D: false,
+        start: "top top",
+        end: "bottom bottom",
+    }, "+=0")
+    .to(".expertise__wrap", {
+        scale:'0.97',
+        borderRadius:'20px',
+        force3D: false,
+        start: "top top",
+        end: "bottom bottom",
+    }, "+=0");
 
-    //e:digit
-    const workTimeline = gsap.timeline({
+
+    
+    //stack & tools
+    const books = document.querySelectorAll(".stack__item");
+    const booksTimeline = gsap.timeline({
         scrollTrigger: {
-            trigger: ".work__lineup",
+            trigger: ".stack",
             scroller: window,
             scrub: true,
             pin: true,
+            end: `bottom top-=${window.innerHeight * 2}px`,
+            onUpdate: (self) => {
+                let scrollProgress = self.progress;
+                let maxIndex = books.length - 1;
+                let index = Math.round(scrollProgress * maxIndex);
+                updateCarousel(index);
+            },
+            
         },
-    });
-    workTimeline
-    .to(".work .sec__title--lg", {
-        scale: finalScale,
-        force3D: false,
-        scrollTrigger: {
-            trigger: ".work__lineup",
-            scroller: window,
-            scrub: true,
-            start: ".work",
-        },
-    })
-    .to(".work .sec__title--lg .box", {
-        width: '50%',
-        force3D: false,
-        scrollTrigger: {
-            trigger: ".work__lineup",
-            scroller: window,
-            scrub: true,
-            start: ".work",
-        },
-    })
-    .to(".work .work__img", {
-        scale: 1,
-        force3D: false,
-        marginTop: `-=${reducedHeight}px`, 
-        scrollTrigger: {
-            trigger: ".work__lineup",
-            scroller: window,
-            scrub: true,
-            start: ".work",
-        },
-    }) 
-    .to(".work .work__img img", {
-        autoAlpha: 1, 
-        stagger: {
-            each: revealPercentage / 100,
-            start: 0,  
-        },
-        duration: 0.05,
     });
 
-    //expertise
+    function getOffsetValue() {
+        return window.innerWidth < 768 ? 130 : 230; // 모바일(768px 이하)에서는 180, PC에서는 230
+    }
+    
+    function updateCarousel(index) {
+        const offsetValue = getOffsetValue(); // 현재 화면 크기에 맞는 값 가져오기
+    
+        books.forEach((book, i) => {
+            const offset = i - index;
+            let rotateY = 88 - Math.abs(offset) * 20;
+            rotateY = Math.max(0, rotateY);
+    
+            if (offset < 0) rotateY *= 1;
+            else rotateY *= -1;
+    
+            let zIndex = 10 - Math.abs(offset);
+    
+            gsap.set(book, { zIndex: zIndex });
+            gsap.to(book.querySelector(".book"), {
+                x: offset * offsetValue, // 적용
+                rotateY: rotateY,
+                duration: 1, 
+            });
+            gsap.to(book.querySelector(".stack__info"), {
+                x: offset * offsetValue,
+                left: offset * (offsetValue / 2),
+                duration: 1, 
+            });
+    
+            book.classList.toggle("active", i === index);
+        });
+    }
+    
+    // 초기 실행
+    updateCarousel(0);
+    
+    // 창 크기 변경 시 다시 실행
+    window.addEventListener("resize", () => updateCarousel(0));
+    
+
+    /*
     const cardSlide2 = gsap.timeline({
         scrollTrigger: {
-            trigger: ".expertise .content",
+            trigger: ".dd",
             scroller: window,
             scrub: true,
             pin: true,
             end: `bottom top-=${window.innerHeight * 3}px`,
         },
     });
-    cardSlide2.to('.expertise .card1', { yPercent: 0, className: 'card card1 act' })
-    .from('.expertise .card2', { yPercent: 200})
-    .to('.expertise .card1', { scale: 0.9, y: '-60px' }, 0.6)
-    .to('.expertise .card2', { yPercent: 0, className: 'card card2 act' })
-    .from('.expertise .card3', { yPercent: 200})
-    .to('.expertise .card2', { scale: 0.9, y: '-60px' }, "-=0.6")
-    .to('.expertise .card1', { scale: 0.8, y: '-120px' }, "-=0.6")
-    .to('.expertise .card3', { yPercent: 0, className: 'card card3 act' })
+    cardSlide2.to('.dd .card1', { yPercent: 0, className: 'card card1 act' })
+    .from('.dd .card2', { yPercent: 200})
+    .to('.dd .card1', { scale: 0.9, y: '-40vh' }, "-=0.6")
+    .to('.dd .card2', { yPercent: 0, className: 'card card2 act' })
+    .from('.dd .card3', { yPercent: 200})
+    .to('.dd .card2', { scale: 0.9, y: '-40vh' }, "-=0.6")
+    .to('.dd .card1', { scale: 0.8, y: '-80vh' }, "-=0.6")
+    .to('.dd .card3', { yPercent: 0, className: 'card card3 act' })
+    .to('.dd .card3', { scale: 0.9, y: '0' })
+    .to('.dd .card2', { scale: 0.8, y: '-100px' }, "-=0.6")
+    .to('.dd .card1', { scale: 0.7, y: '-200px' }, "-=0.6")
+    .to('.dd .card1', { scale: 1, y: '0', })
+    .to('.dd .card2', { scale: 1, y: '0', }, "-=0.6")
+    .to('.dd .card3', { scale: 1, y: '0', }, "-=0.6")
+    .to('.dd .card1', { rotate:'-10px' })
+    .to('.dd .card2', { rotate:'10px' }, "-=0.6");
+    
     
     //card
     var cards = document.querySelectorAll(".folders .pin-card .card");
@@ -271,7 +460,7 @@ $(function(){
             trigger: ".folders",
             scroller: window,
             scrub: true,
-            endTrigger: ".skills",
+            endTrigger: ".service",
             onEnter: () => {
                 gsap.to(".action-card", {
                     top: '100%',
@@ -282,8 +471,33 @@ $(function(){
         },
         opacity: 1,
     });
+    */
+    //service
+    const serviceItems = document.querySelector('.service ul').querySelectorAll('li');
+    const serviceTotalHeight = serviceItems.length * serviceItems[0].offsetHeight;
+    const service = gsap.timeline({
+        scrollTrigger: {
+            trigger: ".service",
+            scroller: window,
+            scrub: true,
+            pin: true,
+            end: `bottom top-=${serviceTotalHeight * 2}px`,
+        },
+    });
+    service
+    .to(".service ul", {
+        rotateX:'290deg',
+        scrollTrigger: {
+            trigger: ".service",
+            scroller: window,
+            scrub: true,
+            start:'.service',
+            end: `bottom top-=${serviceTotalHeight * 2}px`,
+        },
+    });
 
     
+    //color change
     const scrollColorElems = document.querySelectorAll("[data-bgcolor]");
     scrollColorElems.forEach((colorSection, i) => {
         const prevBg = i === 0 ? "" : scrollColorElems[i - 1].dataset.bgcolor;
@@ -298,6 +512,8 @@ $(function(){
                     color: colorSection.dataset.textcolor,
                     overwrite: "auto",
                 });
+                document.documentElement.style.setProperty("--bg-color", colorSection.dataset.bgcolor);
+                document.documentElement.style.setProperty("--text-color", colorSection.dataset.textcolor);
             },
             onLeaveBack: () => {
                 gsap.to("#container", {
@@ -305,33 +521,12 @@ $(function(){
                     color: prevText,
                     overwrite: "auto",
                 });
+                document.documentElement.style.setProperty("--bg-color", prevBg);
+                document.documentElement.style.setProperty("--text-color", prevText);
             }
         });
     });
 
-    //skills
-    const skillsItems = document.querySelector('.skills ul').querySelectorAll('li');
-    const skillsTotalHeight = skillsItems.length * skillsItems[0].offsetHeight;
-    const skills = gsap.timeline({
-        scrollTrigger: {
-            trigger: ".skills",
-            scroller: window,
-            scrub: true,
-            pin: true,
-            end: `bottom top-=${skillsTotalHeight * 2}px`,
-        },
-    });
-    skills
-    .to(".skills ul", {
-        rotateX:'290deg',
-        scrollTrigger: {
-            trigger: ".skills",
-            scroller: window,
-            scrub: true,
-            start:'.skills',
-            end: `bottom top-=${skillsTotalHeight * 2}px`,
-        },
-    });
 });
 /*
     var Example = Example || {};

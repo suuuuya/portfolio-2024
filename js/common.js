@@ -117,7 +117,7 @@ function customCursorJS(){
     const $cursor_txt = $cursor_secondary.find('.custom-cursor__text__txt');
     const $cursor_secondary2 = $('#custom-cursor__img');
     const $cursor_img = $cursor_secondary2.find('.custom-cursor__img__src');
-
+	let hoverTimer; // 타이머 
     // mousemove
     $('body').mousemove(function (e) {
         TweenMax.to($cursor_primary, 0.3, {opacity:1, x: e.clientX, y: e.clientY, ease: Power3.easeOut });
@@ -148,15 +148,19 @@ function customCursorJS(){
         const size = $this.data('size') || '100%';
         $cursor_secondary2.addClass('ani');
         $cursor_img.find('> img').attr({ src: imgs, alt: alt });
-		$cursor_img.find('.background').stop(true).css('background-image', `url(${imgs})`);
-
-        TweenMax.to($cursor_img, 0.1, { width: size, height: size, autoAlpha: 1, ease: Power0.easeNone });
+		
+		clearTimeout(hoverTimer);
+        hoverTimer = setTimeout(() => {
+			$cursor_img.find('.background').stop(true, true).fadeIn(200).css('background-image', `url(${imgs})`);
+		}, 500);
+        TweenMax.to($cursor_img, 0, {opacity:1, width: size, height: size, autoAlpha: 1, ease: Power0.easeNone });
     });
 	// [.hover-image-cursor] mouseleave
     $(document).on('mouseleave', '.hover-image-cursor', function () {
+		clearTimeout(hoverTimer); 
 		$cursor_secondary2.removeClass('ani');
         $cursor_img.find('> img').attr({ src: '../img/no-img.png', alt: '' });
-        TweenMax.to($cursor_img, 0.1, { autoAlpha: 0, ease: Power0.easeNone });
+        TweenMax.to($cursor_img, 0, { autoAlpha: 0, ease: Power0.easeNone });
     });
 	
 	//drag
@@ -179,15 +183,18 @@ function customCursorJS(){
 }
 
 function splitJS(){
-	var splitText = document.querySelector('.split-text').textContent;
-    var container = document.querySelector('.split-text');
-    container.innerHTML = '';
+	var containers = document.querySelectorAll('.split-text');
 
-    for (var i = 0; i < splitText.length; i++) {
-        var span = document.createElement('span');
-        span.textContent = splitText[i];
-        container.appendChild(span);
-    }
+    containers.forEach(function(container) {
+        var splitText = container.textContent;
+        container.innerHTML = '';  
+
+        for (var i = 0; i < splitText.length; i++) {
+            var span = document.createElement('span');
+            span.textContent = splitText[i];
+            container.appendChild(span);
+        }
+    });
 }
 
 function motionLogo() {
