@@ -2,7 +2,7 @@
 /* mixin */
 :root {
   --main-white: #f5f5f5;
-  --main-black: #141516;
+  --main-black: #1A1313;
   --main-gray: #353535;
   --main-ivory:#E8E4D9;
   --gray-type1: #cdcdcd;
@@ -213,36 +213,6 @@ video {
   width: 100%;
   height: 100%;
   object-fit: cover;
-}
-
-/*split text*/
-.split-text span {
-  display: inline-block;
-  transform: translate3d(0, 200%, 0);
-}
-
-.serif {
-  font-family: "editorial", sans-serif;
-}
-.serif--light {
-  font-family: "editorial", sans-serif;
-  font-weight: 300;
-}
-.serif--md {
-  font-family: "editorial", sans-serif;
-  font-weight: 400;
-}
-
-.serif-italic {
-  font-family: "editorial italic", sans-serif;
-}
-.serif-italic--light {
-  font-family: "editorial italic", sans-serif;
-  font-weight: 300;
-}
-.serif-italic--md {
-  font-family: "editorial italic", sans-serif;
-  font-weight: 400;
 }
 
 /*custom cursor*/
@@ -626,6 +596,26 @@ body:not(.scrolling, .scrolled-init) .gnb__list {
 /*html{
 	&::after{content: "";position: fixed;top:0;left:0;width:100%;height:100%;background-image: url(../img/noise.png);background-repeat: repeat; background-size: auto; pointer-events: none; opacity: 0.7; z-index: 10000;}
 }*/
+/*split text*/
+.split-text span {
+  display: inline-block;
+  transform: translate3d(0, 200%, 0);
+}
+
+.serif {
+  font-family: "editorial", sans-serif;
+}
+.serif.split-text span {
+  font-family: "editorial", sans-serif;
+}
+
+.serif-italic {
+  font-family: "editorial italic", sans-serif;
+}
+.serif-italic.split-text span {
+  font-family: "editorial italic", sans-serif;
+}
+
 .sec {
   position: relative;
   width: 100%;
@@ -636,9 +626,9 @@ body:not(.scrolling, .scrolled-init) .gnb__list {
   line-height: 150%;
 }
 .sec__title--sm {
-  font-size: 22px;
-  letter-spacing: -2px;
-  line-height: 125%;
+  font-size: 27px;
+  letter-spacing: -0.25px;
+  line-height: 155%;
 }
 .sec__title--md {
   font-size: 55px;
@@ -661,16 +651,17 @@ body:not(.scrolling, .scrolled-init) .gnb__list {
   text-transform: initial;
 }
 .sec__cate {
-  font-size: 15px;
+  font-size: 16px;
+  letter-spacing: 0.5px;
   line-height: 150%;
-  font-weight: 500;
-  margin-bottom: 40px;
+  font-weight: 400;
+  margin-bottom: 150px;
 }
 .sec__cate::before {
   display: inline-block;
   content: "";
-  width: 12px;
-  height: 12px;
+  width: 10px;
+  height: 10px;
   border-radius: 50%;
   background: var(--text-color);
   vertical-align: top;
@@ -686,7 +677,7 @@ body:not(.scrolling, .scrolled-init) .gnb__list {
   line-height: 125%;
 }
 .font__style--md, .work .history__list {
-  font-size: 36px;
+  font-size: 20px;
   font-weight: 300;
   letter-spacing: -1px;
   line-height: 135%;
@@ -703,7 +694,7 @@ body:not(.scrolling, .scrolled-init) .gnb__list {
 }
 .font__style--lg {
   font-size: 50px;
-  font-weight: 500;
+  font-weight: 400;
   line-height: 135%;
 }
 .font__style--big {
@@ -782,6 +773,8 @@ body:not(.scrolling, .scrolled-init) .gnb__list {
 }
 .home__sticky {
   position: relative;
+  width: 100%;
+  height: 100%;
 }
 .home__shapes-area {
   position: relative;
@@ -825,6 +818,7 @@ body:not(.scrolling, .scrolled-init) .gnb__list {
   height: 100%;
   -webkit-backface-visibility: hidden;
   backface-visibility: hidden;
+  transform-style: preserve-3d;
 }
 .home .stemp__item--back {
   position: absolute;
@@ -832,7 +826,20 @@ body:not(.scrolling, .scrolled-init) .gnb__list {
   height: 100%;
   -webkit-backface-visibility: hidden;
   backface-visibility: hidden;
+  transform-style: preserve-3d;
   transform: rotateY(-180deg);
+}
+.home .stemp__item--up {
+  position: absolute;
+  top: 0;
+  left: 100%;
+  width: 100%;
+  height: 100%;
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+  transform: translateY(150px) translateX(-350%);
+  z-index: 3;
+  opacity: 0;
 }
 .home .stemp__item img {
   width: 100%;
@@ -863,13 +870,31 @@ body:not(.scrolling, .scrolled-init) .gnb__list {
 
 /*profile*/
 .profile {
-  padding: calc(var(--spacing-lg) * 5) 0 0;
+  padding: calc(var(--spacing-lg) * 7) 0 0;
   margin-bottom: var(--spacing-md);
+  text-align: center;
+}
+.profile .inner {
+  padding-top: var(--spacing-lg);
+}
+.profile .sec__title {
+  margin-bottom: var(--spacing-lg);
 }
 .profile .sec__title--lg {
   font-size: 15em;
-  display: flex;
-  justify-content: space-between;
+}
+.profile .font__style--lg {
+  margin-bottom: var(--spacing-xs);
+}
+.profile__group + .profile__group {
+  margin-top: var(--spacing-lg);
+}
+.profile .desc b {
+  font-weight: 500;
+  display: block;
+}
+.profile .desc ul li + li {
+  margin-top: 5px;
 }
 .profile .portfolio .ico-arrow--goto {
   width: 12px;

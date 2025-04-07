@@ -2,9 +2,9 @@ function resizeHeight() {
     const windowHeight = window.innerHeight;
     document.querySelector(".home__sticky").style.height = `${windowHeight}px`;
 }
-
+/*
 window.addEventListener("resize", resizeHeight);
-resizeHeight();
+resizeHeight();*/
 
 $(function(){
     //ScrollTrigger
@@ -29,7 +29,6 @@ $(function(){
     gsap.timeline().fromTo(".home .stemp__item:nth-child(4) .stemp__item--front", 1, {scale:0,y: '-30%', x: '-200%',rotate:'60deg'}, {scale:1, y: '0%',x: '0%',rotate:'0deg',delay:0.2,force3D: false ,});
     gsap.timeline().fromTo(".home .stemp__item:nth-child(5) .stemp__item--front", 1, {scale:0,y: '-30%', x: '-200%',rotate:'60deg'}, {scale:1, y: '0%',x: '0%',rotate:'0deg',delay:0.2,force3D: false ,});
     
-    const parentWidth = document.querySelector(".home .stemp__item.center").offsetWidth;
     const homeTimeline = gsap.timeline({
         scrollTrigger: {
             trigger: ".home",
@@ -116,18 +115,78 @@ $(function(){
       
     homeTimeline2.to(".home .stemp__item.center", {
     scale: 1,
-    y: "10%",
+    y: "8%",
     rotateY: "-360deg",
     force3D: false,
     }, 0); 
+
+    const homeTimeline5 = gsap.timeline({
+        scrollTrigger: {
+          trigger: ".profile",
+          scroller: window,
+          scrub: 1,
+          start: "top top",
+          end: "bottom+=300vh bottom",
+        }
+     });
+     homeTimeline5.to(".home .stemp__item.center", {
+        rotate:'-5deg',
+        x:'15px',
+     },0);
+     homeTimeline5.to(".home .stemp", {
+        opacity:.15
+     },0);
+     homeTimeline5.to(".home .stemp__item.center", {
+        rotateY:'180deg',
+    },0.4);
     
-    homeTimeline2.to(".home .stemp__item.center", {
-    opacity:.1,
-    rotate:'5deg',
-    x:'-15px',
-    }, 0.8);
-  
+/*
+    const homeTimeline5 = gsap.timeline({
+        scrollTrigger: {
+          trigger: "#wrap",
+          scroller: window,
+          scrub: 1,
+          start: "top top",
+          end: "+=130%",
+        }
+     });
+    homeTimeline5.to(".home .stemp__item--up", {
+    opacity:1,
+    y:'10%',
+    rotate:'-15deg',
+    x:'-400%',
+    scale:'1.8',
+    rotateY: "-300deg",
+    }, 1);*/
+ 
+
+
+    //profile
+    gsap.timeline({
+        scrollTrigger: {
+          trigger: ".profile .inner",
+          start: "top +=100%", 
+          toggleActions: "play none none none", 
+        }
+      })
+      .staggerFromTo(
+        ".profile .sec__title--lg span",1, 
+        { opacity: 0, y: '0%' }, 
+        { 
+          opacity: 1, 
+          y: '0%', 
+          delay: 0.5, 
+          force3D: false, 
+          ease: Power1.easeInOut 
+        }, 
+        0.05 
+      );
+    
     //Projects
+
+
+
+
     //s: digit
     // 연도 설정
 // 연도 설정

@@ -20,7 +20,7 @@
 }
 :root {
 	--main-white: #f5f5f5;
-	--main-black: #141516;
+	--main-black: #1A1313;
 	--main-gray: #353535;
 	--main-ivory:#E8E4D9;
 	--gray-type1: #cdcdcd;
@@ -71,18 +71,7 @@ sub {font-size:10px;}
 #bg {position: fixed;left: 0;top: 0;width: 100%;height: 100%;background: rgba(0, 0, 0, 0.7);display: none;z-index: 1001;}
 .e_ {overflow: hidden;text-overflow: ellipsis;-webkit-line-clamp: 1;-webkit-box-orient: vertical;word-wrap: break-word;-webkit-box-sizing: border-box;box-sizing: border-box;display: -webkit-box;}
 video{position: absolute;top: 0;left: 0;width: 100%;height: 100%;object-fit: cover;}
-/*split text*/
-.split-text{
-	span{display: inline-block; transform: translate3d(0,200%,0);}
-}
-.serif{font-family: 'editorial',sans-serif;
-	&--light{font-family: 'editorial',sans-serif;font-weight: 300;}
-	&--md{font-family: 'editorial',sans-serif;font-weight: 400;}
-}
-.serif-italic{font-family: 'editorial italic',sans-serif;
-	&--light{font-family: 'editorial italic',sans-serif;font-weight: 300;}
-	&--md{font-family: 'editorial italic',sans-serif;font-weight: 400;}
-}
+
 /*custom cursor*/
 .custom-cursor{position: fixed;top: 0;left: 0;pointer-events: none;mix-blend-mode: difference;z-index: 1000;opacity: 0;  
 	&:not(.small) {width: 150px;height: 150px;}
@@ -205,29 +194,43 @@ body {overflow-x:hidden;color: var(--main-ivory);background: #111;cursor: none;f
 /*html{
 	&::after{content: "";position: fixed;top:0;left:0;width:100%;height:100%;background-image: url(../img/noise.png);background-repeat: repeat; background-size: auto; pointer-events: none; opacity: 0.7; z-index: 10000;}
 }*/
+/*split text*/
+.split-text{
+	span{display: inline-block; transform: translate3d(0,200%,0);}
+}
+.serif{font-family: 'editorial',sans-serif;
+	&.split-text{
+		span{font-family: 'editorial',sans-serif;}
+	}
+}
+.serif-italic{font-family: 'editorial italic',sans-serif;
+	&.split-text{
+		span{font-family: 'editorial italic',sans-serif;}
+	}
+}
 .sec{position: relative; width: 100%;
 	/*title*/
 	&__title{
 		&--desc{@include font-style(null, 20px, null, null, 150%);}
-		&--sm{@include font-style(null, 22px, null, -2px, 125%);}
+		&--sm{@include font-style(null, 27px, null, -.25px, 155%);}
 		&--md{@include font-style(null, 55px, 500, -2px, 120%);}
 		&--lg{@include font-style(null, 10em, null, -7px, 95%);
 		.num{font-size: 30px; vertical-align: top; display: inline-block; margin: -100px 30px 0 70px;}
 		.serif-italic{text-transform: initial;}
 		}
 	}
-	&__cate{@include font-style(null, 15px, null, null, 150%); font-weight: 500; margin-bottom: 40px;
-		&::before{display: inline-block; content: "";width: 12px; height: 12px; border-radius: 50%; background: var(--text-color);vertical-align: top;margin: 4px 10px 0 0;}
+	&__cate{@include font-style(null, 16px, null, 0.5px, 150%); font-weight: 400; margin-bottom: 150px;
+		&::before{display: inline-block; content: "";width: 10px; height: 10px; border-radius: 50%; background: var(--text-color);vertical-align: top;margin: 4px 10px 0 0;}
 	}
 }
 .font{
 	&__style{
 		&--desc{@include font-style(null, 20px, null, null, 125%);}
 		&--sm{@include font-style(null, 15px, null, null, 125%);}
-		&--md{@include font-style(null, 36px, 300, -1px, 135%);}
+		&--md{@include font-style(null, 20px, 300, -1px, 135%);}
 		&--md-bold{@include font-style(null, 24px, 600, null, 135%);}
 		&--md2-bold{@include font-style(null, 24px, 600, null, 135%);}
-		&--lg{@include font-style(null, 50px, 500, null, 135%);}
+		&--lg{@include font-style(null, 50px, 400, null, 135%);}
 		&--big{@include font-style(null, 50px, 500, null, 135%);}
 	}
 }

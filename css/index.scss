@@ -6,14 +6,15 @@
 
 /*home*/
 .home{height: 100vh; --letter-bg:#222/*7f90a2*/;
-  &__sticky{position: relative;}
+  &__sticky{position: relative; width: 100%; height: 100%;}
   &__shapes-area{position: relative; width: 100%; height: 100%;overflow: hidden;z-index: 1;}
   .stemp{pointer-events: none;
     &__wrap{position: relative; left: 50%; width: 100%; min-width: 1400px; height: 100%; display: flex; align-items: center; transform: translateX(-50%);}
     &__inner{margin-top: 3%; width: 100%; display: flex; align-items: center; justify-content: space-between;perspective: 1000px;}
     &__item{position: relative; --stemp-width:calc(720px/2); width: calc(720px/2);height: calc(887px/2); transform: scale(0.5);transform-style: preserve-3d;
-      &--front{position: absolute; width: 100%; height: 100%; -webkit-backface-visibility: hidden; backface-visibility: hidden;}
-      &--back{position: absolute; width: 100%; height: 100%; -webkit-backface-visibility: hidden; backface-visibility: hidden; transform: rotateY(-180deg);}
+      &--front{position: absolute; width: 100%; height: 100%; -webkit-backface-visibility: hidden; backface-visibility: hidden;transform-style: preserve-3d;}
+      &--back{position: absolute; width: 100%; height: 100%; -webkit-backface-visibility: hidden; backface-visibility: hidden;transform-style: preserve-3d; transform: rotateY(-180deg);}
+      &--up{position: absolute;top:0;left: 100%; width: 100%; height: 100%; -webkit-backface-visibility: hidden; backface-visibility: hidden; transform:translateY(150px) translateX(-350%);z-index: 3; opacity: 0;}
       img{width: 100%;}
     }
     &__act{position: relative; width: 100%; height: 100%;transform-style: preserve-3d;}
@@ -25,23 +26,27 @@
 }
 
 /*profile*/
-.profile{padding: calc(var(--spacing-lg)*5) 0 0; margin-bottom: var(--spacing-md); 
-  .inner{}
+.profile{padding: calc(var(--spacing-lg)*7) 0 0; margin-bottom: var(--spacing-md); text-align: center;
+  .inner{padding-top: var(--spacing-lg);
+  }
   .sec{
-    &__title{
-      &--lg{ font-size: 15em; display: flex; justify-content: space-between;}
+    &__title{margin-bottom: var(--spacing-lg);
+      &--lg{ font-size: 15em;}
+    }
+  }
+  .font{
+    &__style{
+      &--lg{margin-bottom: var(--spacing-xs);}
     }
   }
   &__group{
-    &--1{}
-    &--2{}
-    &--3{}
-    &--4{}
-    &--5{}
+    & + &{margin-top: var(--spacing-lg)}
   }
-  .desc{@extend .font__style--desc;}
-  .font-style{
-    &--md{}
+  .desc{@extend .font__style--desc;
+    b{font-weight: 500; display: block;}
+    ul{
+      li + li{margin-top: 5px;}
+    }
   }
 	.portfolio{
 		.ico-arrow--goto{width: 12px; height: 12px;}
