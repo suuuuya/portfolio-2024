@@ -20,7 +20,7 @@
 }
 :root {
 	--main-white: #f5f5f5;
-	--main-black: #1A1313;
+	--main-black: #1F1B1B;
 	--main-gray: #353535;
 	--main-ivory:#E8E4D9;
 	--gray-type1: #cdcdcd;
@@ -93,7 +93,7 @@ video{position: absolute;top: 0;left: 0;width: 100%;height: 100%;object-fit: cov
 		&.drag &__txt {background-size: 89px auto;}
 	}
 	&__img{position: fixed;top: 0;left: 0;pointer-events: none;z-index: 99999;font-size: 0;
-		&__body{position: relative; width: 280px; height: 373px; border-radius: 15px; overflow: hidden;
+		&__body{position: relative; width: 280px; height: 373px; border-radius: 7px; overflow: hidden;
 			img{position: relative; width: 100%; z-index: 2;}
 			.background{position: absolute; top:0; left: 0; width: 100%;height: 100%;background-size: cover; background-repeat: no-repeat; background-position: top left; z-index: 1;}
 		}
@@ -196,15 +196,15 @@ body {overflow-x:hidden;color: var(--main-ivory);background: #111;cursor: none;f
 }*/
 /*split text*/
 .split-text{
-	span{display: inline-block; transform: translate3d(0,200%,0);}
+	span{display: inline-block; transform: translate3d(0,0%,0);}
 }
 .serif{font-family: 'editorial',sans-serif;
-	&.split-text{
+	&.split-text,&.split{
 		span{font-family: 'editorial',sans-serif;}
 	}
 }
 .serif-italic{font-family: 'editorial italic',sans-serif;
-	&.split-text{
+	&.split-text,&.split{
 		span{font-family: 'editorial italic',sans-serif;}
 	}
 }
@@ -212,9 +212,9 @@ body {overflow-x:hidden;color: var(--main-ivory);background: #111;cursor: none;f
 	/*title*/
 	&__title{
 		&--desc{@include font-style(null, 20px, null, null, 150%);}
-		&--sm{@include font-style(null, 27px, null, -.25px, 155%);}
+		&--sm{@include font-style(null, 24px, null, -.25px, 155%);}
 		&--md{@include font-style(null, 55px, 500, -2px, 120%);}
-		&--lg{@include font-style(null, 10em, null, -7px, 95%);
+		&--lg{@include font-style(null, 15em, null, -6px, 100%);
 		.num{font-size: 30px; vertical-align: top; display: inline-block; margin: -100px 30px 0 70px;}
 		.serif-italic{text-transform: initial;}
 		}
@@ -241,13 +241,24 @@ body {overflow-x:hidden;color: var(--main-ivory);background: #111;cursor: none;f
 	0%{opacity: 0;}
 	100% {opacity:1;}
 }
+@keyframes fadeUp {
+	0%{opacity: 0; transform: translateY(20px);}
+	100% {opacity:1; transform: translateY(0px);}
+}
 @keyframes opacityAlternate {
 	0%{opacity: 0;}
 	50% {opacity:1;}
 	100% {opacity:0;}
 }
+/*
+.ani {
+	opacity: 0;
+}
 
-
+.ani.in-view {
+	animation:opacity 1s forwards ;
+}
+*/
 @media screen and (max-width: 1600px){
 	/*html{font-size: 0.0625vw;}*/
 }

@@ -89,6 +89,7 @@ $(function(){
     headerJS();
     customCursorJS();
     splitJS();
+    animationJS();
 	//motionLogo();
 });
 ////////////////////////////////////////////////////////////////////////////////////
@@ -203,4 +204,20 @@ function motionLogo() {
     animation
 	.staggerFromTo(".header__logo a", 0, {opacity:0}, {opacity:1})
     .staggerFromTo(".header__logo span", 0.8, {y: '200%',}, { y: '0%',force3D: false ,ease: Power2.easeInOut},0.05);	
+}
+
+
+function animationJS(){
+	const observer = new IntersectionObserver((entries) => {
+		entries.forEach(entry => {
+		  if (entry.isIntersecting) {
+			entry.target.classList.add("in-view");
+			observer.unobserve(entry.target); 
+		  }
+		});
+	  }, {
+		threshold: 0.2 
+	  });
+	  
+	  document.querySelectorAll('.ani').forEach(el => observer.observe(el));
 }

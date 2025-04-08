@@ -2,12 +2,13 @@ function resizeHeight() {
     const windowHeight = window.innerHeight;
     document.querySelector(".home__sticky").style.height = `${windowHeight}px`;
 }
-/*
+
 window.addEventListener("resize", resizeHeight);
-resizeHeight();*/
+resizeHeight();
 
 $(function(){
-    //ScrollTrigger
+
+    //***** ScrollTrigger
     gsap.registerPlugin(ScrollTrigger);
     gsap.timeline()
     .add([
@@ -15,13 +16,13 @@ $(function(){
         gsap.fromTo(".home__letter > *", {opacity:0, y:'30px'}, {opacity:1,y:'0%', delay:'.5',  duration: 0.5}),
     ]);
     gsap.timeline().staggerFromTo(".header__logo .split-text span", 1, 
-        {opacity:0, y: '0%',}, 
-        {opacity:1, y: '0%',delay:.5,force3D: false ,ease: Power1.easeInOut,
+        {opacity:0,y:0, }, 
+        {opacity:1,y:0, delay:.5,force3D: false ,ease: Power1.easeInOut,
         
     },.05);
 
 
-    //home
+    //***** home
     gsap.timeline()
     .fromTo(".home .stemp__item.center .stemp__act", 1, {y: '-30%',rotateY:'-180deg'}, { y: '0%',rotateY:'0deg',delay:'.1', force3D: false ,ease: Power1.easeInOut});
     gsap.timeline().fromTo(".home .stemp__item:nth-child(1) .stemp__item--front", 1, {scale:0,y: '-30%', x: '200%',rotate:'-60deg'}, {scale:1, y: '0%',x: '0%',rotate:'0deg',delay:0.2, force3D: false ,});
@@ -29,6 +30,7 @@ $(function(){
     gsap.timeline().fromTo(".home .stemp__item:nth-child(4) .stemp__item--front", 1, {scale:0,y: '-30%', x: '-200%',rotate:'60deg'}, {scale:1, y: '0%',x: '0%',rotate:'0deg',delay:0.2,force3D: false ,});
     gsap.timeline().fromTo(".home .stemp__item:nth-child(5) .stemp__item--front", 1, {scale:0,y: '-30%', x: '-200%',rotate:'60deg'}, {scale:1, y: '0%',x: '0%',rotate:'0deg',delay:0.2,force3D: false ,});
     
+    //sticky ani
     const homeTimeline = gsap.timeline({
         scrollTrigger: {
             trigger: ".home",
@@ -37,7 +39,8 @@ $(function(){
             pin: true,
             pinSpacing: false, 
             anticipatePin: 1,
-            end: "bottom+=500% bottom",
+            end: "bottom bottom",
+            endTrigger:'.work',
         },
     });
     
@@ -66,7 +69,7 @@ $(function(){
         force3D: false,
     })
     
-    
+    // side stemp ani - scroll Y
     const homeTimeline3 = gsap.timeline({
         scrollTrigger: {
             trigger: "#wrap",
@@ -85,6 +88,7 @@ $(function(){
         opacity:0,
     }, 0.3);
 
+    // side stemp ani - hide
     const homeTimeline4 = gsap.timeline({
         scrollTrigger: {
             trigger: "#wrap",
@@ -102,7 +106,8 @@ $(function(){
     homeTimeline4.to(".home .stemp__item:nth-child(2),.home .stemp__item:nth-child(4)", {
         opacity:0,
     }, 0.3);
-      
+     
+    // center stemp ani
     const homeTimeline2 = gsap.timeline({
         scrollTrigger: {
           trigger: "#wrap",
@@ -120,6 +125,7 @@ $(function(){
     force3D: false,
     }, 0); 
 
+    // center stemp ani - spin
     const homeTimeline5 = gsap.timeline({
         scrollTrigger: {
           trigger: ".profile",
@@ -130,17 +136,31 @@ $(function(){
         }
      });
      homeTimeline5.to(".home .stemp__item.center", {
-        rotate:'-5deg',
-        x:'15px',
+        rotate:'-10deg',
+        x:'25px',
      },0);
      homeTimeline5.to(".home .stemp", {
-        opacity:.15
+        opacity:.2
      },0);
      homeTimeline5.to(".home .stemp__item.center", {
         rotateY:'180deg',
-    },0.4);
+        },0.4);
+
     
-/*
+    const homeTimeline6 = gsap.timeline({
+        scrollTrigger: {
+            trigger: ".profile",
+            scroller: window,
+            scrub: .05,
+            start: "top top",
+            end: "bottom+=500vh bottom",
+        }
+     });
+     homeTimeline6.to(".home .stemp__item.center", {
+        opacity:0,
+     },'+=.5');
+    
+    /*//우표 1개 추가
     const homeTimeline5 = gsap.timeline({
         scrollTrigger: {
           trigger: "#wrap",
@@ -161,159 +181,136 @@ $(function(){
  
 
 
-    //profile
-    gsap.timeline({
-        scrollTrigger: {
-          trigger: ".profile .inner",
-          start: "top +=100%", 
-          toggleActions: "play none none none", 
-        }
-      })
-      .staggerFromTo(
-        ".profile .sec__title--lg span",1, 
-        { opacity: 0, y: '0%' }, 
-        { 
-          opacity: 1, 
-          y: '0%', 
-          delay: 0.5, 
-          force3D: false, 
-          ease: Power1.easeInOut 
-        }, 
-        0.05 
-      );
+    //***** Profile/AboutMe
+    //***** Projects
+    //s:work intro
+    //stemp cards ani
+    /*
+    function positionCardsInCircle() {
+        const container = document.querySelector(".work .stemp__wrap");
+        const cards = container.querySelectorAll(".work .stemp__item");
     
-    //Projects
-
-
-
-
+        //const radius = window.innerWidth/2;
+        const radius = 1500;
+        const total = cards.length;
+        
+        totalAngle = Math.PI * (150 / 180);
+        cards.forEach((card, index) => {
+            //const angle = (index / (total - 1)) * Math.PI; // 반원 180deg
+            const angle = (index / (total - 1)) * totalAngle; // 150deg
+            const deg = angle * (180 / Math.PI);
+    
+            const x = radius * Math.cos(angle) - card.offsetWidth / 2;
+            const y = radius * Math.sin(angle) - card.offsetHeight / 2;
+    
+            card.style.left = x + "px";
+            card.style.top = y + "px";
+            card.style.transform = `rotate(${deg + 90}deg)`; // 정방향 설정
+        });
+    }
+    
+    window.addEventListener("load", positionCardsInCircle);
+    window.addEventListener("resize", positionCardsInCircle);
+    */
+    
     //s: digit
     // 연도 설정
-// 연도 설정
-const startYear = 2019;
-const endYear = 2025;
-let currentYear = startYear;
-let previousYear = startYear;
-const digits = document.querySelectorAll(".digit");
-let animationFrameId = null;
+    const startYear = 2019;
+    const endYear = 2025;
+    let currentYear = startYear;
+    let previousYear = startYear;
+    const digits = document.querySelectorAll(".digit");
+    let animationFrameId = null;
 
-// 연도 디지털 애니메이션 함수
-function updateDigits(newYear, direction) {
-    if (newYear === currentYear) return;
+    // 연도 디지털 애니메이션 함수
+    function updateDigits(newYear, direction) {
+        if (newYear === currentYear) return;
 
-    const newYearDigits = newYear.toString().split("");
-    const currentYearDigits = currentYear.toString().split("");
+        const newYearDigits = newYear.toString().split("");
+        const currentYearDigits = currentYear.toString().split("");
 
-    digits.forEach((digit, index) => {
-        const currentSpan = digit.querySelector(".current");
-        const nextSpan = digit.querySelector(".next");
-        const newDigit = newYearDigits[index] || "0";
-        const currentDigit = currentYearDigits[index] || "0";
+        digits.forEach((digit, index) => {
+            const currentSpan = digit.querySelector(".current");
+            const nextSpan = digit.querySelector(".next");
+            const newDigit = newYearDigits[index] || "0";
+            const currentDigit = currentYearDigits[index] || "0";
 
-        if (newDigit !== currentDigit) {
-            nextSpan.innerHTML = newDigit;
+            if (newDigit !== currentDigit) {
+                nextSpan.innerHTML = newDigit;
 
-            gsap.killTweensOf(currentSpan);
-            gsap.killTweensOf(nextSpan);
+                gsap.killTweensOf(currentSpan);
+                gsap.killTweensOf(nextSpan);
 
-            gsap.set(nextSpan, { y: direction === "up" ? "100%" : "-100%", opacity: 1 });
+                gsap.set(nextSpan, { y: direction === "up" ? "100%" : "-100%", opacity: 1 });
 
-            gsap.timeline()
-                .to(currentSpan, {
-                    y: direction === "up" ? "-100%" : "100%",
-                    duration: 0.4,
-                    ease: "power2.inOut",
-                    onComplete: () => {
-                        currentSpan.innerHTML = newDigit;
-                        gsap.set(currentSpan, { y: "0%" });
-                    }
-                })
-                .to(nextSpan, {
-                    y: "0%",
-                    duration: 0.4,
-                    ease: "power2.inOut",
-                    onComplete: () => {
-                        gsap.set(nextSpan, { opacity: 0 });
-                    }
-                }, "-=0.4");
-        }
-    });
-
-    currentYear = newYear;
-}
-
-// 가운데 기준 split-text span 애니메이션 설정
-const spans = gsap.utils.toArray(".work .split-text span");
-
-// 메인 타임라인
-const projectsTimeline = gsap.timeline({
-    scrollTrigger: {
-        trigger: ".work-intro",
-        scroller: window,
-        scrub: 0.5,
-        pin: true,
-        start: "top top",
-        end: "bottom+=200% top",
-        onUpdate: (self) => {
-            const progress = self.progress;
-
-            // 연도 변경을 특정 progress 구간에서만 실행
-            const min = 0.6;
-            const max = 1;
-
-            if (progress >= min && progress <= max) {
-                const localProgress = (progress - min) / (max - min); // 0~1
-                const newYear = Math.floor(startYear + (endYear - startYear) * localProgress);
-                const direction = newYear > previousYear ? "up" : "down";
-
-                previousYear = newYear;
-
-                if (animationFrameId) cancelAnimationFrame(animationFrameId);
-                animationFrameId = requestAnimationFrame(() => updateDigits(newYear, direction));
+                gsap.timeline()
+                    .to(currentSpan, {
+                        y: direction === "up" ? "-100%" : "100%",
+                        duration: .4,
+                        onComplete: () => {
+                            currentSpan.innerHTML = newDigit;
+                            gsap.set(currentSpan, { y: "0%" });
+                        }
+                    })
+                    .to(nextSpan, {
+                        y: "0%",
+                        duration: .4,
+                        onComplete: () => {
+                            gsap.set(nextSpan, { opacity: 0 });
+                        }
+                    }, "-=0.4");
             }
+        });
+
+        currentYear = newYear;
+    }
+
+
+    // 메인 타임라인
+   const projectsTimeline = gsap.timeline({
+        scrollTrigger: {
+            trigger: ".work-intro",
+            scroller: window,
+            scrub: 0.5,
+            start: "top top",
+            end: "bottom+=100vh bottom",
+            onUpdate: (self) => {
+                const progress = self.progress;
+
+                // 연도 변경을 특정 progress 구간에서만 실행
+                const min = 0;
+                const max = 1;
+
+                if (progress >= min && progress <= max) {
+                    const localProgress = (progress - min) / (max - min); // 0~1
+                    const newYear = Math.floor(startYear + (endYear - startYear) * localProgress);
+                    const direction = newYear > previousYear ? "up" : "down";
+
+                    previousYear = newYear;
+
+                    if (animationFrameId) cancelAnimationFrame(animationFrameId);
+                    animationFrameId = requestAnimationFrame(() => updateDigits(newYear, direction));
+                }
+            },
         },
-    },
-});
+    });
+    
 
-// 타임라인 애니메이션 정의
-projectsTimeline
-    .to(".work-intro .inner", {
-        scale: 1,
-        y: '0px',
-        borderRadius: '0px',
-        force3D: false,
-    }, 0)
-    .to(".work .item-l", {
-        x: '-20%',
-        force3D: false,
-    }, 0)
-    .to(".work .item-r", {
-        x: '20%',
-        force3D: false,
-    }, 0)
-    .to(".work .year-container", {
-        height: '100%',
-        force3D: false,
-    }, '+=0.4')
-    .to(".work .copyright .sec__title--lg", {
-        scale:'3',
-        force3D: false,
-    }, '-=0.4')
-    .to(".work .work-intro__desc", {
-        y: '-170%',
-        force3D: false,
-    }, '-=0.6')
-    .to(spans, {
-        y: '200%',
-        force3D: false,
-        stagger: function(index, target, list) {
-            const middle = (list.length - 1) / 2;
-            return Math.abs(index - middle) * 0.03; // 더 빠르게
+     /*const workTimeline1 = gsap.timeline({
+        scrollTrigger: {
+            trigger: ".work",
+            scroller: window,
+            scrub: .5,
+            start: "top-=100% top",
+            end: "bottom bottom",
         }
-    }, '-=0.6');
+     });
+     workTimeline1.to(".work .stemp__wrap", {
+         rotate:'280deg'
+      });*/
+     
 
-
-
+    //e:intro
     
     //expertise
     const expertiseTimeline = gsap.timeline({
@@ -587,183 +584,195 @@ projectsTimeline
     });
 
 });
-/*
-    var Example = Example || {};
-
-    Example.mixed = function () {
-        var Engine = Matter.Engine,
-            Render = Matter.Render,
-            Runner = Matter.Runner,
-            Bodies = Matter.Bodies,
-            Composite = Matter.Composite,
-            Mouse = Matter.Mouse,
-            MouseConstraint = Matter.MouseConstraint,
-            Common = Matter.Common;
-
-        var engine = Engine.create(),
-            world = engine.world;
-
-        var render = Render.create({
-            element: document.getElementById('shapes-box'),
-            engine: engine,
-            options: {
-                width: window.innerWidth,
-                height: window.innerHeight,
-                wireframes: false,
-                background: false,
-            }
-        });
-
-        Render.run(render);
-
-        var runner = Runner.create();
-        Runner.run(runner, engine);
-
-        var shapes = [];
-        var shapeCount = 0;
-        var wallsRemoved = false;
-
-        var addShape = function (texture, options, x, y) {
-            var scale = Math.min(window.innerHeight, window.innerWidth) / 1000;
-            options = {...options, ...{
-                restitution: 0.7,
-                render: {
-                    sprite: {
-                        texture: texture,
-                        xScale: scale * options.scale,
-                        yScale: scale * options.scale
-                    }
-                }
-            }};
-
-            var body = options.shape === 'circle' ?
-                Bodies.circle(x, y, options.radius * scale, options) :
-                Bodies.rectangle(x, y, options.width * scale, options.height * scale, options);
-
-            body.initialScale = scale;
-            body.options = options;
-            Composite.add(world, body);
-            shapes.push(body);
-
-            shapeCount++;
-
-            if (shapeCount >= 60 && !wallsRemoved) {
-                Composite.remove(world, walls);
-                wallsRemoved = true;
-            }
-
-            return body;
-        };
-        var addInitialShapes = function () {
-            var icoTagHeightSize = 103;
-            var textures = [
-                './img/ico-canvas-chrome.png',
-                './img/ico-canvas-work.png',
-                './img/ico-canvas-service.png',
-                './img/ico-canvas-bulid.png',
-                './img/ico-canvas-coffee.png',
-                './img/ico-canvas-branding.png',
-                './img/ico-canvas-digital.png',
-                './img/ico-canvas-ui.png',
-                './img/ico-canvas-ux.png',
-            ];
-            var options = [
-                { shape: 'rectangle', width: 150, height: 150, scale: 1},
-                { shape: 'rectangle', width: 127, height: 152, scale: 1},
-                { shape: 'rectangle', width: 150, height: 150, scale: 1},
-                { shape: 'rectangle', width: 150, height: 150, scale: 1},
-                { shape: 'rectangle', width: 150, height: 150, scale: 1},
-                { shape: 'rectangle', width: 145, height: 174, scale: 1},
-                { shape: 'rectangle', width: 150, height: 150, scale: 1},
-                { shape: 'rectangle', width: 150, height: 150, scale: 1},
-                { shape: 'rectangle', width: 150, height: 150, scale: 1},
-            ];
-            
-            var startX = window.innerWidth/2.5;
-            var startY = -window.innerHeight/50;
-            
-            for (var i = 0; i < 40; i++) {
-                var index = i % textures.length;
-                addShape(textures[index], options[index], startX + i *2, startY - i *100);
-            }
-        };
-
-        addInitialShapes();
-
-        var walls = [];
-        var addWalls = function() {
-            var newWalls = [
-                Bodies.rectangle(window.innerWidth / 2, window.innerHeight + 50, window.innerWidth, 100, { isStatic: true, render: { fillStyle: 'rgba(255, 255, 255, 1)' } }),
-                Bodies.rectangle(-50, window.innerHeight / 2, 100, window.innerHeight, { isStatic: true, render: { fillStyle: 'rgba(255, 255, 255, 1)' } }),
-                Bodies.rectangle(window.innerWidth + 50, window.innerHeight / 2, 100, window.innerHeight, { isStatic: true, render: { fillStyle: 'rgba(255, 255, 255, 1)' } })
-            ];
-            Composite.add(world, newWalls);
-            walls = newWalls;
-        };
-
-        addWalls();
 
 
-        var mouse = Mouse.create(render.canvas),
-            mouseConstraint = MouseConstraint.create(engine, {
-                mouse: mouse,
-                constraint: {
-                    stiffness: 1,
-                    render: { visible: true }
-                }
-            });
+var Example = Example || {};
+Example.mixed = function () {
+  const {
+    Engine,
+    Render,
+    Runner,
+    Bodies,
+    Composite,
+    Mouse,
+    MouseConstraint
+  } = Matter;
 
-        Composite.add(world, mouseConstraint);
-        render.mouse = mouse;
+  // 기본 설정
+  const engine = Engine.create();
+  engine.world.gravity.y =2;
+  const world = engine.world;
 
-        window.addEventListener('resize', function() {
-            var currentWidth = window.innerWidth;
-            var currentHeight = window.innerHeight;
+  const render = Render.create({
+    element: document.getElementById("shapes-box"),
+    engine: engine,
+    options: {
+      width: window.innerWidth,
+      height: window.innerHeight,
+      wireframes: false,
+      background: false
+    }
+  });
 
-            var widthChange = Math.abs(currentWidth - render.options.width);
-            var heightChange = Math.abs(currentHeight - render.options.height);
+  Render.run(render);
+  const runner = Runner.create();
+  Runner.run(runner, engine);
 
-            if (widthChange >= 200 || heightChange >= 200) {
-                render.options.width = currentWidth;
-                render.options.height = currentHeight;
-                render.canvas.width = currentWidth;
-                render.canvas.height = currentHeight;
+  let shapes = [];
+  let shapeCount = 0;
+  let wallsRemoved = false;
 
-                var newScale = Math.min(currentWidth, currentHeight) / 1000;
+  // walls 생성 함수
+  let walls = [];
+  const addWalls = () => {
+    const newWalls = [
+        Bodies.rectangle(window.innerWidth / 2, window.innerHeight + 50, window.innerWidth, 100, { isStatic: true, render: { fillStyle: 'rgba(255, 255, 255, 1)' } }),
+        Bodies.rectangle(-50, window.innerHeight / 2, 100, window.innerHeight, { isStatic: true, render: { fillStyle: 'rgba(255, 255, 255, 1)' } }),
+        Bodies.rectangle(window.innerWidth + 50, window.innerHeight / 2, 100, window.innerHeight, { isStatic: true, render: { fillStyle: 'rgba(255, 255, 255, 1)' } })
+    ];
+    Composite.add(world, newWalls);
+    walls = newWalls;
+  };
 
-                shapes.forEach(function(body) {
-                    var scaleRatio = newScale / body.initialScale;
-                    Matter.Body.scale(body, scaleRatio, scaleRatio);
-                    body.initialScale = newScale;
+  addWalls();
 
-                    if (body.circleRadius) {
-                        body.circleRadius = body.options.radius * newScale;
-                    } else {
-                        body.bounds.max.x = body.bounds.min.x + body.options.width * newScale;
-                        body.bounds.max.y = body.bounds.min.y + body.options.height * newScale;
-                    }
-
-                    var centerX = (body.position.x / currentWidth) * currentWidth;
-                    var centerY = (body.position.y / currentHeight) * currentHeight;
-                    Matter.Body.setPosition(body, { x: centerX, y: centerY });
-                });
-
-                Composite.clear(world, false);
-                addWalls();
-            }
-        });
-
-        return {
-            engine: engine,
-            runner: runner,
-            render: render,
-            canvas: render.canvas,
-            stop: function () {
-                Matter.Render.stop(render);
-                Matter.Runner.stop(runner);
-            }
-        };
+  // 도형 추가 함수
+  const addShape = (texture, options, x, y) => {
+    const scale = Math.min(window.innerHeight, window.innerWidth) / 1000;
+    const renderOptions = {
+      ...options,
+      restitution: 0.5,
+      render: {
+        sprite: {
+          texture,
+          xScale: scale * options.scale,
+          yScale: scale * options.scale
+        }
+      }
     };
 
-    Example.mixed();
-*/
+    const body = options.shape === "circle"
+      ? Bodies.circle(x, y, options.radius * scale, renderOptions)
+      : Bodies.rectangle(x, y, options.width * scale, options.height * scale, renderOptions);
+
+    body.initialScale = scale;
+    body.options = options;
+    Composite.add(world, body);
+    shapes.push(body);
+
+  };
+
+  // 초기 도형 등록
+  const addInitialShapes = () => {
+    //const textures = Array.from({ length: 14 }, (_, i) => `./img/img-client-stemp-${i + 1}.png`);
+    const textures = [
+        './img/img-client-stemp-1.png',
+        './img/img-client-stemp-2.png',
+        './img/img-client-stemp-3.png',
+        './img/img-client-stemp-4.png',
+        './img/img-client-stemp-5.png',
+        './img/img-client-stemp-6.png',
+        './img/img-client-stemp-7.png',
+        './img/img-client-stemp-8.png',
+        './img/img-client-stemp-10.png',
+        './img/img-client-stemp-11.png',
+        './img/img-client-stemp-13.png',
+      ];
+    const isMobile = window.innerWidth <= 768;
+  
+    // mobile /3, pc /5
+    const baseOptions = {
+      shape: "rectangle",
+      width: 720 / (isMobile ? 3 : 5),
+      height: 887 / (isMobile ? 3 : 5),
+      scale: isMobile ? 0.3 : 0.2
+    };
+  
+    const startY = -window.innerHeight / 50;
+  
+    
+    textures.forEach((texture, i) => {
+        const padding = 60; // 좌우 벽 피하기
+        const randomX = padding + Math.random() * (window.innerWidth - padding * 2);
+        addShape(texture, baseOptions, randomX, startY - i * 100);
+      });
+  };
+
+  addInitialShapes();
+
+  // 마우스 제어 추가
+  const mouse = Mouse.create(render.canvas);
+  const mouseConstraint = MouseConstraint.create(engine, {
+    mouse,
+    constraint: {
+      stiffness: 0.2,
+      render: { visible: false }
+    }
+  });
+
+  Composite.add(world, mouseConstraint);
+  render.mouse = mouse;
+
+  // 리사이즈 이벤트 처리
+  window.addEventListener("resize", () => {
+    const currentWidth = window.innerWidth;
+    const currentHeight = window.innerHeight;
+
+    const widthChange = Math.abs(currentWidth - render.options.width);
+    const heightChange = Math.abs(currentHeight - render.options.height);
+
+    if (widthChange >= 200 || heightChange >= 200) {
+      render.options.width = currentWidth;
+      render.options.height = currentHeight;
+      render.canvas.width = currentWidth;
+      render.canvas.height = currentHeight;
+
+      const newScale = Math.min(currentWidth, currentHeight) / 1000;
+
+      shapes.forEach((body) => {
+        const scaleRatio = newScale / body.initialScale;
+        Matter.Body.scale(body, scaleRatio, scaleRatio);
+        body.initialScale = newScale;
+
+        if (body.circleRadius) {
+          body.circleRadius = body.options.radius * newScale;
+        }
+
+        const centerX = (body.position.x / currentWidth) * currentWidth;
+        const centerY = (body.position.y / currentHeight) * currentHeight;
+        Matter.Body.setPosition(body, { x: centerX, y: centerY });
+      });
+
+      Composite.clear(world, false);
+      addWalls();
+    }
+  });
+
+  // 공개 인터페이스 반환
+  return {
+    engine,
+    runner,
+    render,
+    canvas: render.canvas,
+    stop: () => {
+      Render.stop(render);
+      Runner.stop(runner);
+    }
+  };
+};
+
+let hasRun = false;
+
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting && !hasRun) {
+      Example.mixed(); // 캔버스 실행
+      hasRun = true;   // 한 번만 실행되도록
+    }
+  });
+}, {
+  threshold: 0
+});
+
+const target = document.querySelector('.work');
+if (target) observer.observe(target);
