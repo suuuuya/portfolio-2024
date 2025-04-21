@@ -111,7 +111,7 @@ $(function () {
             scroller: window,
             scrub: 1,
             start: "top top",
-            end: "bottom+=100% bottom",
+            end: "bottom+=200% bottom",
             markers:true,
         }
     });
@@ -391,39 +391,7 @@ $(function () {
         });
     }
 
-
-    //******* expertise
-    // [expertise] scrolltrigger pin
-    const expertiseTimeline = gsap.timeline({
-        scrollTrigger: {
-            trigger: ".expertise",
-            start: "top top",
-            endTrigger: ".expertise__cont",
-            end: "bottom bottom",
-            scroller: window,
-            scrub: 1,
-            pin: ".fixed-cont",
-            pinSpacing: false,
-        }
-    });
-    // [expertise] intro title fade-out, bg fade-in animation
-    const expertiseTimeline2 = gsap.timeline({
-        scrollTrigger: {
-            trigger: ".expertise",
-            start: "top top",
-            end: "+=100%",
-            scroller: window,
-            scrub: 1,
-        }
-    });
-    expertiseTimeline2
-    .to(".expertise .sec__title", {
-        opacity:0,
-        scale:1.1
-    },"+=.2")
-    .to(".expertise .bg-1", {
-        opacity:1,
-    },"-=.2");
+    
 
     //******** stack & tools
     // [stack] scrollTrigger animation
@@ -445,7 +413,7 @@ $(function () {
     });
     
     // [stack] expertise bg scale up animation
-    const stackTimeline = gsap.timeline({
+   /* const stackTimeline = gsap.timeline({
         scrollTrigger: {
             trigger: ".stack",
             start: "top-=100% top",
@@ -458,7 +426,7 @@ $(function () {
     stackTimeline
     .to(".expertise .bg", {
         scale:1.2
-    });
+    });*/
 
     // [stack] books JS animation
     function getOffsetValue() {
@@ -497,6 +465,40 @@ $(function () {
     updateCarousel(0);
     //resize
     window.addEventListener("resize", () => updateCarousel(0));
+
+
+    //******* expertise
+    // [expertise] scrolltrigger pin
+    const expertiseTimeline = gsap.timeline({
+        scrollTrigger: {
+            trigger: ".expertise",
+            start: "top top",
+            endTrigger: ".expertise__cont",
+            end: "bottom bottom",
+            scroller: window,
+            scrub: 1,
+            pin: ".fixed-cont",
+            pinSpacing: false,
+        }
+    });
+    // [expertise] intro title fade-out, bg fade-in animation
+    const expertiseTimeline2 = gsap.timeline({
+        scrollTrigger: {
+            trigger: ".expertise",
+            start: "top top",
+            end: "+=100%",
+            scroller: window,
+            scrub: 1,
+        }
+    });
+    expertiseTimeline2
+    .to(".expertise .sec__title", {
+        opacity:0,
+        scale:1.1
+    },"+=.2")
+    .to(".expertise .bg-1", {
+        opacity:1,
+    },"-=.2");
 
 
     //****** service

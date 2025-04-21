@@ -545,8 +545,11 @@ body:not(.scrolling, .scrolled-init) .gnb__list {
 
 .ico-arrow--goto {
   display: inline-block;
-  background-size: 100%;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12' fill='none'%3E%3Cpath d='M1.29289 9.29289L0.585786 10L2 11.4142L2.70711 10.7071L1.29289 9.29289ZM12 1C12 0.447716 11.5523 5.78052e-07 11 5.78052e-07H2C1.44771 5.78052e-07 1 0.447716 1 1C1 1.55229 1.44771 2 2 2H10V10C10 10.5523 10.4477 11 11 11C11.5523 11 12 10.5523 12 10V1ZM2.70711 10.7071L11.7071 1.70711L10.2929 0.292894L1.29289 9.29289L2.70711 10.7071Z' fill='%23dddddd'/%3E%3C/svg%3E");
+  width: 12px;
+  height: 12px;
+  background-color: var(--text-color);
+  mask: url("../img/ico/ico-goto.svg") no-repeat center/contain;
+  -webkit-mask: url("../img/ico/ico-goto.svg") no-repeat center/contain;
 }
 
 /*header*/
@@ -1026,12 +1029,9 @@ body:not(.scrolling, .scrolled-init) .gnb__list {
 }
 .work .work-intro .sec__title--lg {
   color: var(--text-color);
-  font-size: 90px;
+  font-size: 100px;
   line-height: 110%;
   letter-spacing: -0.25px;
-}
-.work .work-intro .sec__title--lg .desc {
-  opacity: 1;
 }
 .work .work-intro .sec__title--sub {
   position: absolute;
@@ -1179,17 +1179,6 @@ body:not(.scrolling, .scrolled-init) .gnb__list {
   transition: 0.2s;
 }
 
-.horizontal-wrap {
-  position: relative;
-}
-.horizontal-wrap .scrolling {
-  position: relative;
-}
-.horizontal-wrap section {
-  width: 100vw;
-  overflow: hidden;
-}
-
 /*expertise*/
 .expertise {
   position: relative;
@@ -1319,7 +1308,8 @@ body:not(.scrolling, .scrolled-init) .gnb__list {
 /*stack*/
 .stack {
   position: relative;
-  padding-top: calc(var(--spacing-lg) * 1.5);
+  padding-top: calc(var(--spacing-lg) * 1);
+  margin-bottom: calc(var(--spacing-lg) * 2);
   height: 100vh;
 }
 .stack .sec__title {
@@ -1343,8 +1333,8 @@ body:not(.scrolling, .scrolled-init) .gnb__list {
 }
 .stack__carousel {
   position: relative;
-  --width: 400px;
-  --height: 480px;
+  --width: calc(720px/3);
+  --height: calc(887px/3);
   width: var(--width);
   height: var(--height);
   display: flex;
@@ -1358,7 +1348,7 @@ body:not(.scrolling, .scrolled-init) .gnb__list {
   transform-style: preserve-3d;
 }
 .stack__item.active .book span::after, .stack__item.active ~ div .book span::after {
-  background: linear-gradient(90deg, rgba(0, 0, 0, 0.2) 10%, transparent);
+  background: linear-gradient(90deg, rgb(0, 0, 0) 10%, transparent);
 }
 .stack__info {
   position: relative;
@@ -1395,7 +1385,7 @@ body:not(.scrolling, .scrolled-init) .gnb__list {
   position: absolute;
   width: 3px;
   height: 100%;
-  background: var(--color);
+  background: var(--bg-img);
   top: 0;
   left: -6px;
   transform: rotateY(270deg) translateX(10px);
@@ -1405,7 +1395,7 @@ body:not(.scrolling, .scrolled-init) .gnb__list {
   position: absolute;
   width: 3px;
   height: 100%;
-  background: var(--color);
+  background: var(--bg-img);
   top: 0;
   right: -6px;
   transform: rotateY(270deg) translateX(10px);
@@ -1426,7 +1416,7 @@ body:not(.scrolling, .scrolled-init) .gnb__list {
   height: 100%;
   top: 0;
   left: 0;
-  background: var(--color);
+  background: var(--bg-img);
   background-repeat: no-repeat;
   background-size: cover;
   transform: translateZ(7px);
@@ -1439,7 +1429,7 @@ body:not(.scrolling, .scrolled-init) .gnb__list {
   height: 100%;
   top: 0;
   left: 0;
-  background: linear-gradient(270deg, rgba(0, 0, 0, 0.2) 10%, transparent);
+  background: linear-gradient(270deg, rgb(0, 0, 0) 10%, transparent);
   transform: translateZ(11px);
 }
 .stack .book span img {

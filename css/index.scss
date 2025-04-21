@@ -211,10 +211,10 @@
         z-index: 20;
         &--lg {
           color: var(--text-color);
-          font-size: 90px;
+          font-size: 100px;
           line-height: 110%;
           letter-spacing: -0.25px;
-          .desc{opacity: 1; @extend .serif; }
+          .desc{@extend .serif; }
         }
         &--sub{position: absolute; top:0; left: 0; width: 100%; padding:0 calc(var(--spacing-layout)*1); font-size: 18px; display: flex; justify-content: space-between;z-index: 2;
           span{ @extend .serif; letter-spacing: .25px;}
@@ -363,11 +363,6 @@
   }
 }
 
-.horizontal-wrap{position: relative;
-  .scrolling{position: relative; }
-  section{width: 100vw; overflow: hidden;}
-}
-
 /*expertise*/
 .expertise{position: relative;
   .bg{position: absolute; top:0;left: -30px; width: 100vw; height:100vh;
@@ -415,7 +410,8 @@
 
 /*stack*/
 .stack {position: relative;
-  padding-top: calc(var(--spacing-lg)*1.5);
+  padding-top: calc(var(--spacing-lg)*1);
+  margin-bottom:calc(var(--spacing-lg)*2);
   height: 100vh;
 
   .sec {
@@ -444,8 +440,8 @@
 
   &__carousel {
     position: relative;
-    --width: 400px;
-    --height: 480px;
+    --width: calc(720px/3);
+    --height: calc(887px/3);
     width: var(--width);
     height: var(--height);
     display: flex;
@@ -464,7 +460,7 @@
       .book {
         span {
           &::after {
-            background: linear-gradient(90deg,  rgba(0,0,0,0.2) 10%, transparent);
+            background: linear-gradient(90deg,  rgba(0,0,0,1) 10%, transparent);
           }
         }
       }
@@ -510,7 +506,7 @@
       position: absolute;
       width: 3px;
       height: 100%;
-      background: var(--color);
+      background: var(--bg-img);
       top: 0;
       left: -6px;
       transform: rotateY(270deg) translateX(10px);
@@ -521,7 +517,7 @@
       position: absolute;
       width: 3px;
       height: 100%;
-      background: var(--color);
+      background: var(--bg-img);
       top: 0;
       right: -6px;
       transform: rotateY(270deg) translateX(10px);
@@ -543,7 +539,7 @@
         height: 100%;
         top: 0;
         left: 0;
-        background: var(--color);
+        background: var(--bg-img);
         background-repeat: no-repeat;
         background-size: cover;
         transform: translateZ(7px);
@@ -557,10 +553,9 @@
         height: 100%;
         top: 0;
         left: 0;
-        background: linear-gradient(270deg, rgba(0,0,0,0.2) 10%, transparent);
+        background: linear-gradient(270deg, rgba(0,0,0,1) 10%, transparent);
         transform: translateZ(11px);
       }
-
       img {
         position: absolute;
         width: var(--width);
