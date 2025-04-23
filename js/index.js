@@ -81,7 +81,7 @@ $(function () {
     .to(".home .stamp__item.center", {
         y: "8%",
         scale:1,
-        rotateY: "-360deg",
+        rotateY: "-540deg",
         force3D: false,
     }, 0)
     homeTimeline2.to(".home .bg", {
@@ -100,7 +100,7 @@ $(function () {
         }
     });
     homeTimeline3
-    .to(".home .stamp__item.center", {
+    .to(".home .stamp__wrap", {
         opacity:0
     }, 0);
 
@@ -112,7 +112,6 @@ $(function () {
             scrub: 1,
             start: "top top",
             end: "bottom+=200% bottom",
-            markers:true,
         }
     });
     homeTimeline5.to(".home", {
@@ -195,17 +194,6 @@ $(function () {
 
         const addInitialShapes = () => {
             const textures = [
-                './img/img-client-stamp-1.png',
-                './img/img-client-stamp-2.png',
-                './img/img-client-stamp-3.png',
-                './img/img-client-stamp-4.png',
-                './img/img-client-stamp-5.png',
-                './img/img-client-stamp-6.png',
-                './img/img-client-stamp-7.png',
-                './img/img-client-stamp-8.png',
-                './img/img-client-stamp-10.png',
-                './img/img-client-stamp-11.png',
-                './img/img-client-stamp-13.png',
                 './img/img-client-stamp-1.png',
                 './img/img-client-stamp-2.png',
                 './img/img-client-stamp-3.png',
@@ -430,7 +418,7 @@ $(function () {
 
     // [stack] books JS animation
     function getOffsetValue() {
-        return window.innerWidth < 768 ? 130 : 230; // 모바일(768px 이하)에서는 180, PC에서는 230
+        return window.innerWidth < 768 ? 230 : 230; // 모바일(768px 이하)에서는 180, PC에서는 230
     }
 
     function updateCarousel(index) {
@@ -493,12 +481,11 @@ $(function () {
     });
     expertiseTimeline2
     .to(".expertise .sec__title", {
-        opacity:0,
-        scale:1.1
-    },"+=.2")
-    .to(".expertise .bg-1", {
+        opacity:.4,
+    },"+=.2");
+    /*.to(".expertise .bg-1", {
         opacity:1,
-    },"-=.2");
+    },"-=.2");*/
 
 
     //****** service

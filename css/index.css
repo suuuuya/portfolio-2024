@@ -664,10 +664,10 @@ body:not(.scrolling, .scrolled-init) .gnb__list {
   font-family: "editorial", sans-serif;
 }
 
-.serif-italic, .work__contents .sec__title--lg span, .work .work-intro .year-container .digit span {
+.serif-italic, .service ul li, .work__contents .sec__title--lg span, .work .work-intro .year-container .digit span {
   font-family: "editorial italic", sans-serif;
 }
-.serif-italic.split-text span, .work__contents .sec__title--lg span.split-text span, .work .work-intro .year-container .digit span.split-text span, .serif-italic.split span, .work__contents .sec__title--lg span.split span, .work .work-intro .year-container .digit span.split span {
+.serif-italic.split-text span, .service ul li.split-text span, .work__contents .sec__title--lg span.split-text span, .work .work-intro .year-container .digit span.split-text span, .serif-italic.split span, .service ul li.split span, .work__contents .sec__title--lg span.split span, .work .work-intro .year-container .digit span.split span {
   font-family: "editorial italic", sans-serif;
 }
 
@@ -702,7 +702,7 @@ body:not(.scrolling, .scrolled-init) .gnb__list {
   display: inline-block;
   margin: -100px 30px 0 70px;
 }
-.sec__title--lg .serif-italic, .work__contents .sec__title--lg span, .sec__title--lg .work .work-intro .year-container .digit span, .work .work-intro .year-container .digit .sec__title--lg span {
+.sec__title--lg .serif-italic, .sec__title--lg .service ul li, .service ul .sec__title--lg li, .work__contents .sec__title--lg span, .sec__title--lg .work .work-intro .year-container .digit span, .work .work-intro .year-container .digit .sec__title--lg span {
   text-transform: initial;
 }
 .sec__cate {
@@ -731,7 +731,7 @@ body:not(.scrolling, .scrolled-init) .gnb__list {
   font-size: 15px;
   line-height: 125%;
 }
-.font__style--md, .stack__info, .expertise .cards .card__cont, .work .history__list, .profile .desc {
+.font__style--md, .expertise .cards .card__cont, .stack__info, .work .history__list, .profile .desc {
   font-size: 20px;
   font-weight: 400;
   letter-spacing: -0.25px;
@@ -893,9 +893,9 @@ body:not(.scrolling, .scrolled-init) .gnb__list {
 .home .stamp__item {
   position: relative;
   --stamp-width: calc(515px/1);
-  width: 515px;
-  height: 346px;
-  transform: scale(0.5);
+  width: 579px;
+  height: 402px;
+  transform: scale(0.7);
   transform-style: preserve-3d;
 }
 .home .stamp__item--front {
@@ -1107,6 +1107,7 @@ body:not(.scrolling, .scrolled-init) .gnb__list {
   left: 0;
   width: 100%;
   height: 200vh;
+  overflow: hidden;
 }
 .work #shapes-box canvas {
   position: relative;
@@ -1179,6 +1180,146 @@ body:not(.scrolling, .scrolled-init) .gnb__list {
   transition: 0.2s;
 }
 
+/*stack*/
+.stack {
+  position: relative;
+  padding-top: calc(var(--spacing-lg) * 1.5);
+  height: 100vh;
+}
+.stack .sec__title {
+  position: relative;
+  margin-bottom: var(--spacing-md);
+  text-align: center;
+  z-index: 10;
+}
+.stack .sec__title--lg {
+  letter-spacing: 0;
+  font-size: 8em;
+}
+.stack .inner {
+  height: 100%;
+  margin: 0 auto;
+}
+.stack__container {
+  position: relative;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+}
+.stack__carousel {
+  position: relative;
+  --width: calc(720px/3);
+  --height: calc(887px/3);
+  width: var(--width);
+  height: var(--height);
+  display: flex;
+  perspective: 2000px;
+  perspective-origin: center 70%;
+}
+.stack__item {
+  position: absolute;
+  width: var(--width);
+  height: var(--height);
+  transform-style: preserve-3d;
+}
+.stack__item.active .book span::after, .stack__item.active ~ div .book span::after {
+  background: linear-gradient(90deg, var(--bg-color), transparent);
+}
+.stack__info {
+  position: relative;
+  width: 90%;
+  height: 62px;
+  margin-bottom: var(--spacing-lg);
+  margin-left: 50%;
+  display: grid;
+  align-content: end;
+}
+.stack__info::before {
+  display: block;
+  content: "";
+  position: absolute;
+  top: calc(var(--spacing-lg) / 2 + 62px - 3px - 10px);
+  left: 0;
+  width: 5px;
+  height: 5px;
+  background: var(--text-color);
+  border-radius: 50%;
+}
+.stack__info--cate {
+  opacity: 0.5;
+  margin-top: 5px;
+}
+.stack .book {
+  position: relative;
+  width: var(--width);
+  height: var(--height);
+  transform-style: preserve-3d;
+  overflow: hidden;
+}
+.stack .book::before {
+  content: "";
+  position: absolute;
+  width: 3px;
+  height: 100%;
+  background: var(--bg-img);
+  top: 0;
+  left: -6px;
+  transform: rotateY(270deg) translateX(10px);
+}
+.stack .book::after {
+  content: "";
+  position: absolute;
+  width: 3px;
+  height: 100%;
+  background: var(--bg-img);
+  top: 0;
+  right: -6px;
+  transform: rotateY(270deg) translateX(10px);
+}
+.stack .book span {
+  position: relative;
+  display: block;
+  width: 100%;
+  height: 100%;
+  transform-style: preserve-3d;
+  z-index: 5;
+}
+.stack .book span::before {
+  display: block;
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  background: var(--bg-img);
+  background-repeat: no-repeat;
+  background-size: cover;
+  transform: translateZ(7px);
+}
+.stack .book span::after {
+  display: block;
+  content: "";
+  position: absolute;
+  width: 110%;
+  height: 110%;
+  top: -5%;
+  left: -5%;
+  background: linear-gradient(270deg, var(--bg-color), transparent);
+  transform: translateZ(11px);
+}
+.stack .book span img {
+  position: absolute;
+  width: var(--width);
+  height: var(--height);
+  object-fit: cover;
+  backface-visibility: hidden;
+  transform: translateZ(2px);
+}
+
 /*expertise*/
 .expertise {
   position: relative;
@@ -1220,14 +1361,12 @@ body:not(.scrolling, .scrolled-init) .gnb__list {
   align-items: center;
   justify-content: center;
 }
-.expertise .cards {
-  color: var(--main-black);
-}
+.expertise .cards { /*color:var(--main-black);*/ }
 .expertise .cards .card {
   position: relative;
   width: 880px;
   height: 583px;
-  background: linear-gradient(0deg, #dfdeda, var(--main-white) 40%);
+  background: var(--main-white);
   margin: 0 auto;
   padding: 30px;
   display: grid;
@@ -1280,10 +1419,8 @@ body:not(.scrolling, .scrolled-init) .gnb__list {
   top: 0;
   right: 0;
   width: 115px;
-  height: 142px;
-  background: url(../img/test.png) no-repeat center/cover;
-  transform: rotate(-2deg) translate(-7px, 15px) scale(0.93);
-  color: var(--main-ivory);
+  height: 142px; /*background: url(../img/img-client-stamp-1.png)no-repeat center/cover; transform: rotate(-2deg) translate(-7px,15px) scale(.93);*/
+  color: var(--text-color);
   font-size: 100px;
   line-height: 162px;
   text-align: center;
@@ -1305,157 +1442,22 @@ body:not(.scrolling, .scrolled-init) .gnb__list {
   margin-top: calc(var(--spacing-lg));
 }
 
-/*stack*/
-.stack {
-  position: relative;
-  padding-top: calc(var(--spacing-lg) * 1);
-  margin-bottom: calc(var(--spacing-lg) * 2);
-  height: 100vh;
-}
-.stack .sec__title {
-  position: relative;
-  margin-bottom: var(--spacing-default);
-  text-align: center;
-  z-index: 10;
-}
-.stack .inner {
-  height: 100%;
-  margin: 0 auto;
-}
-.stack__container {
-  position: relative;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  display: flex;
-  justify-content: center;
-}
-.stack__carousel {
-  position: relative;
-  --width: calc(720px/3);
-  --height: calc(887px/3);
-  width: var(--width);
-  height: var(--height);
-  display: flex;
-  perspective: 2000px;
-  perspective-origin: center 70%;
-}
-.stack__item {
-  position: absolute;
-  width: var(--width);
-  height: var(--height);
-  transform-style: preserve-3d;
-}
-.stack__item.active .book span::after, .stack__item.active ~ div .book span::after {
-  background: linear-gradient(90deg, rgb(0, 0, 0) 10%, transparent);
-}
-.stack__info {
-  position: relative;
-  width: 70%;
-  height: 62px;
-  margin-bottom: var(--spacing-lg);
-  margin-left: 50%;
-  display: grid;
-  align-content: end;
-}
-.stack__info::before {
-  display: block;
-  content: "";
-  position: absolute;
-  top: calc(var(--spacing-lg) / 2 + 62px - 3px - 10px);
-  left: 0;
-  width: 5px;
-  height: 5px;
-  background: var(--text-color);
-  border-radius: 50%;
-}
-.stack__info--cate {
-  opacity: 0.5;
-  margin-top: 5px;
-}
-.stack .book {
-  position: relative;
-  width: var(--width);
-  height: var(--height);
-  transform-style: preserve-3d;
-}
-.stack .book::before {
-  content: "";
-  position: absolute;
-  width: 3px;
-  height: 100%;
-  background: var(--bg-img);
-  top: 0;
-  left: -6px;
-  transform: rotateY(270deg) translateX(10px);
-}
-.stack .book::after {
-  content: "";
-  position: absolute;
-  width: 3px;
-  height: 100%;
-  background: var(--bg-img);
-  top: 0;
-  right: -6px;
-  transform: rotateY(270deg) translateX(10px);
-}
-.stack .book span {
-  position: relative;
-  display: block;
-  width: 100%;
-  height: 100%;
-  transform-style: preserve-3d;
-  z-index: 5;
-}
-.stack .book span::before {
-  display: block;
-  content: "";
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  top: 0;
-  left: 0;
-  background: var(--bg-img);
-  background-repeat: no-repeat;
-  background-size: cover;
-  transform: translateZ(7px);
-}
-.stack .book span::after {
-  display: block;
-  content: "";
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  top: 0;
-  left: 0;
-  background: linear-gradient(270deg, rgb(0, 0, 0) 10%, transparent);
-  transform: translateZ(11px);
-}
-.stack .book span img {
-  position: absolute;
-  width: var(--width);
-  height: var(--height);
-  object-fit: cover;
-  backface-visibility: hidden;
-  transform: translateZ(2px);
-}
-
 /*service*/
 .service {
   height: 100vh;
   padding: var(--spacing-lg) 0;
-}
-.service::before {
-  display: block;
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 20vh;
-  background: linear-gradient(180deg, var(--main-black), transparent);
-  z-index: 10;
+  /*
+    &::before {
+      display: block;
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 20vh;
+      background: linear-gradient(180deg, var(--main-black), transparent);
+      z-index: 10;
+    }*/
 }
 .service::after {
   display: block;
@@ -1473,6 +1475,9 @@ body:not(.scrolling, .scrolled-init) .gnb__list {
   height: 100%;
 }
 .service .box {
+  position: absolute;
+  top: 0;
+  left: 0;
   display: flex;
   align-items: center;
   justify-content: center;
