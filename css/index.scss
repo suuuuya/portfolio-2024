@@ -10,8 +10,8 @@
 /*home*/
 .home {
   height: 100vh;
-  .bg{position: absolute; top:0;left: 0; width: 100%; height:100vh; background: url(../img/main-visual.png) no-repeat top center / cover;
-    &::after{display: block; content: ""; width: 100%; height: 100%; background: rgba(0,0,0,0.5);}
+  .bg{position: absolute; top:0;left: 0; width: 100%; height:100vh; background: url(../img/main-visual.png) no-repeat top 55% center / cover;
+    &::after{display: block; content: ""; width: 100%; height: 100%; background: rgba(0,0,0,0);}
   }
   &__sticky {
     position: relative;
@@ -23,37 +23,26 @@
     position: relative;
     width: 100%;
     height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     overflow: hidden;
     z-index: 1;
   }
 
-  .stamp {
+  .envelope {
     pointer-events: none;
-
     &__wrap {
       position: relative;
-      left: 50%;
-      width: 100%;
-      height: 100%;
-      display: flex;
-      align-items: center;
-      transform: translateX(-50%);
+      left: 0%;
+      perspective: 2000px;
+      --height:577px
     }
-
-    &__inner {
-      margin-top: 1%;
-      width: 100%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      perspective: 1000px;
-    }
-
     &__item {
       position: relative;
-      --stamp-width: calc(515px/1);
-      width: calc(579px/1);
-      height: calc(402px/1);
+      margin-top: 3%;
+      height: 50vh;
+      width: calc(50vh * 1.524);
       transform: scale(0.7);
       transform-style: preserve-3d;
       &--front {
@@ -64,7 +53,6 @@
         backface-visibility: hidden;
         transform-style: preserve-3d;
       }
-
       &--back {
         position: absolute;
         width: 100%;
@@ -74,20 +62,6 @@
         transform-style: preserve-3d;
         transform: rotateY(-180deg);
       }
-
-      &--up {
-        position: absolute;
-        top: 0;
-        left: 100%;
-        width: 100%;
-        height: 100%;
-        -webkit-backface-visibility: hidden;
-        backface-visibility: hidden;
-        transform: translateY(150px) translateX(-350%);
-        z-index: 3;
-        opacity: 0;
-      }
-
       img {
         width: 100%;
       }
@@ -104,7 +78,6 @@
   &__letter {
     position: absolute;
     width: 100%;
-    color: var(--main-ivory);
     bottom: 0;
     padding: 30px;
     text-align: center;
@@ -293,7 +266,7 @@
     bottom: 0;
     left: 0;
     width: 100%;
-    height:200vh;
+    height:160vh;
     overflow: hidden;
     canvas { 
       position: relative;
@@ -367,6 +340,7 @@
 .stack {position: relative;
   padding-top: calc(var(--spacing-lg)*1.5);
   height: 100vh;
+  margin-bottom:calc(var(--spacing-lg)*1);
 
   .sec {
     &__title {
@@ -570,90 +544,8 @@
 }
 
 
-
-/*service*/
-.service {
-  height: 100vh;
-  padding: var(--spacing-lg) 0;
-/*
-  &::before {
-    display: block;
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 20vh;
-    background: linear-gradient(180deg, var(--main-black), transparent);
-    z-index: 10;
-  }*/
-
-  &::after {
-    display: block;
-    content: "";
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    height: 20vh;
-    background: linear-gradient(0deg, var(--main-black), transparent);
-    z-index: 10;
-  }
-
-  .inner {
-    width: 100%;
-    height: 100%;
-  }
-
-  .box {
-    position: absolute;
-    top:0;
-    left: 0;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 100%;
-    height: 100%;
-    perspective: 70vw;
-  }
-
-  ul {
-    position: absolute;
-    text-align: center;
-    font-size: 50px;
-    height: 100vh;
-    top: 0;
-    left: 0;
-    width: 100%;
-    transform: rotateX(-60deg);
-    transform-origin: 50% 50%;
-    transform-style: preserve-3d;
-    letter-spacing: -.01em;
-    text-align: center;
-
-    li {
-      left: 50%;
-      top: 50%;
-      position: absolute;
-      transform-origin: 50% 50%;
-      -webkit-backface-visibility: hidden;
-      backface-visibility: hidden;
-      text-transform: uppercase;
-      @extend .serif-italic;
-    }
-
-    @for $i from 1 through 10 {
-      li:nth-child(#{$i}) {
-        $angle: $i * 12deg;
-        transform: translate(-50%, -50%) rotateX(-$angle) translateZ(550px);
-      }
-    }
-  }
-}
-
 @media screen and (min-width: 2550px) {
   .sec {
-
     /*title*/
     &__title {
       &--lg {
@@ -690,14 +582,11 @@
   }
 
   .home {
+    /*.bg{background: url(../img/main-visual-m.png) no-repeat bottom center / cover;}*/
     .stamp {
-      &__wrap {
-        min-width: 1100px;
-      }
-
       &__item {
-        width: calc(720px/1.5);
-        height: calc(887px/1.5);
+        width: calc(419px/1);
+        height: calc(558px/1);
         transform: scale(0.8);
         transform-origin: center;
       }
@@ -745,8 +634,8 @@
 
   .stack {
     &__carousel {
-      --width: 200px;
-      --height: 280px;
+      --width: calc(720px/5);
+      --height: calc(887px/5);
     }
   }
 

@@ -13,8 +13,8 @@ $(function () {
     gsap.registerPlugin(ScrollTrigger);
     gsap.timeline()
     .add([
-        gsap.fromTo(".intro-bg", { opacity: 1 }, { opacity: 0, display: 'none', ease: Power1.easeInOut, duration: 0.8 }),
-        gsap.fromTo(".home__letter > *", { opacity: 0, y: '30px' }, { opacity: 1, y: '0%', delay: '.5', duration: 0.5 }),
+        gsap.fromTo(".intro-bg", { opacity: 1 }, { opacity: 0, display: 'none', ease: Power1.easeInOut, duration: 1 }),
+        gsap.fromTo(".home__letter > *", { opacity: 0, filter:'blur(5px)' }, { opacity: 1, filter:'blur(0px)',  delay: '1', duration: 1 }),
     ]);
     gsap.timeline().staggerFromTo(".header__logo .split-text span", 1,
     { opacity: 0, y: 0, },
@@ -27,7 +27,7 @@ $(function () {
     //***** home
     //[home] post card animation
     gsap.timeline()
-        .fromTo(".home .stamp__item.center .stamp__act", 1, { y: '-30%', rotateY: '-180deg' }, { y: '0%', rotateY: '0deg', delay: '.1', force3D: false, ease: Power1.easeInOut });
+        .fromTo(".home .envelope__item.center .envelope__act", 1.3, { y: '-30%', rotateY: '-180deg' }, { y: '0%', rotateY: '0deg',force3D: false, ease: Power1.easeInOut });
     
     //[home] intro ani
     const homeTimeline = gsap.timeline({
@@ -78,10 +78,12 @@ $(function () {
         }
     });
     homeTimeline2
-    .to(".home .stamp__item.center", {
+    .to(".home .envelope__item.center", {
         y: "8%",
+        x:'1%',
         scale:1,
-        rotateY: "-540deg",
+        rotateY: "-360deg",
+        rotate:'-2deg',
         force3D: false,
     }, 0)
     homeTimeline2.to(".home .bg", {
@@ -96,13 +98,13 @@ $(function () {
             scroller: window,
             scrub: 1,
             start: "top top",
-            end: "+=60%",
+            end: "+=50%",
         }
     });
     homeTimeline3
-    .to(".home .stamp__wrap", {
+    .to(".home .envelope__wrap", {
         opacity:0
-    }, 0);
+    }, '+=0.4');
 
     // [home] bg fade-out 0 animation
     const homeTimeline5 = gsap.timeline({
@@ -143,7 +145,7 @@ $(function () {
             engine: engine,
             options: {
                 width: window.innerWidth,
-                height: window.innerHeight * 2,
+                height: window.innerHeight * 1.6,
                 wireframes: false,
                 background: false
             }
@@ -158,9 +160,9 @@ $(function () {
 
         var addWalls = function () {
             var newWalls = [
-                Bodies.rectangle(window.innerWidth / 2, (window.innerHeight *2) + 50, window.innerWidth, 100, { isStatic: true, render: { fillStyle: 'rgba(255, 255, 255, 1)' } }),
-                Bodies.rectangle(-50, (window.innerHeight *2) / 2, 100, (window.innerHeight *2), { isStatic: true, render: { fillStyle: 'rgb(255, 255, 255)' } }),
-                Bodies.rectangle(window.innerWidth + 50, (window.innerHeight *2) / 2, 100, (window.innerHeight *2), { isStatic: true, render: { fillStyle: 'rgba(255, 255, 255, 1)' } })
+                Bodies.rectangle(window.innerWidth / 2, (window.innerHeight *1.6) + 50, window.innerWidth, 100, { isStatic: true, render: { fillStyle: 'rgba(255, 255, 255, 1)' } }),
+                Bodies.rectangle(-50, (window.innerHeight *1.6) / 2, 100, (window.innerHeight *1.6), { isStatic: true, render: { fillStyle: 'rgb(255, 255, 255)' } }),
+                Bodies.rectangle(window.innerWidth + 50, (window.innerHeight *1.6) / 2, 100, (window.innerHeight *1.6), { isStatic: true, render: { fillStyle: 'rgba(255, 255, 255, 1)' } })
             ];
             Composite.add(world, newWalls);
             walls = newWalls;
@@ -285,7 +287,7 @@ $(function () {
         const widthDiff = Math.abs(newWidth - lastWidth);
         const heightDiff = Math.abs(newHeight - lastHeight);
 
-        if (widthDiff > 100 || heightDiff > 100) {
+        if (widthDiff > 200 || heightDiff > 200) {
             lastWidth = newWidth;
             lastHeight = newHeight;
 
@@ -390,7 +392,7 @@ $(function () {
             scroller: window,
             scrub: 1,
             pin: true,
-            end: `bottom top-=${window.innerHeight * 2}px`,
+            end: `bottom top-=${window.innerHeight * 3}px`,
             onUpdate: (self) => {
                 let scrollProgress = self.progress;
                 let maxIndex = books.length - 1;
@@ -418,7 +420,7 @@ $(function () {
 
     // [stack] books JS animation
     function getOffsetValue() {
-        return window.innerWidth < 768 ? 230 : 230; // 모바일(768px 이하)에서는 180, PC에서는 230
+        return window.innerWidth < 768 ? 100 : 230; // 모바일(768px 이하)에서는 180, PC에서는 230
     }
 
     function updateCarousel(index) {
@@ -486,60 +488,6 @@ $(function () {
     /*.to(".expertise .bg-1", {
         opacity:1,
     },"-=.2");*/
-
-
-    //****** service
-    // [service] scrollTrigger pin
-    const serviceItems = document.querySelector('.service ul').querySelectorAll('li');
-    const serviceTotalHeight = serviceItems.length * serviceItems[0].offsetHeight;
-    const service = gsap.timeline({
-        scrollTrigger: {
-            trigger: ".service",
-            scroller: window,
-            scrub: true,
-            pin: true,
-            end: `bottom top-=${serviceTotalHeight * 2}px`,
-        },
-    });
-    // [service] scrollTrigger items trigger
-    service
-        .to(".service ul", {
-            rotateX: '290deg',
-            scrollTrigger: {
-                trigger: ".service",
-                scroller: window,
-                scrub: true,
-                start: '.service',
-                end: `bottom top-=${serviceTotalHeight * 2}px`,
-            },
-        });
-    
-// [service] positionCardsInCircle JS
-function positionCardsInCircle() {
-    const container = document.querySelector(".service .stamp__wrap");
-    const cards = container.querySelectorAll(".service .stamp__item");
- 
-    //const radius = window.innerWidth/2;
-    const radius = 1500;//지정정
-    const total = cards.length;
-    
-    totalAngle = Math.PI * (150 / 180);
-    cards.forEach((card, index) => {
-        //const angle = (index / (total - 1)) * Math.PI; // 반원 180deg
-        const angle = (index / (total - 1)) * totalAngle; // 150deg
-        const deg = angle * (180 / Math.PI);
- 
-        const x = radius * Math.cos(angle) - card.offsetWidth / 2;
-        const y = radius * Math.sin(angle) - card.offsetHeight / 2;
- 
-        card.style.left = x + "px";
-        card.style.top = y + "px";
-        card.style.transform = `rotate(${deg + 90}deg)`; // 카드 정방향 설정
-    });
-}
- 
-window.addEventListener("load", positionCardsInCircle);
-window.addEventListener("resize", positionCardsInCircle);
 
 
     //[common] BG/Text color change JS
