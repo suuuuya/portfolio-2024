@@ -14,20 +14,17 @@ $(function () {
     gsap.timeline()
     .add([
         gsap.fromTo(".intro-bg", { opacity: 1 }, { opacity: 0, display: 'none', ease: Power1.easeInOut, duration: 1 }),
-        gsap.fromTo(".home__letter > *", { opacity: 0, filter:'blur(5px)' }, { opacity: 1, filter:'blur(0px)',  delay: '1', duration: 1 }),
+        gsap.fromTo(".home__letter > *", { opacity: 0, filter:'blur(5px)' }, { opacity: 1,filter:'blur(0px)',  delay: '1', duration: 1 }),
     ]);
     gsap.timeline().staggerFromTo(".header__logo .split-text span", 1,
-    { opacity: 0, y: 0, },
-    {
-        opacity: 1, y: 0, delay: .5, force3D: false, ease: Power1.easeInOut,
-
-    }, .05);
+    { opacity: 0, y: 0, rotateY:'180deg'},
+    {opacity: 1, y: 0,rotateY:'0deg', delay: .5, force3D: false, ease: Power1.easeInOut,}, .05);
 
 
     //***** home
     //[home] post card animation
     gsap.timeline()
-        .fromTo(".home .envelope__item.center .envelope__act", 1.3, { y: '-30%', rotateY: '-180deg' }, { y: '0%', rotateY: '0deg',force3D: false, ease: Power1.easeInOut });
+        .fromTo(".home .envelope__item.center .envelope__act", 1.3, {opacity:0, y: '-60%', rotateY: '-180deg' }, { opacity:1, y: '0%', rotateY: '0deg',force3D: false, ease: Power1.easeInOut });
     
     //[home] intro ani
     const homeTimeline = gsap.timeline({
@@ -80,10 +77,8 @@ $(function () {
     homeTimeline2
     .to(".home .envelope__item.center", {
         y: "8%",
-        x:'1%',
         scale:1,
         rotateY: "-360deg",
-        rotate:'-2deg',
         force3D: false,
     }, 0)
     homeTimeline2.to(".home .bg", {
@@ -382,79 +377,71 @@ $(function () {
     }
 
     
-
     //******** stack & tools
     // [stack] scrollTrigger animation
     const books = document.querySelectorAll(".stack__item");
-    const booksTimeline = gsap.timeline({
-        scrollTrigger: {
-            trigger: ".stack",
-            scroller: window,
-            scrub: 1,
-            pin: true,
-            end: `bottom top-=${window.innerHeight * 3}px`,
-            onUpdate: (self) => {
-                let scrollProgress = self.progress;
-                let maxIndex = books.length - 1;
-                let index = Math.round(scrollProgress * maxIndex);
-                updateCarousel(index);
-            },
-        },
-    });
+    let currentIndex = -1; // 중복 호출 방지를 위한 변수
     
-    // [stack] expertise bg scale up animation
-   /* const stackTimeline = gsap.timeline({
-        scrollTrigger: {
-            trigger: ".stack",
-            start: "top-=100% top",
-            end: "+=100%",
-            scroller: window,
-            scrub: 1,
-            //markers:true,
-        }
-    });
-    stackTimeline
-    .to(".expertise .bg", {
-        scale:1.2
-    });*/
-
-    // [stack] books JS animation
     function getOffsetValue() {
-        return window.innerWidth < 768 ? 100 : 230; // 모바일(768px 이하)에서는 180, PC에서는 230
+      return window.innerWidth < 768 ? 100 : 230; // 모바일 100, PC 230
     }
-
+    
     function updateCarousel(index) {
-        const offsetValue = getOffsetValue(); // 현재 화면 크기에 맞는 값 가져오기
-
-        books.forEach((book, i) => {
-            const offset = i - index;
-            let rotateY = 88 - Math.abs(offset) * 20;
-            rotateY = Math.max(0, rotateY);
-
-            if (offset < 0) rotateY *= 1;
-            else rotateY *= -1;
-
-            let zIndex = 10 - Math.abs(offset);
-
-            gsap.set(book, { zIndex: zIndex });
-            gsap.to(book.querySelector(".book"), {
-                x: offset * offsetValue, // 적용
-                rotateY: rotateY,
-                duration: 1,
-            });
-            gsap.to(book.querySelector(".stack__info"), {
-                x: offset * offsetValue,
-                left: offset * (offsetValue / 2),
-                duration: 1,
-            });
-
-            book.classList.toggle("active", i === index);
+      if (index === currentIndex) return; // 이미 렌더링된 index면 무시
+      currentIndex = index;
+    
+      const offsetValue = getOffsetValue();
+    
+      books.forEach((book, i) => {
+        const offset = i - index;
+    
+        let rotateY = 88 - Math.abs(offset) * 20;
+        rotateY = Math.max(0, rotateY);
+        rotateY *= offset < 0 ? 1 : -1;
+    
+        const zIndex = 10 - Math.abs(offset);
+    
+        gsap.set(book, { zIndex });
+        gsap.to(book.querySelector(".book"), {
+          x: offset * offsetValue,
+          rotateY: rotateY,
+          duration: 1,
         });
+        gsap.to(book.querySelector(".stack__info"), {
+          x: offset * offsetValue,
+          left: offset * (offsetValue / 2),
+          duration: 1,
+        });
+    
+        book.classList.toggle("active", i === index);
+      });
     }
-    //init
+    
+    // [stack] ScrollTrigger timeline
+    const booksTimeline = gsap.timeline({
+      scrollTrigger: {
+        trigger: ".stack",
+        scroller: window,
+        scrub: false,
+        pin: true,
+        end: `bottom top-=${window.innerHeight * 3}px`,
+        onUpdate: (self) => {
+          let scrollProgress = self.progress;
+          let maxIndex = books.length - 1;
+    
+          // 튐 방지 floor 사용 + 보정값 추가
+          let index = Math.floor(scrollProgress * (maxIndex + 0.9999));
+          updateCarousel(index);
+        },
+      },
+    });
     updateCarousel(0);
-    //resize
-    window.addEventListener("resize", () => updateCarousel(0));
+    
+    // resize
+    window.addEventListener("resize", () => {
+      currentIndex = -1; // 리셋
+      updateCarousel(0); // 다시 적용
+    });
 
 
     //******* expertise
@@ -483,11 +470,8 @@ $(function () {
     });
     expertiseTimeline2
     .to(".expertise .sec__title", {
-        opacity:.4,
+        opacity:.2,
     },"+=.2");
-    /*.to(".expertise .bg-1", {
-        opacity:1,
-    },"-=.2");*/
 
 
     //[common] BG/Text color change JS

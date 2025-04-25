@@ -90,6 +90,7 @@ $(function () {
 	customCursorJS();
 	splitJS();
 	animationJS();
+	footerJS();
 	//motionLogo();
 });
 ////////////////////////////////////////////////////////////////////////////////////
@@ -220,4 +221,36 @@ function animationJS() {
 	});
 
 	document.querySelectorAll('.ani').forEach(el => observer.observe(el));
+}
+
+function footerJS() {
+	const root = document.documentElement;
+	const footer = document.querySelector("footer");
+	const bg = footer.querySelector(".bg");
+
+	let footerTrigger; // trigger를 따로 저장해서 재생성 방지
+
+	const updateFooterHeight = () => {
+		const height = footer.offsetHeight;
+		root.style.setProperty('--footer-height', `${height}px`);
+
+		if (footerTrigger) footerTrigger.kill();
+
+		gsap.set(footer, {y:'20vh'});
+		footerTrigger = gsap.to(footer, {
+			y:'0vh',
+			scrollTrigger: {
+				trigger: "#container",
+				start: "bottom bottom",
+				end: `+=${height}`,
+				scrub: false,
+				scroller: window,
+				markers: true
+			}
+		});
+	};
+
+	updateFooterHeight();
+	window.addEventListener('resize', updateFooterHeight);
+	new ResizeObserver(() => updateFooterHeight()).observe(footer);
 }

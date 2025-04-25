@@ -581,8 +581,11 @@ body {
 
 #container {
 	background: var(--main-black);
+	margin-bottom: var(--footer-height);
+	box-shadow: 0px 100px 100px rgba(0,0,0,0.5);
+	z-index: 1;
 }
-
+.pg-wrapper{position: relative; z-index: 1;}
 .inner {
 	position: relative;
 	width: 100%;
@@ -665,6 +668,7 @@ body {
 
 		.split-text {
 			span {
+				display: inline-block;
 				@extend .serif;
 				font-weight: 400;
 			}
@@ -681,6 +685,10 @@ body {
 		position: absolute;
 		top:10px;
 		right:var(--spacing-layout);
+		width: 70px;
+		height: 30px;
+		&::before{display: block;content: "";position: absolute; top:10px; left: 0; width: 100%; height: 1px; background: var(--text-color);}
+		&::after{display: block;content: "";position: absolute; top:20px; left: 0; width: 100%; height: 1px; background: var(--text-color);}
 	}
 }
 
@@ -725,7 +733,16 @@ body {
 
 
 /*footer*/
-footer{}
+.footer{position: fixed; transform: translateY(10%); bottom: 0;left: 0; width: 100%; padding:var(--spacing-default) var(--spacing-layout); z-index: 0;
+	&__contents{display:grid; grid-template-columns: repeat(2,1fr); margin-bottom: var(--spacing-lg);}
+	&__cont{
+		&.cont{
+			&--1{}
+			&--2{display:grid; grid-template-columns: repeat(2,1fr);}
+		}
+	}
+	.copyright{@extend .font__style--sm;}
+}
 
 
 /*split text*/
@@ -843,11 +860,11 @@ footer{}
 }
 
 .tag {
+	position: relative;
 	display: inline-block;
-	border: 1px solid var(--border-gray);
 	padding: 5px 10px;
 	margin: 2px;
-	border-radius: 40px;
+	&::before{display: block; content: "";position: absolute; top:0;left: 0;width: 100%; height: 100%; border: 1px solid var(--text-color); opacity: .3; box-sizing: border-box; border-radius: 40px;}
 }
 
 /*animation*/

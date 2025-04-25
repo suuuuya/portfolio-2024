@@ -510,6 +510,14 @@ body:not(.scrolling, .scrolled-init) .gnb__list {
 
 #container {
   background: var(--main-black);
+  margin-bottom: var(--footer-height);
+  box-shadow: 0px 100px 100px rgba(0, 0, 0, 0.5);
+  z-index: 1;
+}
+
+.pg-wrapper {
+  position: relative;
+  z-index: 1;
 }
 
 .inner {
@@ -588,6 +596,7 @@ body:not(.scrolling, .scrolled-init) .gnb__list {
   transition: 0.5s;
 }
 .header__logo .split-text span {
+  display: inline-block;
   font-weight: 400;
 }
 .header__logo .logo span {
@@ -597,6 +606,28 @@ body:not(.scrolling, .scrolled-init) .gnb__list {
   position: absolute;
   top: 10px;
   right: var(--spacing-layout);
+  width: 70px;
+  height: 30px;
+}
+.header .btn-gnb::before {
+  display: block;
+  content: "";
+  position: absolute;
+  top: 10px;
+  left: 0;
+  width: 100%;
+  height: 1px;
+  background: var(--text-color);
+}
+.header .btn-gnb::after {
+  display: block;
+  content: "";
+  position: absolute;
+  top: 20px;
+  left: 0;
+  width: 100%;
+  height: 1px;
+  background: var(--text-color);
 }
 
 .gnb {
@@ -643,6 +674,24 @@ body:not(.scrolling, .scrolled-init) .gnb__list {
 }
 
 /*footer*/
+.footer {
+  position: fixed;
+  transform: translateY(10%);
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  padding: var(--spacing-default) var(--spacing-layout);
+  z-index: 0;
+}
+.footer__contents {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  margin-bottom: var(--spacing-lg);
+}
+.footer__cont.cont--2 {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+}
 /*split text*/
 .split-text span {
   display: inline-block;
@@ -719,7 +768,7 @@ body:not(.scrolling, .scrolled-init) .gnb__list {
   font-size: 17px;
   line-height: 125%;
 }
-.font__style--sm, .gnb a {
+.font__style--sm, .gnb a, .footer .copyright {
   font-size: 15px;
   line-height: 125%;
 }
@@ -751,10 +800,22 @@ body:not(.scrolling, .scrolled-init) .gnb__list {
 }
 
 .tag {
+  position: relative;
   display: inline-block;
-  border: 1px solid var(--border-gray);
   padding: 5px 10px;
   margin: 2px;
+}
+.tag::before {
+  display: block;
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border: 1px solid var(--text-color);
+  opacity: 0.3;
+  box-sizing: border-box;
   border-radius: 40px;
 }
 
