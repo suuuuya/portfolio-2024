@@ -354,16 +354,16 @@ video {
   width: 100%;
   height: 100%;
   font-size: 25px;
+  font-weight: 400;
+  letter-spacing: 0.5px;
   text-align: center;
   color: var(--main-white);
-  font-weight: 400;
   text-transform: uppercase;
   display: flex;
   flex-wrap: wrap;
   align-items: center;
   justify-content: center;
   white-space: nowrap;
-  letter-spacing: 0.5px;
 }
 .custom-cursor__text__txt span:after {
   content: "";
@@ -371,6 +371,9 @@ video {
   width: 100%;
   height: 100%;
   font-size: 25px;
+  font-weight: 500;
+  letter-spacing: -0.5px;
+  line-height: 100%;
   text-align: center;
   color: var(--main-white);
   text-transform: uppercase;
@@ -378,9 +381,6 @@ video {
   flex-wrap: wrap;
   align-items: center;
   justify-content: center;
-  font-weight: 500;
-  letter-spacing: -0.5px;
-  line-height: 100%;
   white-space: nowrap;
   margin: 0 auto;
 }
@@ -563,10 +563,21 @@ body:not(.scrolling, .scrolled-init) .gnb__list {
   top: 0;
   left: 0;
   width: 100%;
-  /*=mix-blend-mode: difference;*/
-  padding-top: var(--spacing-layout);
+  padding: var(--spacing-layout) 0;
   color: var(--text-color);
   z-index: 100;
+}
+.header::before {
+  display: block;
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(180deg, var(--bg-color) 10%, transparent);
+  z-index: 0;
+  pointer-events: none;
 }
 .header .inner {
   width: 100%;
@@ -579,9 +590,8 @@ body:not(.scrolling, .scrolled-init) .gnb__list {
   position: relative;
   font-size: 3vw;
   font-weight: 400;
-  letter-spacing: var(--main-ivory);
-  line-height: 110%;
   letter-spacing: -1px;
+  line-height: 110%;
   transform-origin: top center;
   display: block;
   z-index: 1;
@@ -595,12 +605,12 @@ body:not(.scrolling, .scrolled-init) .gnb__list {
   display: block;
   transition: 0.5s;
 }
-.header__logo .split-text span {
+.header__logo .split-text:not(.logo) span {
   display: inline-block;
   font-weight: 400;
 }
 .header__logo .logo span {
-  font-weight: 400;
+  font-weight: 500;
 }
 .header .btn-gnb {
   position: absolute;
@@ -676,11 +686,12 @@ body:not(.scrolling, .scrolled-init) .gnb__list {
 /*footer*/
 .footer {
   position: fixed;
-  transform: translateY(10%);
+  transform: translateY(20vh);
   bottom: 0;
   left: 0;
   width: 100%;
   padding: var(--spacing-default) var(--spacing-layout);
+  box-sizing: border-box;
   z-index: 0;
 }
 .footer__contents {
@@ -698,17 +709,17 @@ body:not(.scrolling, .scrolled-init) .gnb__list {
   transform: translate3d(0, 0%, 0);
 }
 
-.serif, .header__logo .split-text span, .gnb a {
+.serif, .header__logo .logo span, .gnb a {
   font-family: "editorial", sans-serif;
 }
-.serif.split-text span, .header__logo .split-text span.split-text span, .gnb a.split-text span, .serif.split span, .header__logo .split-text span.split span, .gnb a.split span {
+.serif.split-text span, .header__logo .logo span.split-text span, .gnb a.split-text span, .serif.split span, .header__logo .logo span.split span, .gnb a.split span {
   font-family: "editorial", sans-serif;
 }
 
-.serif-italic {
+.serif-italic, .header__logo .split-text:not(.logo) span {
   font-family: "editorial italic", sans-serif;
 }
-.serif-italic.split-text span, .serif-italic.split span {
+.serif-italic.split-text span, .header__logo .split-text:not(.logo) span.split-text span, .serif-italic.split span, .header__logo .split-text:not(.logo) span.split span {
   font-family: "editorial italic", sans-serif;
 }
 
@@ -733,7 +744,7 @@ body:not(.scrolling, .scrolled-init) .gnb__list {
   line-height: 120%;
 }
 .sec__title--lg {
-  font-size: 15em;
+  font-size: 190px;
   letter-spacing: -6px;
   line-height: 100%;
 }
@@ -743,14 +754,14 @@ body:not(.scrolling, .scrolled-init) .gnb__list {
   display: inline-block;
   margin: -100px 30px 0 70px;
 }
-.sec__title--lg .serif-italic {
+.sec__title--lg .serif-italic, .sec__title--lg .header__logo .split-text:not(.logo) span, .header__logo .split-text:not(.logo) .sec__title--lg span {
   text-transform: initial;
 }
 .sec__cate {
   font-size: 16px;
+  font-weight: 400;
   letter-spacing: 0.5px;
   line-height: 150%;
-  font-weight: 400;
   margin-bottom: 150px;
 }
 .sec__cate::before {
@@ -772,7 +783,7 @@ body:not(.scrolling, .scrolled-init) .gnb__list {
   font-size: 15px;
   line-height: 125%;
 }
-.font__style--md {
+.font__style--md, .footer__contents {
   font-size: 20px;
   font-weight: 400;
   letter-spacing: -0.25px;
@@ -854,7 +865,7 @@ body:not(.scrolling, .scrolled-init) .gnb__list {
 }
 
 .ani.in-view {
-  animation: opacity 1.2s forwards;
+  animation: opacity 1.5s 0.2s forwards;
 }
 
 @media screen and (max-width: 1600px) {

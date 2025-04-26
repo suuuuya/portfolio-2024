@@ -228,26 +228,24 @@ function footerJS() {
 	const footer = document.querySelector("footer");
 	const bg = footer.querySelector(".bg");
 
-	let footerTrigger; // trigger를 따로 저장해서 재생성 방지
+	let footerTimeline; 
 
 	const updateFooterHeight = () => {
 		const height = footer.offsetHeight;
 		root.style.setProperty('--footer-height', `${height}px`);
 
-		if (footerTrigger) footerTrigger.kill();
+		if (footerTimeline) footerTimeline.kill();
 
-		gsap.set(footer, {y:'20vh'});
-		footerTrigger = gsap.to(footer, {
-			y:'0vh',
+		footerTimeline = gsap.timeline({
 			scrollTrigger: {
 				trigger: "#container",
 				start: "bottom bottom",
 				end: `+=${height}`,
-				scrub: false,
+				scrub: true,
 				scroller: window,
-				markers: true
 			}
 		});
+		footerTimeline.to(footer, {y:'0vh'});
 	};
 
 	updateFooterHeight();
