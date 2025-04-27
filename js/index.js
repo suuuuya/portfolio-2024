@@ -28,11 +28,7 @@ $(function () {
     //[home] post card animation
     gsap.timeline()
         .fromTo(".home .envelope__item.center .envelope__act", 1.3, {opacity:1, y: '-50%', rotateY: '-270deg' }, { opacity:1, y: '0%', rotateY: '0deg',force3D: false, ease: Power1.easeInOut });
-    gsap.timeline().fromTo(".home .stamp-1 .envelope__item--front", 1, {opacity:0,rotateY: '0deg'}, {opacity:1,rotateY: '0deg',delay:0.6, force3D: false ,});
-    gsap.timeline().fromTo(".home .stamp-2 .envelope__item--front", 1, {opacity:0,rotateY: '0deg'}, {opacity:1,rotateY: '0deg',delay:0.8,force3D: false ,});
-    gsap.timeline().fromTo(".home .stamp-3 .envelope__item--front", 1, {opacity:0,rotateY: '0deg'}, {opacity:1,rotateY: '0deg',delay:1,force3D: false ,});
-    gsap.timeline().fromTo(".home .stamp-4 .envelope__item--front", 1, {opacity:0,rotateY: '0deg'}, {opacity:1,rotateY: '0deg',delay:1.2,force3D: false ,});
-       
+     
     //[home] intro ani
     const homeTimeline = gsap.timeline({
         scrollTrigger: {
@@ -56,7 +52,7 @@ $(function () {
             end: "+=50%",
         },
         scale: 1,
-        y: '-10px',
+        y: '-5px',
         force3D: false,
     })
     .to(".home__letter", {
@@ -83,13 +79,13 @@ $(function () {
     });
     homeTimeline2
     .to(".home .envelope__item.center", {
-        y: "8%",
+        y: "2%",
         scale:1,
         rotateY: "-360deg",
         force3D: false,
     }, 0)
     homeTimeline2.to(".home .bg", {
-        opacity:.3,
+        opacity:.2,
         duration:1,
      },0);
     
@@ -147,8 +143,8 @@ $(function () {
             element: document.getElementById("shapes-box"),
             engine: engine,
             options: {
-                width: window.innerWidth,
-                height: window.innerHeight * 1.7,
+                width: window.innerWidth - 30,
+                height: window.innerHeight * 1.6,
                 wireframes: false,
                 background: false
             }
@@ -163,9 +159,9 @@ $(function () {
 
         var addWalls = function () {
             var newWalls = [
-                Bodies.rectangle(window.innerWidth / 2, (window.innerHeight *1.7) + 50, window.innerWidth, 100, { isStatic: true, render: { fillStyle: 'rgba(255, 255, 255, 1)' } }),
-                Bodies.rectangle(-50, (window.innerHeight *1.7) / 2, 100, (window.innerHeight *1.7), { isStatic: true, render: { fillStyle: 'rgb(255, 255, 255)' } }),
-                Bodies.rectangle(window.innerWidth + 50, (window.innerHeight *1.7) / 2, 100, (window.innerHeight *1.7), { isStatic: true, render: { fillStyle: 'rgba(255, 255, 255, 1)' } })
+                Bodies.rectangle((window.innerWidth-30) / 2, (window.innerHeight *1.6) + 50, (window.innerWidth-30), 100, { isStatic: true, render: { fillStyle: 'rgba(255, 255, 255, 1)' } }),
+                Bodies.rectangle(-50, (window.innerHeight *1.6) / 2, 100, (window.innerHeight *1.6), { isStatic: true, render: { fillStyle: 'rgb(255, 255, 255)' } }),
+                Bodies.rectangle((window.innerWidth-30) + 50, (window.innerHeight *1.6) / 2, 100, (window.innerHeight *1.6), { isStatic: true, render: { fillStyle: 'rgba(255, 255, 255, 1)' } })
             ];
             Composite.add(world, newWalls);
             walls = newWalls;
@@ -391,7 +387,13 @@ $(function () {
     let currentIndex = -1; // 중복 호출 방지를 위한 변수
     
     function getOffsetValue() {
-      return window.innerWidth < 768 ? 100 : 230; // 모바일 100, PC 230
+        return window.innerWidth >= 2400
+        ? 300 
+        : window.innerWidth >= 1920
+        ? 230   // pc 
+        : window.innerWidth < 767
+        ? 110   // 모바일
+        : 230;  // 나머지
     }
     
     function updateCarousel(index) {
@@ -462,11 +464,11 @@ $(function () {
     });
     stackTimeline
     .to(".stack .sec__title", {
-        y:'-4vh',
+        y:'-3vh',
         scale:.9,
     },0)
     .to(".stack .stack__container", {
-        y:'-6vh'
+        y:'-4vh'
     },0);
 
 

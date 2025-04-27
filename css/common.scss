@@ -632,14 +632,14 @@ body {
 	padding: 20px 0 var(--spacing-layout);
 	color:var(--text-color);
 	text-align: center;
-	@extend .font__style--sm;
+	font-size: 18px;
 	z-index: 100;
 	&::before{display: block; content: ""; position: absolute; top:0;left: 0; width: 100%; height: 100%; background:linear-gradient(180deg,  var(--bg-color) 10%, transparent); z-index: 0; pointer-events: none;}
 	.inner {
 		width: 100%;
 		height: 100%;
 	}
-	.year{display: inline-block; padding: 1px 10px; border:1px solid var(--text-color);border-radius: 50%; margin-bottom: 20px;}
+	.year{display: inline-block; padding: 3px 15px; border:1px solid var(--text-color);border-radius: 50%; margin-bottom: 10px;}
 	&__logo {
 		position: relative;
 		@include font-style(null, 3vw, 400, -1px, 110%);
@@ -653,7 +653,7 @@ body {
 			transform-style: preserve-3d;
 			perspective: 1000px;
 			position: relative;
-			display: block;
+			display: inline-block;
 			transition: 0.5s;
 		}
 
@@ -695,7 +695,7 @@ body {
 	}
 
 	a {
-		display: block;
+		display: inline-block	;
 		@extend .serif;
 		letter-spacing: .5px;
 		
@@ -723,7 +723,7 @@ body {
 
 
 /*footer*/
-.footer{position: fixed; transform: translateY(20vh); bottom: 0;left: 0; width: 100%; padding:var(--spacing-default) var(--spacing-layout); box-sizing: border-box; z-index: 0;
+.footer{position: fixed; transform: translateY(30vh); bottom: 0;left: 0; width: 100%; padding:var(--spacing-default) var(--spacing-layout); box-sizing: border-box; z-index: 0;
 	&__contents{display:grid; grid-template-columns: repeat(2,1fr); margin-bottom: var(--spacing-lg);@extend .font__style--md;}
 	&__cont{
 		&.cont{
@@ -899,48 +899,241 @@ body {
 	animation: opacity 1.5s .2s forwards;
 }
 
-@media screen and (max-width: 1600px) {
-	/*html{font-size: 0.0625vw;}*/
-}
+@media screen and (min-width: 2400px) {
+	.header{font-size: 25px;}
+	.font {
+		&__style {
+			&--desc {
+				@include font-style(null, 20px, null, null, 125%);
+			}
 
-@media screen and (max-width: 1280px) {
+			&--sm {
+				@include font-style(null, 22px, null, null, 125%);
+			}
 
-	/*html{font-size: 0.0925vw;}*/
-	html {
-		&::after {
-			background-size: 100%;
+			&--md {
+				@include font-style(null, 28px, 400, -.25px, 135%);
+			}
+
+			&--md-bold {
+				@include font-style(null, 24px, 600, null, 135%);
+			}
+
+			&--md2-bold {
+				@include font-style(null, 24px, 600, null, 135%);
+			}
+
+			&--lg {
+				@include font-style(null, 70px, 400, null, 135%);
+			}
+
+			&--big {
+				@include font-style(null, 50px, 500, null, 135%);
+			}
 		}
 	}
-
-	.profile__row {
-		display: block;
-	}
-
-	.custom-cursor {
-		display: none;
-	}
-}
-
-@media screen and (max-width: 768px) {
-	#wrap {
-		.inner {
-			padding: 0 20px;
+	.sec {
+		&__title {
+			&--desc {
+				@include font-style(null, 20px, null, null, 150%);
+			}
+	
+			&--sm {
+				@include font-style(null, 36px, null, -.25px, 155%);
+			}
+	
+			&--md {
+				@include font-style(null, 55px, 500, -2px, 120%);
+			}
+	
+			&--lg {
+				@include font-style(null, 300px, null, -6px, 100%);
+			}
 		}
-
-		.gnb {
-			display: none;
-		}
-
-		.home {
-			&__title {
-				font-size: 4.2em;
+		&__cate {
+			@include font-style(null, 24px, 400, 0.5px, 150%);
+	
+			&::before {
+				display: inline-block;
+				content: "";
+				width: 10px;
+				height: 10px;
+				border-radius: 50%;
+				background: var(--text-color);
+				vertical-align: top;
+				margin: 9px 10px 0 0;
 			}
 		}
 	}
 }
+@media screen and (max-width: 1700px) {
+	.header{
+		&__logo {
+			position: relative;
+			@include font-style(null, 50px, 400, -1px, 110%);
+		}
+	}
+}
+@media screen and (max-width: 1279px) {
+	:root {
+		--spacing-layout: 30px;
+		--spacing-xs: 20px;
+		--spacing-sm: 30px;
+		--spacing-default: 60px;
+		--spacing-md: 80px;
+		--spacing-lg: 100px;
+		--spacing-xl: 250px;
+	}
+	.custom-cursor {
+		display: none !important;
+	}
+	.header{
+		font-size: 16px;
+		&__logo {
+			position: relative;
+			@include font-style(null, 2.65em, 400, -1px, 110%);
+		}
+	}
+	.font {
+		&__style {
+			&--desc {
+				@include font-style(null, 17px, null, null, 125%);
+			}
+	
+			&--sm {
+				@include font-style(null, 15px, null, null, 125%);
+			}
+	
+			&--md {
+				@include font-style(null, 18px, 400, -.25px, 135%);
+			}
+	
+			&--md-bold {
+				@include font-style(null, 24px, 600, null, 135%);
+			}
+	
+			&--md2-bold {
+				@include font-style(null, 24px, 600, null, 135%);
+			}
+	
+			&--lg {
+				@include font-style(null, 45px, 400, null, 135%);
+			}
+	
+			&--big {
+				@include font-style(null, 50px, 500, null, 135%);
+			}
+		}
+	}
+	.sec {
+		&__title {
+			&--desc {
+				@include font-style(null, 20px, null, null, 150%);
+			}
+	
+			&--sm {
+				@include font-style(null, 23px, null, -.25px, 155%);
+			}
+	
+			&--md {
+				@include font-style(null, 55px, 500, -2px, 120%);
+			}
+	
+			&--lg {
+				@include font-style(null, 130px, null, -6px, 100%);
+			}
+		}
+	
+		&__cate {
+			@include font-style(null, 16px, 400, 0.5px, 150%);
+			margin-bottom: 100px;
+		}
+	}
+}
 
-@media screen and (max-width: 600px) {
-	html {
-		font-size: 0.17vw;
+@media screen and (max-width: 767px) {
+	:root {
+		--spacing-layout: 15px;
+		--spacing-xs: 10px;
+		--spacing-sm: 30px;
+		--spacing-default: 40px;
+		--spacing-md: 70px;
+		--spacing-lg: 80px;
+		--spacing-xl: 250px;
+	}
+	.ani.in-view {
+		animation: opacity 1.2s forwards;
+	}
+	.header{
+		font-size: 12px; padding-top: 15px;
+		&::before{background:linear-gradient(180deg,  var(--bg-color) 20%, transparent);}
+		&__logo {
+			position: relative;
+			@include font-style(null, 8vw, 400, -1px, 110%);
+		}
+		.year{padding: 3px 12px;}
+	}
+	.footer{
+		&__contents{gap:0 15px; grid-template-columns: 55% 45%;}
+		.cont{
+			&--2{display: block;
+				> * + *{margin-top: 15px;}
+			}
+		}
+	}
+	.font {
+		&__style {
+			&--desc {
+				@include font-style(null, 17px, null, null, 125%);
+			}
+	
+			&--sm {
+				@include font-style(null, 13px, null, null, 125%);
+			}
+	
+			&--md {
+				@include font-style(null, 16px, 400, -.25px, 135%);
+			}
+	
+			&--md-bold {
+				@include font-style(null, 24px, 600, null, 135%);
+			}
+	
+			&--md2-bold {
+				@include font-style(null, 24px, 600, null, 135%);
+			}
+	
+			&--lg {
+				@include font-style(null, 36px, 400, null, 135%);
+			}
+	
+			&--big {
+				@include font-style(null, 50px, 500, null, 135%);
+			}
+		}
+	}
+	.sec {
+		&__title {
+			&--desc {
+				@include font-style(null, 20px, null, null, 150%);
+			}
+	
+			&--sm {
+				@include font-style(null, 15px, null, -.25px, 155%);
+			}
+	
+			&--md {
+				@include font-style(null, 55px, 500, -2px, 120%);
+			}
+	
+			&--lg {
+				@include font-style(null, 80px, null, -4px, 100%);
+			}
+		}
+	
+		&__cate {
+			@include font-style(null, 16px, 400, 0.5px, 150%);
+			margin-bottom: 40px;
+		}
 	}
 }
