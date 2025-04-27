@@ -14,11 +14,14 @@ $(function () {
     gsap.timeline()
     .add([
         gsap.fromTo(".intro-bg", { opacity: 1 }, { opacity: 0, display: 'none', ease: Power1.easeInOut, duration: 1 }),
-        gsap.fromTo(".home__letter > *", { opacity: 0, filter:'blur(5px)' }, { opacity: 1,filter:'blur(0px)',  delay: '1.2', duration: 1 }),
-    ]);
+        gsap.fromTo("header", { opacity: 0, y:'-150%'}, { opacity: 1,y:'0%',delay:.6, duration: 1 }),
+        gsap.fromTo("header .year", { opacity: 0, rotateY:'0deg'}, { opacity: 1,rotateY:'0deg',  delay: '1.5', duration: 1 }),
+        gsap.fromTo(".home__letter > *", { opacity: 0, filter:'blur(5px)' }, { opacity: 1,filter:'blur(0px)',  delay: '1', duration: 1 }),
+        gsap.fromTo(".gnb", { opacity: 0, y:'-200%' }, { opacity: 1,y:'0%',  delay: '1.2', duration: 1 }),
+      ]);
     gsap.timeline().staggerFromTo(".header__logo .split-text span", 1,
-    { opacity: 0, y: 0, rotateY:'0deg', scale:1,},
-    {opacity: 1, y: 0,rotateY:'0deg', scale:1,delay: .5, force3D: false, ease: Power1.easeInOut,}, .05);
+    { opacity: 0,},
+    {opacity: 1, delay: .6, force3D: false, }, .05);
 
 
     //***** home
@@ -53,7 +56,7 @@ $(function () {
             end: "+=50%",
         },
         scale: 1,
-        y: '0px',
+        y: '-10px',
         force3D: false,
     })
     .to(".home__letter", {
@@ -459,11 +462,11 @@ $(function () {
     });
     stackTimeline
     .to(".stack .sec__title", {
-        y:'-12vh',
-        scale:.7,
+        y:'-4vh',
+        scale:.9,
     },0)
     .to(".stack .stack__container", {
-        y:'-17vh'
+        y:'-6vh'
     },0);
 
 

@@ -87,6 +87,7 @@ $(function () {
 
 	//js
 	headerJS();
+	gnbJS();
 	customCursorJS();
 	splitJS();
 	animationJS();
@@ -110,6 +111,25 @@ function headerJS() {
 			});
 		});
 	});
+}
+function gnbJS(){
+	const gnbBtn = document.querySelector('.gnb__btn');
+	const headerGnb = document.querySelector('.gnb__menu');
+	
+	gnbBtn.addEventListener('click', () => {
+		const isOpen = headerGnb.classList.toggle('show');
+	  
+		gnbBtn.textContent = isOpen ? '( CLOSE )' : '( MENU )';
+	  
+		if (isOpen) {
+		  const tl = gsap.timeline();
+		  tl.fromTo(
+			".gnb li",
+			{ opacity: 0, y: 10 },
+			{ opacity: 1, y: 0, ease: Power1.easeInOut, stagger: 0.1 }
+		  );
+		}
+	  });
 }
 
 function customCursorJS() {

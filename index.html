@@ -4,8 +4,7 @@
 <head>
 	<meta charset="UTF-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<meta name="viewport"
-		content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no" />
 	<meta name="description" content="Portfolio" />
 	<meta name="keywords" content="Web Publisher, front-end, 웹 퍼블리셔, 프론트엔드, 개발자, 포트폴리오, portfolio" />
 	<meta property="og:title" content="Portfolio : 이연수" />
@@ -45,29 +44,32 @@
 		</div>
 	</div>
 	<!-- s: wrap -->
-	<div id="wrap">
+	<div id="wrap" data-bgcolor="" data-textcolor="#E9E3D3">
 		<!-- s: header -->
 		<header id="header" class="header">
 			<h2 class="blind">헤더 영역</h2>
 			<div class="inner">
+				<div class="year current-year"></div>
 				<h1 class="header__logo">
 					<a href="./index.html" data-hover="">
 						<span class="split-text">Posted&nbsp;by&nbsp;</span><span class="split-text logo">LYS</span>
 					</a>
 				</h1>
-				<button type="button" class="btn-gnb"><span class="blind">MENU</span></button>
 			</div>
 		</header>
 		<!-- e: header -->
 		<!-- s: nav -->
-		<nav class="gnb header__gnb">
-			<ul class="gnb__list">
-				<li><a href="#profile">Profile</a></li>
-				<li><a href="#work">Projects</a></li>
-				<li><a href="#stack">Stack & Skills</a></li>
-				<li><a href="#expertise">Expertise</a></li>
-			</ul>
-		</nav>
+		<div class="gnb">
+			<button type="button" class="gnb__btn">( MENU )</button>
+			<nav class="gnb__menu">
+				<ul class="gnb__list">
+					<li><a href="#profile">Profile</a></li>
+					<li><a href="#work">Projects</a></li>
+					<li><a href="#stack">Stack & Skills</a></li>
+					<li><a href="#expertise">Expertise</a></li>
+				</ul>
+			</nav>
+		</div>
 		<!-- e: nav -->
 		<!-- s: container -->
 		<div id="container">
