@@ -9,31 +9,35 @@ resizeHeight();
 $(function () {
 
     //***** ScrollTrigger 
-    // [intro] animation
     gsap.registerPlugin(ScrollTrigger);
-    //intro animation 
-    gsap.timeline()
-    .add([
-        gsap.fromTo(".intro-bg", { opacity: 1, clipPath:'inset(0% 0% 0% 0%)'}, { opacity: 1, delay:2.6, clipPath:'inset(100% 0% 0% 0%)', display: 'none', ease: Power1.easeInOut, duration: .8 }),
-        gsap.fromTo(".intro__text", {opacity:0, x:'30%'}, {opacity:1, x:'0%', delay:.5,  ease: Power1.easeInOut, duration: .8 }),
-        gsap.fromTo(".intro__text .split-text", {opacity:0}, { opacity:1, deley:2, ease: Power1.easeInOut, duration: 1 }),
-        gsap.fromTo(".intro", {opacity:1,}, {  opacity:0, delay:2.5, ease: Power1.easeInOut, duration: .6 }),    
-    ]);
-    gsap.timeline().staggerFromTo(".intro__text .split-text span", 1,
+    
+    // [intro] animation
+    function introJS(){
+        //intro animation 
+        gsap.timeline()
+        .add([
+            gsap.fromTo(".intro-bg", { opacity: 1, clipPath:'inset(0% 0% 0% 0%)'}, { opacity: 1, delay:2.6, clipPath:'inset(100% 0% 0% 0%)', display: 'none', ease: Power1.easeInOut, duration: .8 }),
+            gsap.fromTo(".intro__text", {opacity:0, x:'30%'}, {opacity:1, x:'0%', delay:.5,  ease: Power1.easeInOut, duration: .8 }),
+            gsap.fromTo(".intro__text .split-text", {opacity:0}, { opacity:1, deley:2, ease: Power1.easeInOut, duration: 1 }),
+            gsap.fromTo(".intro", {opacity:1,}, {  opacity:0, delay:2.5, ease: Power1.easeInOut, duration: .6 }),    
+        ]);
+        gsap.timeline().staggerFromTo(".intro__text .split-text span", 1,
+            { opacity: 0, rotateX:'180deg'},
+            {opacity: 1, rotateX:'0deg', delay:1.5, force3D: false, }, .1);
+        //intro animation 끝난 뒤 실행    
+        gsap.timeline()
+        .add([
+            gsap.fromTo("header", { opacity: 0, y:'-150%'}, { opacity: 1,y:'0%',delay:2.8, duration: 1 }),
+            gsap.fromTo("header .year", { opacity: 1, rotateY:'0deg'}, { opacity: 1,rotateY:'0deg',  delay: 3.5, duration: 1 }),
+            gsap.fromTo(".home__letter > *", { opacity: 0, filter:'blur(5px)' }, { opacity: 1,filter:'blur(0px)',  delay: 3.2, duration: 1 }),
+            gsap.fromTo(".gnb", { opacity: 0, y:'-300%' }, { opacity: 1,y:'0%',  delay: 3.3, duration: .8 }),
+        ]);
+        gsap.timeline().staggerFromTo(".header__logo .split-text span", 1,
         { opacity: 0, rotateX:'180deg'},
-        {opacity: 1, rotateX:'0deg', delay:1.5, force3D: false, }, .1);
-    //intro animation 끝난 뒤 실행    
-    gsap.timeline()
-    .add([
-        gsap.fromTo("header", { opacity: 0, y:'-150%'}, { opacity: 1,y:'0%',delay:2.8, duration: 1 }),
-        gsap.fromTo("header .year", { opacity: 1, rotateY:'0deg'}, { opacity: 1,rotateY:'0deg',  delay: 3.5, duration: 1 }),
-        gsap.fromTo(".home__letter > *", { opacity: 0, filter:'blur(5px)' }, { opacity: 1,filter:'blur(0px)',  delay: 3.2, duration: 1 }),
-        gsap.fromTo(".gnb", { opacity: 0, y:'-300%' }, { opacity: 1,y:'0%',  delay: 3.3, duration: .8 }),
-    ]);
-    gsap.timeline().staggerFromTo(".header__logo .split-text span", 1,
-    { opacity: 0, rotateX:'180deg'},
-    {opacity: 1, rotateX:'0deg', delay:2.8, force3D: false, }, .05);
+        {opacity: 1, rotateX:'0deg', delay:2.8, force3D: false, }, .05);
 
+    }
+    introJS();
 
     //***** home
     //[home] post card animation

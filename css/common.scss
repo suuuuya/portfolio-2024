@@ -1032,7 +1032,7 @@ body {
 		--spacing-lg: 100px;
 		--spacing-xl: 250px;
 	}
-	.custom-cursor {
+	.custom-cursor,.custom-cursor__text,.custom-cursor__img {
 		display: none !important;
 	}
 	.intro-bg{background-size: 500px; touch-action: none;}
