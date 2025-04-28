@@ -11,23 +11,34 @@ $(function () {
     //***** ScrollTrigger 
     // [intro] animation
     gsap.registerPlugin(ScrollTrigger);
+    //intro animation 
     gsap.timeline()
     .add([
-        gsap.fromTo(".intro-bg", { opacity: 1 }, { opacity: 0, display: 'none', ease: Power1.easeInOut, duration: 1 }),
-        gsap.fromTo("header", { opacity: 0, y:'-150%'}, { opacity: 1,y:'0%',delay:.6, duration: 1 }),
-        gsap.fromTo("header .year", { opacity: 0, rotateY:'0deg'}, { opacity: 1,rotateY:'0deg',  delay: '1.5', duration: 1 }),
-        gsap.fromTo(".home__letter > *", { opacity: 0, filter:'blur(5px)' }, { opacity: 1,filter:'blur(0px)',  delay: '1', duration: 1 }),
-        gsap.fromTo(".gnb", { opacity: 0, y:'-200%' }, { opacity: 1,y:'0%',  delay: '1.2', duration: 1 }),
-      ]);
+        gsap.fromTo(".intro-bg", { opacity: 1, clipPath:'inset(0% 0% 0% 0%)'}, { opacity: 1, delay:2.6, clipPath:'inset(100% 0% 0% 0%)', display: 'none', ease: Power1.easeInOut, duration: .8 }),
+        gsap.fromTo(".intro__text", {opacity:0, x:'30%'}, {opacity:1, x:'0%', delay:.5,  ease: Power1.easeInOut, duration: .8 }),
+        gsap.fromTo(".intro__text .split-text", {opacity:0}, { opacity:1, deley:2, ease: Power1.easeInOut, duration: 1 }),
+        gsap.fromTo(".intro", {opacity:1,}, {  opacity:0, delay:2.5, ease: Power1.easeInOut, duration: .6 }),    
+    ]);
+    gsap.timeline().staggerFromTo(".intro__text .split-text span", 1,
+        { opacity: 0, rotateX:'180deg'},
+        {opacity: 1, rotateX:'0deg', delay:1.5, force3D: false, }, .1);
+    //intro animation 끝난 뒤 실행    
+    gsap.timeline()
+    .add([
+        gsap.fromTo("header", { opacity: 0, y:'-150%'}, { opacity: 1,y:'0%',delay:2.8, duration: 1 }),
+        gsap.fromTo("header .year", { opacity: 1, rotateY:'0deg'}, { opacity: 1,rotateY:'0deg',  delay: 3.5, duration: 1 }),
+        gsap.fromTo(".home__letter > *", { opacity: 0, filter:'blur(5px)' }, { opacity: 1,filter:'blur(0px)',  delay: 3.2, duration: 1 }),
+        gsap.fromTo(".gnb", { opacity: 0, y:'-300%' }, { opacity: 1,y:'0%',  delay: 3.3, duration: .8 }),
+    ]);
     gsap.timeline().staggerFromTo(".header__logo .split-text span", 1,
-    { opacity: 0,},
-    {opacity: 1, delay: .6, force3D: false, }, .05);
+    { opacity: 0, rotateX:'180deg'},
+    {opacity: 1, rotateX:'0deg', delay:2.8, force3D: false, }, .05);
 
 
     //***** home
     //[home] post card animation
     gsap.timeline()
-        .fromTo(".home .envelope__item.center .envelope__act", 1.3, {opacity:1, y: '-50%', rotateY: '-270deg' }, { opacity:1, y: '0%', rotateY: '0deg',force3D: false, ease: Power1.easeInOut });
+        .fromTo(".home .envelope__item.center .envelope__act", 1, {opacity:0, y: '-40%', rotateY: '-90deg' }, { opacity:1, y: '0%', rotateY: '0deg',delay:3, force3D: false, });
      
     //[home] intro ani
     const homeTimeline = gsap.timeline({
@@ -85,7 +96,7 @@ $(function () {
         force3D: false,
     }, 0)
     homeTimeline2.to(".home .bg", {
-        opacity:.2,
+        opacity:.3,
         duration:1,
      },0);
     
@@ -144,7 +155,7 @@ $(function () {
             engine: engine,
             options: {
                 width: window.innerWidth - 30,
-                height: window.innerHeight * 1.6,
+                height: window.innerHeight * 1.2,
                 wireframes: false,
                 background: false
             }
@@ -159,9 +170,9 @@ $(function () {
 
         var addWalls = function () {
             var newWalls = [
-                Bodies.rectangle((window.innerWidth-30) / 2, (window.innerHeight *1.6) + 50, (window.innerWidth-30), 100, { isStatic: true, render: { fillStyle: 'rgba(255, 255, 255, 1)' } }),
-                Bodies.rectangle(-50, (window.innerHeight *1.6) / 2, 100, (window.innerHeight *1.6), { isStatic: true, render: { fillStyle: 'rgb(255, 255, 255)' } }),
-                Bodies.rectangle((window.innerWidth-30) + 50, (window.innerHeight *1.6) / 2, 100, (window.innerHeight *1.6), { isStatic: true, render: { fillStyle: 'rgba(255, 255, 255, 1)' } })
+                Bodies.rectangle((window.innerWidth-30) / 2, (window.innerHeight *1.2) + 50, (window.innerWidth-30), 100, { isStatic: true, render: { fillStyle: 'rgba(255, 255, 255, 1)' } }),
+                Bodies.rectangle(-50, (window.innerHeight *1.2) / 2, 100, (window.innerHeight *1.2), { isStatic: true, render: { fillStyle: 'rgb(255, 255, 255)' } }),
+                Bodies.rectangle((window.innerWidth-30) + 50, (window.innerHeight *1.2) / 2, 100, (window.innerHeight *1.2), { isStatic: true, render: { fillStyle: 'rgba(255, 255, 255, 1)' } })
             ];
             Composite.add(world, newWalls);
             walls = newWalls;
@@ -172,8 +183,7 @@ $(function () {
         const addShape = (texture, options, x, y) => {
             const scale = Math.min(window.innerHeight, window.innerWidth) / 1000;
             const renderOptions = {
-                ...options,
-                restitution: 0.5,
+                restitution: 0.1,
                 render: {
                     sprite: {
                         texture,
@@ -208,12 +218,12 @@ $(function () {
                 './img/img-client-stamp-13.png',
             ];
 
-            const isMobile = window.innerWidth <= 768;
+            const isMobile = window.innerWidth <= 1279;
             const baseOptions = {
                 shape: "rectangle",
-                width: 720 / (isMobile ? 4 : 5),
-                height: 887 / (isMobile ? 4 : 5),
-                scale: isMobile ? 0.25 : 0.2
+                width: 720 / (isMobile ? 4.5 : 5),
+                height: 887 / (isMobile ? 4.5 : 5),
+                scale: isMobile ? 0.22 : 0.2
             };
 
             const startY = -window.innerHeight / 50;
@@ -275,9 +285,9 @@ $(function () {
                 hasRun = true;
             }
         });
-    }, { threshold:0});
+    }, { threshold:0.6});
 
-    const target = document.querySelector('.work');
+    const target = document.querySelector('#shapes-box');
     if (target) observer.observe(target);
 
     window.addEventListener("resize", () => {
@@ -384,74 +394,69 @@ $(function () {
     //******** stack & tools
     // [stack] scrollTrigger animation
     const books = document.querySelectorAll(".stack__item");
-    let currentIndex = -1; // 중복 호출 방지를 위한 변수
-    
+    let currentIndex = -1; // 중복 호출 방지 변수
+
     function getOffsetValue() {
         return window.innerWidth >= 2400
-        ? 300 
-        : window.innerWidth >= 1920
-        ? 230   // pc 
-        : window.innerWidth < 767
-        ? 110   // 모바일
-        : 230;  // 나머지
+            ? 300 
+            : window.innerWidth >= 1920
+            ? 230   // pc 
+            : window.innerWidth < 767
+            ? 110   // 모바일
+            : 230;  // 나머지
     }
-    
+
     function updateCarousel(index) {
-      if (index === currentIndex) return;
-      currentIndex = index;
-    
-      const offsetValue = getOffsetValue();
-    
-      books.forEach((book, i) => {
-        const offset = i - index;
-    
-        let rotateY = 88 - Math.abs(offset) * 20;
-        rotateY = Math.max(0, rotateY);
-        rotateY *= offset < 0 ? 1 : -1;
-    
-        const zIndex = 10 - Math.abs(offset);
-    
-        gsap.set(book, { zIndex });
-        gsap.to(book.querySelector(".book"), {
-          x: offset * offsetValue,
-          rotateY: rotateY,
-          duration: 1,
+        if (index === currentIndex) return;
+        currentIndex = index;
+
+        const offsetValue = getOffsetValue();
+
+        books.forEach((book, i) => {
+            const offset = i - index;
+
+            let rotateY = 88 - Math.abs(offset) * 20;
+            rotateY = Math.max(0, rotateY);
+            rotateY *= offset < 0 ? 1 : -1;
+
+            const zIndex = 10 - Math.abs(offset);
+
+            gsap.set(book, { zIndex });
+            gsap.to(book.querySelector(".book"), {
+                x: offset * offsetValue,
+                rotateY: rotateY,
+                duration: 1,
+            });
+            gsap.to(book.querySelector(".stack__info"), {
+                x: offset * offsetValue,
+                left: offset * (offsetValue / 2),
+                duration: 1,
+            });
+
+            book.classList.toggle("active", i === index);
         });
-        gsap.to(book.querySelector(".stack__info"), {
-          x: offset * offsetValue,
-          left: offset * (offsetValue / 2),
-          duration: 1,
-        });
-    
-        book.classList.toggle("active", i === index);
-      });
     }
-    
+
     // [stack] ScrollTrigger timeline
     const booksTimeline = gsap.timeline({
-      scrollTrigger: {
-        trigger: ".stack",
-        scroller: window,
-        scrub: false,
-        pin: true,
-        end: `bottom top-=${window.innerHeight * 3}px`,
-        onUpdate: (self) => {
-          let scrollProgress = self.progress;
-          let maxIndex = books.length - 1;
-    
-          // 튐 방지 floor + 보정값
-          let index = Math.floor(scrollProgress * (maxIndex + 0.9999));
-          updateCarousel(index);
+        scrollTrigger: {
+            trigger: ".stack",
+            scroller: window,
+            scrub: false,
+            pin: true,
+            end: () => `bottom top-${window.innerHeight * 7}px`, 
+            onUpdate: (self) => {
+                let scrollProgress = self.progress;
+                let maxIndex = books.length - 1;
+
+                // 튐 방지 floor + 보정값
+                let index = Math.floor(scrollProgress * maxIndex);
+                updateCarousel(index);
+            },
         },
-      },
     });
     updateCarousel(0);
-    
-    // resize
-    window.addEventListener("resize", () => {
-      currentIndex = -1; // 리셋
-      updateCarousel(0); // 다시 적용
-    });
+
 
     const stackTimeline = gsap.timeline({
         scrollTrigger: {
@@ -470,6 +475,7 @@ $(function () {
     .to(".stack .stack__container", {
         y:'-4vh'
     },0);
+
 
 
     //******* expertise

@@ -579,7 +579,9 @@ body {
 	box-shadow: 0px 100px 100px rgba(0,0,0,0.5);
 	z-index: 1;
 }
-.pg-wrapper{position: relative; z-index: 1;}
+#pg-wrapper{position: relative; z-index: 1;
+	&::before{display: block; content: ""; position: fixed; top:0;left: 0; width: 100%; height: 100%; background: url(../img/noise.png) repeat center; pointer-events: none; opacity: .2; z-index: -1;}
+}
 .inner {
 	position: relative;
 	width: 100%;
@@ -596,19 +598,27 @@ body {
 	background-repeat: no-repeat;
 
 	&--instagram {
-		background-image: url('../img/ico/ico-instagram.svg');
+		background-color: var(--text-color);
+		mask: url('../img/ico/ico-instagram.svg') no-repeat center / contain;
+		-webkit-mask: url('../img/ico/ico-instagram.svg') no-repeat center / contain;
 	}
 
 	&--github {
-		background-image: url('../img/ico/ico-git.svg');
+		background-color: var(--text-color);
+		mask: url('../img/ico/ico-git.svg') no-repeat center / contain;
+		-webkit-mask: url('../img/ico/ico-git.svg') no-repeat center / contain;
 	}
 
 	&--notion {
-		background-image: url('../img/ico/ico-notion.svg');
+		background-color: var(--text-color);
+		mask: url('../img/ico/ico-notion.svg') no-repeat center / contain;
+		-webkit-mask: url('../img/ico/ico-notion.svg') no-repeat center / contain;
 	}
 
 	&--pdf {
-		background-image: url('../img/ico/ico-pdf.svg');
+		background-color: var(--text-color);
+		mask: url('../img/ico/ico-pdf.svg') no-repeat center / contain;
+		-webkit-mask: url('../img/ico/ico-pdf.svg') no-repeat center / contain;
 	}
 }
 
@@ -713,17 +723,37 @@ body {
 
 .intro-bg {
 	position: fixed;
-	top: 0;
-	left: 0;
+	bottom: 0;
+	right:  0;
 	width: 100%;
 	height: 100%;
-	background: var(--main-ivory);
+	transform-origin: bottom;
+	clip-path: inset(0% 0% 0% 0%);
+	font-size: 60px;
+	color: #CFB49F; 
+	background:#200e0e url(../img/noise.png) repeat center;
+	perspective: 500px;
 	z-index: 101;
+	.inner{
+		height: 100%;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		flex-direction: column;
+		transform-style: preserve-3d;
+	}
+	.intro{
+		&__text{opacity: 0; transform: translateX(30%);
+			.split-text{position: relative; display: inline-block; opacity: 0;
+				span{@extend .serif; font-weight: 500; opacity: 0;}		
+			}
+		}
+	}
 }
 
 
 /*footer*/
-.footer{position: fixed; transform: translateY(30vh); bottom: 0;left: 0; width: 100%; padding:var(--spacing-default) var(--spacing-layout); box-sizing: border-box; z-index: 0;
+.footer{position: fixed; transform: translateY(30vh); bottom: 0;left: 0; width: 100%; padding:var(--spacing-default) var(--spacing-layout); color:var(--main-ivory); box-sizing: border-box; z-index: 0;
 	&__contents{display:grid; grid-template-columns: repeat(2,1fr); margin-bottom: var(--spacing-lg);@extend .font__style--md;}
 	&__cont{
 		&.cont{
@@ -731,6 +761,24 @@ body {
 		}
 	}
 	.copyright{@extend .font__style--sm;}
+	
+	.ico-sns{
+		&--instagram {
+			background-color: var(--main-ivory);
+		}
+	
+		&--github {
+			background-color: var(--main-ivory);
+		}
+	
+		&--notion {
+			background-color: var(--main-ivory);
+		}
+	
+		&--pdf {
+			background-color: var(--main-ivory);
+		}
+	}
 }
 
 
@@ -987,6 +1035,10 @@ body {
 	.custom-cursor {
 		display: none !important;
 	}
+	.intro-bg{background-size: 500px; touch-action: none;}
+	#pg-wrapper{
+		&::before{background-size: 500px;}
+	}
 	.header{
 		font-size: 16px;
 		&__logo {
@@ -1064,6 +1116,10 @@ body {
 	.ani.in-view {
 		animation: opacity 1.2s forwards;
 	}
+	.intro-bg {font-size: 40px;background-size:400px;}
+	#pg-wrapper{
+		&::before{background-size: 400px;}
+	}
 	.header{
 		font-size: 12px; padding-top: 15px;
 		&::before{background:linear-gradient(180deg,  var(--bg-color) 20%, transparent);}
@@ -1119,7 +1175,7 @@ body {
 			}
 	
 			&--sm {
-				@include font-style(null, 15px, null, -.25px, 155%);
+				@include font-style(null, 20px, null, -.25px, 155%);
 			}
 	
 			&--md {

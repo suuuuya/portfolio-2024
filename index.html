@@ -23,7 +23,13 @@
 </head>
 
 <body class="scrolled-init">
-	<div class="intro-bg"></div>
+	<div class="intro-bg">
+		<div class="inner">
+			<div class="intro">
+				<div class="intro__text serif-italic">Posted by <div class="split-text">LYS</div></div>
+			</div>
+		</div>
+	</div>
 	<div class="noise"></div>
 	<div id="custom-cursor" class="custom-cursor">
 		<div class="custom-cursor__body">
@@ -63,7 +69,7 @@
 			<button type="button" class="gnb__btn">( MENU )</button>
 			<nav class="gnb__menu">
 				<ul class="gnb__list">
-					<li><a href="#profile">Profile</a></li>
+					<li><a href="#profile-inner">Profile</a></li>
 					<li><a href="#work-history">Projects</a></li>
 					<li><a href="#stack">Stack & Skills</a></li>
 					<li><a href="#expertise">Expertise</a></li>
@@ -76,7 +82,7 @@
 			<div id="content" class="main">
 				<h2 class="blind">본문 영역</h2>
 				<div id="pg-wrapper">
-					<section id="home" class="sec home" data-textcolor="#E9E3D3">
+					<section id="home" class="sec home" data-bgcolor="" data-textcolor="#CFB49F" >
 						<h3 class="sec__cate blind">Index</h3>
 						<div class="home__sticky">
 							<div class="bg"></div>
@@ -104,9 +110,10 @@
 							</div>
 						</div>
 					</section>
-					<section id="profile" class="sec profile" data-bgcolor="#111" data-textcolor="#E8E4D9">
-						<div class="inner">
+					<section id="profile" class="sec profile" data-bgcolor="#200e0e" data-textcolor="#CFB49F">
+						<div id="profile-inner" class="inner">
 							<div class="sec__title">
+								<h3 class="sec__cate serif-italic ani">Profile</h3>
 								<h4 class="sec__title--lg serif-italic ani">About&nbsp;Me</h4>
 							</div>
 							<div class="profile__group">
@@ -160,6 +167,30 @@
 								</div>
 							</div>
 							<div class="profile__group">
+								<div class="font__style--lg serif ani">Prize</div>
+								<div class="desc ani">
+									<ul class="table">
+										<li>
+											<div class="dt">2023<br>Gold Prize 한국정보과학진흥협회</div>
+											<div class="dd">ICT k · awards '루이셀' e-비즈니스 부문 Gold Prize 수상</div>
+										</li>
+										<li>
+											<div class="dt">2022<br>Prize 한국정보과학진흥협회</div>
+											<div class="dd">ICT k · awards '아이멜리' e-커머스 모바일 서비스 부문 수상</div>
+										</li>
+										<li>
+											<div class="dt">2021<br>Grand Prize 한국정보과학진흥협회</div>
+											<div class="dd">ICT k · awards '이클레어' Grand Prize 수상</div>
+										</li>
+										<li>
+											<div class="dt">2014<br>장려상 관악현대미술대전</div>
+											<div class="dd">관악현대미술대전 서양화 부문 장려상 수상</div>
+										</li>
+									</ul>
+								</div>
+							</div>
+							
+							<div class="profile__group">
 								<div class="font__style--lg serif ani">Professional Experience</div>
 								<div class="desc ani">
 									<ul>
@@ -170,29 +201,6 @@
 										<li>프론트 개발 기술 경력 보유</li>
 										<li>이커머스 플랫폼 분야 3년 이상 경력 보유</li>
 										<li>대규모 자사 서비스 UI/UX 개선 사업 참여</li>
-									</ul>
-								</div>
-							</div>
-							<div class="profile__group">
-								<div class="font__style--lg serif ani">Prize</div>
-								<div class="desc ani">
-									<ul class="table">
-										<li>
-											<div class="dt">2023 &nbsp;Gold Prize 한국정보과학진흥협회</div>
-											<div class="dd">ICT k · awards '루이셀' e-비즈니스 부문 Gold Prize 수상</div>
-										</li>
-										<li>
-											<div class="dt">2022 &nbsp;Prize 한국정보과학진흥협회</div>
-											<div class="dd">ICT k · awards '아이멜리' e-커머스 모바일 서비스 부문 수상</div>
-										</li>
-										<li>
-											<div class="dt">2021 &nbsp;Grand Prize 한국정보과학진흥협회</div>
-											<div class="dd">ICT k · awards '이클레어' Grand Prize 수상</div>
-										</li>
-										<li>
-											<div class="dt">2014 &nbsp;장려상 관악현대미술대전</div>
-											<div class="dd">관악현대미술대전 서양화 부문 장려상 수상</div>
-										</li>
 									</ul>
 								</div>
 							</div>
@@ -233,7 +241,7 @@
 						<div id="work-history" class="work__contents inner">
 							<div class="sec__title">
 								<h3 class="sec__cate serif-italic ani">Projects</h3>
-								<div class="sec__title--lg serif-italic ani" data-bgcolor="#111" data-textcolor="#A89C75"><span>Works</span><span>(93)</span></div>
+								<div class="sec__title--lg serif-italic ani" data-bgcolor="#404253" data-textcolor="#A89C75"><span>Works</span><span>(93)</span></div>
 								<div class="sec__title--sm ani">
 									공공기관, 제조, 유통, 교육, 문화, 건축, 라이프스타일, 커머스를 위한 디지털 솔루션 <br>
 									사용자 중심의 사용자 경험은 브랜드를 성장시킵니다. <br>
@@ -485,7 +493,7 @@
 								<div class="bg"></div>
 								<div class="inner">
 									<div class="sec__title">
-										<h4 class="sec__title--lg serif-italic ani" data-bgcolor="#111" data-textcolor="#E9E3D3">Stack & Tools</h4>
+										<h4 class="sec__title--lg serif-italic ani" data-bgcolor="#111" data-textcolor="#E8E4D9">Stack & Tools</h4>
 									</div>
 									<div class="stack__container ani">
 										<div class="stack__carousel">

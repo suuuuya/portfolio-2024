@@ -6,11 +6,10 @@
     transform: scale(3.2);
   }
 }
-
 /*home*/
 .home {
   height: 100vh;
-  .bg{position: absolute; top:0;left: 0; width: 100%; height:100vh; background: url(../img/main-visual.png) no-repeat top 55% center / cover;
+  .bg{position: absolute; top:0;left: 0; width: 100%; height:100vh;background:#502222 url(../img/noise.png) repeat center;
     &::after{display: block; content: ""; width: 100%; height: 100%; background: rgba(0,0,0,0);}
   }
   &__sticky {
@@ -186,7 +185,7 @@
   .work-intro {
     position: relative;
     width: 100%;
-    height: 80vh;
+    height: 70vh;
     text-align: center;
     z-index: 1;    
     .sec {
@@ -274,7 +273,7 @@
     bottom: 0;
     left: 0;
     width: 100%;
-    height:160vh;
+    height:120vh;
     padding: 0 var(--spacing-layout);
     overflow: hidden;
     canvas { 
@@ -620,8 +619,11 @@
   }
 }
 @media screen and (max-width: 1279px) {
+  .home{
+    .bg{background-size:500px;}
+  }
   .work{padding-top: 50px;
-    .work-intro {height: 45vh;
+    .work-intro {height: 60vh;
       .sec {
         &__title {
           &--lg {
@@ -682,7 +684,7 @@
     }
 	}
   .home{
-    .bg{
+    .bg{background-size:400px;
       &::after{background: rgba(0,0,0,.2);}
     }
     &__letter {
@@ -703,7 +705,7 @@
     }
   }
   .work{padding-top:0;
-    .work-intro {
+    .work-intro {height: 50vh;
       .sec {
         &__title {
           &--lg {
@@ -731,15 +733,16 @@
     }
     .history {
       &__cate {
+        gap:0;
         grid-template-columns:70px auto;
         span:last-child{display: none;}
       }
       &__list {
         li {display: flex; flex-wrap: wrap;gap:0;
-          .date{width: 90px;}
-          .con{width: calc(100% - 90px);}
-          .note{width:calc(100% - 88px); margin-left: 88px;
-            .tag{padding: 3px 7px;}
+          .date{width: 70px; padding-right: 15px; word-break: break-all; box-sizing: border-box;}
+          .con{width: calc(100% - 70px);}
+          .note{width:calc(100% - 68px); margin-left: 68px;
+            .tag{padding: 3px 7px;font-size: 13px;}
           }
         }
       }

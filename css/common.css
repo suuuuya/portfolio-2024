@@ -528,9 +528,22 @@ body:not(.scrolling, .scrolled-init) {
   z-index: 1;
 }
 
-.pg-wrapper {
+#pg-wrapper {
   position: relative;
   z-index: 1;
+}
+#pg-wrapper::before {
+  display: block;
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: url(../img/noise.png) repeat center;
+  pointer-events: none;
+  opacity: 0.2;
+  z-index: -1;
 }
 
 .inner {
@@ -549,16 +562,24 @@ body:not(.scrolling, .scrolled-init) {
   background-repeat: no-repeat;
 }
 .ico-sns--instagram {
-  background-image: url("../img/ico/ico-instagram.svg");
+  background-color: var(--text-color);
+  mask: url("../img/ico/ico-instagram.svg") no-repeat center/contain;
+  -webkit-mask: url("../img/ico/ico-instagram.svg") no-repeat center/contain;
 }
 .ico-sns--github {
-  background-image: url("../img/ico/ico-git.svg");
+  background-color: var(--text-color);
+  mask: url("../img/ico/ico-git.svg") no-repeat center/contain;
+  -webkit-mask: url("../img/ico/ico-git.svg") no-repeat center/contain;
 }
 .ico-sns--notion {
-  background-image: url("../img/ico/ico-notion.svg");
+  background-color: var(--text-color);
+  mask: url("../img/ico/ico-notion.svg") no-repeat center/contain;
+  -webkit-mask: url("../img/ico/ico-notion.svg") no-repeat center/contain;
 }
 .ico-sns--pdf {
-  background-image: url("../img/ico/ico-pdf.svg");
+  background-color: var(--text-color);
+  mask: url("../img/ico/ico-pdf.svg") no-repeat center/contain;
+  -webkit-mask: url("../img/ico/ico-pdf.svg") no-repeat center/contain;
 }
 
 .ico-arrow--goto {
@@ -668,12 +689,38 @@ body:not(.scrolling, .scrolled-init) {
 
 .intro-bg {
   position: fixed;
-  top: 0;
-  left: 0;
+  bottom: 0;
+  right: 0;
   width: 100%;
   height: 100%;
-  background: var(--main-ivory);
+  transform-origin: bottom;
+  clip-path: inset(0% 0% 0% 0%);
+  font-size: 60px;
+  color: #CFB49F;
+  background: #200e0e url(../img/noise.png) repeat center;
+  perspective: 500px;
   z-index: 101;
+}
+.intro-bg .inner {
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  transform-style: preserve-3d;
+}
+.intro-bg .intro__text {
+  opacity: 0;
+  transform: translateX(30%);
+}
+.intro-bg .intro__text .split-text {
+  position: relative;
+  display: inline-block;
+  opacity: 0;
+}
+.intro-bg .intro__text .split-text span {
+  font-weight: 500;
+  opacity: 0;
 }
 
 /*footer*/
@@ -684,6 +731,7 @@ body:not(.scrolling, .scrolled-init) {
   left: 0;
   width: 100%;
   padding: var(--spacing-default) var(--spacing-layout);
+  color: var(--main-ivory);
   box-sizing: border-box;
   z-index: 0;
 }
@@ -696,16 +744,29 @@ body:not(.scrolling, .scrolled-init) {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
 }
+.footer .ico-sns--instagram {
+  background-color: var(--main-ivory);
+}
+.footer .ico-sns--github {
+  background-color: var(--main-ivory);
+}
+.footer .ico-sns--notion {
+  background-color: var(--main-ivory);
+}
+.footer .ico-sns--pdf {
+  background-color: var(--main-ivory);
+}
+
 /*split text*/
 .split-text span {
   display: inline-block;
   transform: translate3d(0, 0%, 0);
 }
 
-.serif, .header__logo .logo span, .gnb a {
+.serif, .header__logo .logo span, .gnb a, .intro-bg .intro__text .split-text span {
   font-family: "editorial", sans-serif;
 }
-.serif.split-text span, .header__logo .logo span.split-text span, .gnb a.split-text span, .serif.split span, .header__logo .logo span.split span, .gnb a.split span {
+.serif.split-text span, .header__logo .logo span.split-text span, .gnb a.split-text span, .intro-bg .intro__text .split-text span.split-text span, .serif.split span, .header__logo .logo span.split span, .gnb a.split span, .intro-bg .intro__text .split-text span.split span {
   font-family: "editorial", sans-serif;
 }
 
@@ -958,6 +1019,13 @@ body:not(.scrolling, .scrolled-init) {
   .custom-cursor {
     display: none !important;
   }
+  .intro-bg {
+    background-size: 500px;
+    touch-action: none;
+  }
+  #pg-wrapper::before {
+    background-size: 500px;
+  }
   .header {
     font-size: 16px;
   }
@@ -1043,6 +1111,13 @@ body:not(.scrolling, .scrolled-init) {
   .ani.in-view {
     animation: opacity 1.2s forwards;
   }
+  .intro-bg {
+    font-size: 40px;
+    background-size: 400px;
+  }
+  #pg-wrapper::before {
+    background-size: 400px;
+  }
   .header {
     font-size: 12px;
     padding-top: 15px;
@@ -1109,7 +1184,7 @@ body:not(.scrolling, .scrolled-init) {
     line-height: 150%;
   }
   .sec__title--sm {
-    font-size: 15px;
+    font-size: 20px;
     letter-spacing: -0.25px;
     line-height: 155%;
   }
